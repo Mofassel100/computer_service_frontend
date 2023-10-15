@@ -1,1 +1,6 @@
-export const reducer = {};
+import { showSidebarDrawer } from "./slice/sidebarSlice";
+
+export const reducer = {
+
+    sidebar: showSidebarDrawer
+};
