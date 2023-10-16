@@ -29,6 +29,7 @@ instant.interceptors.response.use(
   // @ts-ignore
   function (response) {
     //  const responseObject: ResponseSuccess;
+    
     const responseObject: any = {
       data: response?.data?.data,
       meta: response?.data?.meta,
