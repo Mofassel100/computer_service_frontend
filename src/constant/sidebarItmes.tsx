@@ -15,7 +15,7 @@ export const sidebarItems = (role: string) => {
     {
       label: "Profile",
       key: "profile",
-      icon: < ProfileOutlined/>,
+      icon: <ProfileOutlined />,
       children: [
         {
           label: <Link href={`/${role}`}>Account Profile</Link>,
@@ -35,7 +35,6 @@ export const sidebarItems = (role: string) => {
       icon: <TableOutlined />,
       key: `/${role}/manage-student`,
     },
-   
   ];
 
   const adminSidebarItems: MenuProps["items"] = [
@@ -77,10 +76,6 @@ export const sidebarItems = (role: string) => {
           label: <Link href={`/${role}/service/edite`}>Booking Status</Link>,
           key: `/${role}/service/edite`,
         },
-      
-        
-        
-     
       ],
     },
     {
@@ -100,9 +95,6 @@ export const sidebarItems = (role: string) => {
           label: <Link href={`/${role}/edit`}>Content Update</Link>,
           key: `/${role}/edit`,
         },
-        
-        
-     
       ],
     },
     {
@@ -118,39 +110,58 @@ export const sidebarItems = (role: string) => {
           label: <Link href={`/${role}/booing-status`}>Booking Status</Link>,
           key: `/${role}/booking-status`,
         },
-        
-        
-     
       ],
     },
   ];
 
   const superAdminSidebarItems: MenuProps["items"] = [
-    ...defaultSidebarItems,
-    ...commonAdminSidebarItems,
     {
-      label:"Manage Admin",
-      icon: <TableOutlined />,
-      key: `/${role}/admin`,
-      children:[
-        {
-          label: <Link href={`/${role}/create`}>Admin Create</Link>,
-          key: `/${role}/create`,
-        },
-      ]
-    },
-   
-    {
-      label: "Management",
-      key: "management",
-      icon: <AppstoreOutlined />,
+      label: "Profile",
+      key: "profile",
+      icon: <ProfileOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/department`}>Department</Link>,
-          key: `/${role}/department`,
+          label: <Link href={`/${role}`}>Account Profile</Link>,
+          key: `/${role}/profile`,
+        },
+        {
+          label: <Link href={`/${role}/change-password`}>Change Password</Link>,
+          key: `/${role}/change-password`,
         },
       ],
     },
+
+    {
+      label: "Manage Admin",
+      icon: <TableOutlined />,
+      key: `/${role}`,
+      children: [
+        {
+          label: <Link href={`/${role}/admin-create`}>Admin Create</Link>,
+          key: `/${role}/admin-create`,
+        },
+        {
+          label: <Link href={`/${role}/edit/:id`}>Update Admin</Link>,
+          key: `/${role}/admin-create`,
+        },
+        {
+          label: <Link href={`/${role}/admin`}>Admin All</Link>,
+          key: `/${role}/admin`,
+        },
+      ],
+    },
+
+    // {
+    //   label: "",
+    //   key: "management",
+    //   icon: <AppstoreOutlined />,
+    //   children: [
+    //     {
+    //       label: <Link href={`/${role}/department`}>Department</Link>,
+    //       key: `/${role}/department`,
+    //     },
+    //   ],
+    // },
   ];
   const UserSidebare: MenuProps["items"] = [
     {
@@ -166,14 +177,9 @@ export const sidebarItems = (role: string) => {
           label: <Link href={`/${role}/booing-status`}>Booking Status</Link>,
           key: `/${role}/booking-status`,
         },
-        
-        
-     
       ],
     },
-   
-    
-   
+
     {
       label: "Manage Booking",
       key: "management",
@@ -187,13 +193,9 @@ export const sidebarItems = (role: string) => {
     },
   ];
 
- 
- 
-
   if (role === USER_ROLE.SUPER_ADMIN) return superAdminSidebarItems;
   else if (role === USER_ROLE.ADMIN) return adminSidebarItems;
   else if (role === USER_ROLE.User) return UserSidebare;
-
   else {
     return defaultSidebarItems;
   }
