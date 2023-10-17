@@ -3,6 +3,10 @@ import {
   ProfileOutlined,
   TableOutlined,
   AppstoreOutlined,
+  UsergroupAddOutlined,
+  BookOutlined,
+  ProfileFilled,
+  CustomerServiceOutlined,
   ScheduleOutlined,
   ThunderboltOutlined,
   CreditCardOutlined,
@@ -38,77 +42,79 @@ export const sidebarItems = (role: string, email: string, id: string) => {
   ];
 
   const adminSidebarItems: MenuProps["items"] = [
-    ...defaultSidebarItems,
-    ...commonAdminSidebarItems,
     {
-      label: "Manage User",
-      key: "manage-academic",
-      icon: <TableOutlined />,
+      label: "Profile",
+      key: "profile",
+      icon: <ProfileOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/create`}>create User</Link>,
-          key: `/${role}/user/create`,
+          label: <Link href={`/${role}s/profile`}>Account Profile</Link>,
+          key: `/${role}s/profile`,
         },
         {
-          label: <Link href={`/${role}/user`}>User</Link>,
-          key: `/${role}/user`,
+          label: <Link href={`/${role}s/change-password`}>Change Password</Link>,
+          key: `/${role}/change-password`,
+        },
+      ],
+    },
+   
+    {
+      label: "Manage User",
+      key: "manage-user",
+      icon: <UsergroupAddOutlined />,
+      children: [
+        {
+          label: <Link href={`/${role}s/user/create`}>create User</Link>,
+          key: `/${role}s/user/create`,
         },
         {
-          label: <Link href={`/${role}/user/edit`}>Semesters</Link>,
-          key: `/${role}/user/edit`,
+          label: <Link href={`/${role}s/user/all-user`}>All User</Link>,
+          key: `/${role}s/user/all-user`,
         },
       ],
     },
     {
       label: "Manage Service",
-      key: "manage-booking",
-      icon: <AppstoreOutlined />,
+      key: "manage-service",
+      icon: <CustomerServiceOutlined/>,
       children: [
         {
-          label: <Link href={`/${role}/service`}>Service </Link>,
-          key: `/${role}/service`,
+          label: <Link href={`/${role}s/service/create`}>Service Create</Link>,
+          key: `/${role}s/service/create`,
         },
         {
-          label: <Link href={`/${role}/create`}>Service Create</Link>,
-          key: `/${role}/create`,
-        },
-        {
-          label: <Link href={`/${role}/service/edite`}>Booking Status</Link>,
-          key: `/${role}/service/edite`,
+          label: <Link href={`/${role}s/service/all-service`}>All Service</Link>,
+          key: `/${role}s/service/all-service`,
         },
       ],
     },
     {
       label: "Manage content",
-      key: "manage-booking",
+      key: "manage-content",
       icon: <AppstoreOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/creat`}>create</Link>,
-          key: `/${role}/create`,
+          label: <Link href={`/${role}s/content/create`}>Content create</Link>,
+          key: `/${role}s/content/create`,
         },
         {
-          label: <Link href={`/${role}/content`}>Content</Link>,
-          key: `/${role}/contents`,
-        },
-        {
-          label: <Link href={`/${role}/edit`}>Content Update</Link>,
-          key: `/${role}/edit`,
+          label: <Link href={`/${role}s/content/all-content`}>Contentn All</Link>,
+          key: `/${role}s/content/all-content`,
         },
       ],
     },
     {
       label: "Manage Booking",
       key: "manage-booking",
-      icon: <AppstoreOutlined />,
+      icon: <BookOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/booking-history`}>Booking History</Link>,
-          key: `/${role}/booking-history`,
+          label: <Link href={`/${role}s/booking/history`}>Booking History</Link>,
+          key: `/${role}s/booking/history`,
         },
         {
-          label: <Link href={`/${role}/booing-status`}>Booking Status</Link>,
-          key: `/${role}/booking-status`,
+          label: <Link href={`/${role}s/booking/all-booking`}>Booking Status</Link>,
+          key: `/${role}s/booking/all-booking`,
         },
       ],
     },
@@ -134,7 +140,7 @@ export const sidebarItems = (role: string, email: string, id: string) => {
     {
       label: "Manage Admin",
       icon: <TableOutlined />,
-      key: `/${role}`,
+      key: `manage-amin`,
       children: [
         {
           label: <Link href={`/${role}/admin-create`}>Admin Create</Link>,

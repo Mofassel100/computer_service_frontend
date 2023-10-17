@@ -6,6 +6,7 @@ import FormInput from "@/components/Forms/FormInput";
 import FormTextArea from "@/components/Forms/FormTextAria";
 import FormSelectField from "@/components/Forms/FormselectField";
 import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
+import { RolesOptioneSuperAdmin } from "@/constant/global";
 import { USER_ROLE } from "@/constant/role";
 import { useAddAdminWithFormDataMutation } from "@/redux/api/adminApi";
 import { adminSchema } from "@/schemas/admin";
@@ -77,7 +78,7 @@ const CreateAdminPage = () => {
 
             <Col
               className="gutter-row"
-              span={8}
+              span={15}
               style={{
                 marginBottom: "10px",
               }}
@@ -91,7 +92,7 @@ const CreateAdminPage = () => {
             </Col>
             <Col
               className="gutter-row"
-              span={8}
+              span={12}
               style={{
                 marginBottom: "10px",
               }}
@@ -103,9 +104,10 @@ const CreateAdminPage = () => {
                 label="Password"
               />
             </Col>
+            <br/>
             <Col
               className="gutter-row"
-              span={8}
+              span={15}
               style={{
                 marginBottom: "10px",
               }}
@@ -132,17 +134,23 @@ const CreateAdminPage = () => {
               />
             </Col>
             <Col
-              className="gutter-row"
-              span={9}
-              style={{
-                marginBottom: "10px",
-              }}
-            >
-              <FormInput name="role" label="Role"></FormInput>
-            </Col>
-            <div style={{ justifyContent: "center" }}>
+                className="gutter-row"
+                span={8}
+                style={{
+                  marginBottom: "10px",
+                }}
+              >
+                <FormSelectField
+                  size="large"
+                  name="role"
+                  options={RolesOptioneSuperAdmin}
+                  label="Blood group"
+                  placeholder="Select"
+                />
+              </Col>
+           
               <Col
-                span={20}
+                span={24}
                 style={{ margin: "10px 0", justifyContent: "center" }}
               >
                 <FormTextArea
@@ -151,7 +159,7 @@ const CreateAdminPage = () => {
                   rows={4}
                 />
               </Col>
-            </div>
+       
           </Row>
         </div>
         <Button htmlType="submit" type="primary">

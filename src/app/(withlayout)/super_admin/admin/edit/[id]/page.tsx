@@ -2,6 +2,7 @@
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import FormTextArea from "@/components/Forms/FormTextAria";
+import FormSelectField from "@/components/Forms/FormselectField";
 import ActionBar from "@/components/UI/ActionBar/ActionBar";
 import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
 import { useAdminQuery, useUpdateAdminMutation } from "@/redux/api/adminApi";
@@ -107,14 +108,20 @@ const EditDepartmentPage = ({ params }: IDProps) => {
             />
           </Col>
           <Col
-            className="gutter-row"
-            span={9}
-            style={{
-              marginBottom: "10px",
-            }}
-          >
-            <FormInput name="role" label="Role"></FormInput>
-          </Col>
+                className="gutter-row"
+                span={8}
+                style={{
+                  marginBottom: "10px",
+                }}
+              >
+                <FormSelectField
+                  size="large"
+                  name="role"
+                  options={RolesOptioneSuperAdmin}
+                  label="Blood group"
+                  placeholder="Select"
+                />
+              </Col>
           <div style={{ justifyContent: "center" }}>
             <Col
               span={20}

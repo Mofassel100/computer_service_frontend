@@ -1,42 +1,34 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+
 "use client";
 import { Button, Input, Modal } from "antd";
 import Link from "next/link";
 import {
   DeleteOutlined,
   EditOutlined,
-  FilterOutlined,
   ReloadOutlined,
   EyeOutlined,
 } from "@ant-design/icons";
-import { message, Popconfirm, Switch } from "antd";
-import { useEffect, useState } from "react";
-// import { useDebounced } from "@/redux/hooks";
-// import { useAdminsQuery } from "@/redux/api/adminApi";
-// import { IDepartment } from "@/types";
+import { message, } from "antd";
+import { useState } from "react";
 import dayjs from "dayjs";
 import { useDebounced } from "@/redux/hooks";
+// @ts-ignore
 import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
 // @ts-ignore
 import ActionBar from "@/components/UI/ActionBar/ActionBar";
 // @ts-ignore
 import ITTable from "@/components/UI/ITTable/ITTable";
-import {
-  useAdminQuery,
-  useAdminsQuery,
-  useDeleteAdminMutation,
-} from "@/redux/api/adminApi";
-import confirm from "antd/es/modal/confirm";
 import Image from "next/image";
+import { useDeleteUserMutation, useUserQuery, useUsersQuery } from "@/redux/api/userApi";
 
-const AdminPage = () => {
-  const [deleteAdmin] = useDeleteAdminMutation();
+const UserPage = () => {
+  const [deleteUser] = useDeleteUserMutation();
   const deletedItems = async (data: any) => {
     const confirmDelete = window.confirm(
       `Are you sure you want to ${data} delete this item?`
     );
     if (confirmDelete) {
-      await deleteAdmin(data);
+      await deleteUser(data);
       message.success("deleted");
     } else {
       ("");
@@ -64,11 +56,12 @@ const AdminPage = () => {
   if (!!debouncedSearchTerm) {
     query["searchTerm"] = debouncedSearchTerm;
   }
-  const { data, isLoading } = useAdminsQuery({ ...query });
+  const { data, isLoading } =useUsersQuery({ ...query });
   const [views, setViews] = useState("");
-  const admins = data?.admins;
+  const admins = data?.users;
+  console.log(admins)
   const meta = data?.meta;
-  const adminData = async (datas: string) => {
+  const UserData = async (datas: string) => {
     setViews(datas);
   };
   const showModal = () => {
@@ -82,40 +75,30 @@ const AdminPage = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  const { data: adminDatass } = useAdminQuery(views);
+  const { data: userAllData } =useUserQuery(views);
   const columns = [
     {
       title: "Email",
       dataIndex: "email",
     },
-
-    // {
-    //   title: "Created at",
-    //   dataIndex: "createdAt",
-    //   render: function (data: any) {
-    //     return data && dayjs(data).format("MMM D, YYYY hh:mm A");
-    //   },
-    //   sorter: true,
-    // },
-
     {
       title: "Action",
       dataIndex: "id",
       render: function (data: any) {
-        console.log(data);
+
         return (
           <>
             <Button
               onClick={() => {
                 showModal();
-                adminData(data);
+                UserData(data);
               }}
               type="primary"
             >
               <EyeOutlined />
             </Button>
 
-            <Link href={`/super_admin/admin/edit/${data}`}>
+            <Link href={`/admins/user/edit/${data}`}>
               <Button
                 style={{
                   margin: "0px 5px",
@@ -153,7 +136,7 @@ const AdminPage = () => {
     setSortOrder("");
     setSearchTerm("");
   };
-  console.log(adminDatass);
+  console.log(userAllData);
   return (
     <div>
       <ITBreadCrump
@@ -187,13 +170,13 @@ const AdminPage = () => {
                 borderRadius: "20px",
               }}
             >
-              {adminDatass?.imageURL ? (
+              {userAllData?.imageURL ? (
                 <Image
                   style={{
                     borderRadius: "20px",
                   }}
                   alt="res.cloudinary.com"
-                  src={adminDatass?.imageURL}
+                  src={userAllData?.imageURL}
                   width={150}
                   height={120}
                 />
@@ -202,32 +185,32 @@ const AdminPage = () => {
               )}
             </div>
             <div>
-              <h3>Name : {adminDatass?.name ? adminDatass?.name : ""}</h3>
-              <h3>Email : {adminDatass?.email ? adminDatass?.email : ""}</h3>
+              <h3>Name : {userAllData?.name ? userAllData?.name : ""}</h3>
+              <h3>Email : {userAllData?.email ? userAllData?.email : ""}</h3>
               <h3>
                 DateOfBirth :{" "}
-                {adminDatass?.dateOfBirth ? adminDatass?.dateOfBirth : ""}
+                {userAllData?.dateOfBirth ? userAllData?.dateOfBirth : ""}
               </h3>
               <h3>
-                Address : {adminDatass?.address ? adminDatass?.address : ""}
+                Address : {userAllData?.address ? userAllData?.address : ""}
               </h3>
               <h3>
                 Create AT:{" "}
-                {adminDatass?.createdAt
-                  ? dayjs(adminDatass?.createdAt).format("MMM D, YYYY hh:mm A")
+                {userAllData?.createdAt
+                  ? dayjs(userAllData?.createdAt).format("MMM D, YYYY hh:mm A")
                   : ""}
               </h3>
               <h3>
                 Updated At:{" "}
-                {adminDatass?.updatedAt
-                  ? dayjs(adminDatass?.updatedAt).format("MMM D, YYYY hh:mm A")
+                {userAllData?.updatedAt
+                  ? dayjs(userAllData?.updatedAt).format("MMM D, YYYY hh:mm A")
                   : ""}
               </h3>
             </div>
           </div>
         </Modal>
         <div>
-          <Link href="/super_admin/admin-create">
+          <Link href="/admins/user/create">
             <Button type="primary">Create Admin</Button>
           </Link>
           {(!!sortBy || !!sortOrder || !!searchTerm) && (
@@ -257,4 +240,4 @@ const AdminPage = () => {
   );
 };
 
-export default AdminPage;
+export default UserPage;

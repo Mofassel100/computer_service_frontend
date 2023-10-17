@@ -39,7 +39,7 @@ const SideBar = () => {
           padding: "10px 0px",
         }}
       >
-        UMS
+       ITS
       </div>
       <Menu
         theme="dark"
