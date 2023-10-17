@@ -1,6 +1,7 @@
+import { baseApi } from "./api/baseApi";
 import sidebarReducer from "./slice/sidebarSlice";
 
 export const reducer = {
-
-    sidebar: sidebarReducer
+  [baseApi.reducerPath]: baseApi.reducer,
+  sidebar: sidebarReducer,
 };
