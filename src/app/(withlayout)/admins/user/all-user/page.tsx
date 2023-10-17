@@ -1,4 +1,3 @@
-
 "use client";
 import { Button, Input, Modal } from "antd";
 import Link from "next/link";
@@ -8,7 +7,7 @@ import {
   ReloadOutlined,
   EyeOutlined,
 } from "@ant-design/icons";
-import { message, } from "antd";
+import { message } from "antd";
 import { useState } from "react";
 import dayjs from "dayjs";
 import { useDebounced } from "@/redux/hooks";
@@ -19,7 +18,11 @@ import ActionBar from "@/components/UI/ActionBar/ActionBar";
 // @ts-ignore
 import ITTable from "@/components/UI/ITTable/ITTable";
 import Image from "next/image";
-import { useDeleteUserMutation, useUserQuery, useUsersQuery } from "@/redux/api/userApi";
+import {
+  useDeleteUserMutation,
+  useUserQuery,
+  useUsersQuery,
+} from "@/redux/api/userApi";
 
 const UserPage = () => {
   const [deleteUser] = useDeleteUserMutation();
@@ -56,10 +59,10 @@ const UserPage = () => {
   if (!!debouncedSearchTerm) {
     query["searchTerm"] = debouncedSearchTerm;
   }
-  const { data, isLoading } =useUsersQuery({ ...query });
+  const { data, isLoading } = useUsersQuery({ ...query });
   const [views, setViews] = useState("");
   const admins = data?.users;
-  console.log(admins)
+  console.log(admins);
   const meta = data?.meta;
   const UserData = async (datas: string) => {
     setViews(datas);
@@ -75,7 +78,7 @@ const UserPage = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  const { data: userAllData } =useUserQuery(views);
+  const { data: userAllData } = useUserQuery(views);
   const columns = [
     {
       title: "Email",
@@ -85,7 +88,6 @@ const UserPage = () => {
       title: "Action",
       dataIndex: "id",
       render: function (data: any) {
-
         return (
           <>
             <Button
@@ -142,8 +144,8 @@ const UserPage = () => {
       <ITBreadCrump
         items={[
           {
-            label: "super_admin",
-            link: "/super_admin",
+            label: "admin",
+            link: "/admins",
           },
         ]}
       />
