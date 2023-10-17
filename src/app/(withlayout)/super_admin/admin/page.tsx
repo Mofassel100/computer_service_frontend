@@ -8,6 +8,7 @@ import {
   ReloadOutlined,
   EyeOutlined,
 } from "@ant-design/icons";
+import { message, Popconfirm, Switch } from "antd";
 import { useState } from "react";
 // import { useDebounced } from "@/redux/hooks";
 // import { useAdminsQuery } from "@/redux/api/adminApi";
@@ -17,9 +18,23 @@ import { useDebounced } from "@/redux/hooks";
 import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
 import ActionBar from "@/components/UI/ActionBar/ActionBar";
 import ITTable from "@/components/UI/ITTable/ITTable";
-import { useAdminsQuery } from "@/redux/api/adminApi";
+import { useAdminsQuery, useDeleteAdminMutation } from "@/redux/api/adminApi";
+import confirm from "antd/es/modal/confirm";
 
 const AdminPage = () => {
+  const [deleteAdmin] = useDeleteAdminMutation();
+  const deletedItems = async (data: any) => {
+    const confirmDelete = window.confirm(
+      `Are you sure you want to ${data} delete this item?`
+    );
+    if (confirmDelete) {
+      await deleteAdmin(data);
+      message.success("deleted");
+    } else {
+      ("");
+    }
+  };
+
   const query: Record<string, any> = {};
 
   const [page, setPage] = useState<number>(1);
@@ -48,11 +63,6 @@ const AdminPage = () => {
 
   const columns = [
     {
-      title: "Id",
-      dataIndex: "id",
-      sorter: true,
-    },
-    {
       title: "Name",
       dataIndex: "name",
       render: function (data: Record<string, string>) {
@@ -74,10 +84,7 @@ const AdminPage = () => {
       },
       sorter: true,
     },
-    // {
-    //   title: "Contact no.",
-    //   dataIndex: "contactNo",
-    // },
+
     {
       title: "Action",
       dataIndex: "id",
@@ -85,7 +92,7 @@ const AdminPage = () => {
         console.log(data);
         return (
           <>
-            <Link href={`/super_admin/admin/details/${data}`}>
+            <Link href={`/super_admin/admin/details/${data.id}`}>
               <Button onClick={() => console.log(data)} type="primary">
                 <EyeOutlined />
               </Button>
@@ -101,7 +108,8 @@ const AdminPage = () => {
                 <EditOutlined />
               </Button>
             </Link>
-            <Button onClick={() => console.log(data)} type="primary" danger>
+
+            <Button onClick={() => deletedItems(data)} type="primary" danger>
               <DeleteOutlined />
             </Button>
           </>
