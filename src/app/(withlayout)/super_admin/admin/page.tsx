@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import { Button, Input } from "antd";
+import { Button, Input, Modal } from "antd";
 import Link from "next/link";
 import {
   DeleteOutlined,
@@ -9,7 +10,7 @@ import {
   EyeOutlined,
 } from "@ant-design/icons";
 import { message, Popconfirm, Switch } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { useDebounced } from "@/redux/hooks";
 // import { useAdminsQuery } from "@/redux/api/adminApi";
 // import { IDepartment } from "@/types";
@@ -18,8 +19,13 @@ import { useDebounced } from "@/redux/hooks";
 import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
 import ActionBar from "@/components/UI/ActionBar/ActionBar";
 import ITTable from "@/components/UI/ITTable/ITTable";
-import { useAdminsQuery, useDeleteAdminMutation } from "@/redux/api/adminApi";
+import {
+  useAdminQuery,
+  useAdminsQuery,
+  useDeleteAdminMutation,
+} from "@/redux/api/adminApi";
 import confirm from "antd/es/modal/confirm";
+import Image from "next/image";
 
 const AdminPage = () => {
   const [deleteAdmin] = useDeleteAdminMutation();
@@ -34,7 +40,7 @@ const AdminPage = () => {
       ("");
     }
   };
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const query: Record<string, any> = {};
 
   const [page, setPage] = useState<number>(1);
@@ -57,33 +63,38 @@ const AdminPage = () => {
     query["searchTerm"] = debouncedSearchTerm;
   }
   const { data, isLoading } = useAdminsQuery({ ...query });
-
+  const [views, setViews] = useState("");
   const admins = data?.admins;
   const meta = data?.meta;
+  const adminData = async (datas: string) => {
+    setViews(datas);
+  };
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
 
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  const { data: adminDatass } = useAdminQuery(views);
   const columns = [
-    {
-      title: "Name",
-      dataIndex: "name",
-      render: function (data: Record<string, string>) {
-        const fullName = `${data}`;
-
-        return <>{fullName}</>;
-      },
-    },
     {
       title: "Email",
       dataIndex: "email",
     },
 
-    {
-      title: "Created at",
-      dataIndex: "createdAt",
-      render: function (data: any) {
-        return data && dayjs(data).format("MMM D, YYYY hh:mm A");
-      },
-      sorter: true,
-    },
+    // {
+    //   title: "Created at",
+    //   dataIndex: "createdAt",
+    //   render: function (data: any) {
+    //     return data && dayjs(data).format("MMM D, YYYY hh:mm A");
+    //   },
+    //   sorter: true,
+    // },
 
     {
       title: "Action",
@@ -92,11 +103,16 @@ const AdminPage = () => {
         console.log(data);
         return (
           <>
-            <Link href={`/super_admin/admin/details/${data.id}`}>
-              <Button onClick={() => console.log(data)} type="primary">
-                <EyeOutlined />
-              </Button>
-            </Link>
+            <Button
+              onClick={() => {
+                showModal();
+                adminData(data);
+              }}
+              type="primary"
+            >
+              <EyeOutlined />
+            </Button>
+
             <Link href={`/super_admin/admin/edit/${data}`}>
               <Button
                 style={{
@@ -122,6 +138,7 @@ const AdminPage = () => {
     setPage(page);
     setSize(pageSize);
   };
+
   const onTableChange = (pagination: any, filter: any, sorter: any) => {
     const { order, field } = sorter;
     // console.log(order, field);
@@ -134,6 +151,7 @@ const AdminPage = () => {
     setSortOrder("");
     setSearchTerm("");
   };
+  console.log(adminDatass);
   return (
     <div>
       <ITBreadCrump
@@ -153,6 +171,59 @@ const AdminPage = () => {
             width: "20%",
           }}
         />
+
+        <Modal
+          title="Admin Details"
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          <div>
+            <div
+              style={{
+                textAlign: "center",
+                borderRadius: "20px",
+              }}
+            >
+              {adminDatass?.imageURL ? (
+                <Image
+                  style={{
+                    borderRadius: "20px",
+                  }}
+                  alt="res.cloudinary.com"
+                  src={adminDatass?.imageURL}
+                  width={150}
+                  height={120}
+                />
+              ) : (
+                "Image not Found"
+              )}
+            </div>
+            <div>
+              <h3>Name : {adminDatass?.name ? adminDatass?.name : ""}</h3>
+              <h3>Email : {adminDatass?.email ? adminDatass?.email : ""}</h3>
+              <h3>
+                DateOfBirth :{" "}
+                {adminDatass?.dateOfBirth ? adminDatass?.dateOfBirth : ""}
+              </h3>
+              <h3>
+                Address : {adminDatass?.address ? adminDatass?.address : ""}
+              </h3>
+              <h3>
+                Create AT:{" "}
+                {adminDatass?.createdAt
+                  ? dayjs(adminDatass?.createdAt).format("MMM D, YYYY hh:mm A")
+                  : ""}
+              </h3>
+              <h3>
+                Updated At:{" "}
+                {adminDatass?.updatedAt
+                  ? dayjs(adminDatass?.updatedAt).format("MMM D, YYYY hh:mm A")
+                  : ""}
+              </h3>
+            </div>
+          </div>
+        </Modal>
         <div>
           <Link href="/super_admin/admin-create">
             <Button type="primary">Create Admin</Button>
