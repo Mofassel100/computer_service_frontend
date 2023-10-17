@@ -15,6 +15,7 @@ interface IInput {
   validation?: object;
   label?: string;
   required?: boolean;
+   errors ?:object
 }
 
 const FormInput = ({
