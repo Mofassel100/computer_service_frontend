@@ -17,7 +17,7 @@ import { RolesOptioneAdmin } from "@/constant/global";
 
 
 import { useAddUserWithFormDataMutation } from "@/redux/api/userApi"
-import { Button, Col, Input, Row, message } from "antd";
+import { Button, Col,  Row, message } from "antd";
 
 const CreateUserPage = () => {
   const [addUserWithFormData] = useAddUserWithFormDataMutation();

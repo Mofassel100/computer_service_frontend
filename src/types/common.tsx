@@ -60,19 +60,25 @@ export interface IUser {
   updatedAt: string;
   __v: number;
 }
+export interface IService {
+  id: string;
+   title:string
+  description:string
+  userId: string;
+  image?: string;
+  categoryId: string
+  address?: string;
+  price: number 
+  oldPrice:number
+  location:string
+  phoneNumber:string
+  createdAt: string;
+  updatedAt: string;
+  review:string
+  rating:string
 
-
-export interface LocalGuardian {
-  name: string;
-  occupation: string;
-  contactNo: string;
-  address: string;
+  __v: number;
 }
-
-
-
-
-
 
 
 export interface IBuilding {
