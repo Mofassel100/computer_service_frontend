@@ -5,12 +5,7 @@ import {
   AppstoreOutlined,
   UsergroupAddOutlined,
   BookOutlined,
-  ProfileFilled,
   CustomerServiceOutlined,
-  ScheduleOutlined,
-  ThunderboltOutlined,
-  CreditCardOutlined,
-  FileTextOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
 import { USER_ROLE } from "./role";
@@ -52,12 +47,33 @@ export const sidebarItems = (role: string, email: string, id: string) => {
           key: `/${role}s/profile`,
         },
         {
-          label: <Link href={`/${role}s/change-password`}>Change Password</Link>,
+          label: (
+            <Link href={`/${role}s/change-password`}>Change Password</Link>
+          ),
           key: `/${role}/change-password`,
         },
       ],
     },
-   
+    {
+      label: "Manage Category",
+      key: "manage-category",
+      icon: <ProfileOutlined />,
+      children: [
+        {
+          label: (
+            <Link href={`/${role}s/category/create`}>Create Category</Link>
+          ),
+          key: `/${role}s/category/create`,
+        },
+        {
+          label: (
+            <Link href={`/${role}s/category/all-category`}>All Category</Link>
+          ),
+          key: `/${role}/category/all-category`,
+        },
+      ],
+    },
+
     {
       label: "Manage User",
       key: "manage-user",
@@ -76,14 +92,16 @@ export const sidebarItems = (role: string, email: string, id: string) => {
     {
       label: "Manage Service",
       key: "manage-service",
-      icon: <CustomerServiceOutlined/>,
+      icon: <CustomerServiceOutlined />,
       children: [
         {
           label: <Link href={`/${role}s/service/create`}>Service Create</Link>,
           key: `/${role}s/service/create`,
         },
         {
-          label: <Link href={`/${role}s/service/all-service`}>All Service</Link>,
+          label: (
+            <Link href={`/${role}s/service/all-service`}>All Service</Link>
+          ),
           key: `/${role}s/service/all-service`,
         },
       ],
@@ -98,7 +116,9 @@ export const sidebarItems = (role: string, email: string, id: string) => {
           key: `/${role}s/content/create`,
         },
         {
-          label: <Link href={`/${role}s/content/all-content`}>Contentn All</Link>,
+          label: (
+            <Link href={`/${role}s/content/all-content`}>Contentn All</Link>
+          ),
           key: `/${role}s/content/all-content`,
         },
       ],
@@ -109,11 +129,15 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <BookOutlined />,
       children: [
         {
-          label: <Link href={`/${role}s/booking/history`}>Booking History</Link>,
+          label: (
+            <Link href={`/${role}s/booking/history`}>Booking History</Link>
+          ),
           key: `/${role}s/booking/history`,
         },
         {
-          label: <Link href={`/${role}s/booking/all-booking`}>Booking Status</Link>,
+          label: (
+            <Link href={`/${role}s/booking/all-booking`}>Booking Status</Link>
+          ),
           key: `/${role}s/booking/all-booking`,
         },
       ],
@@ -153,18 +177,6 @@ export const sidebarItems = (role: string, email: string, id: string) => {
         },
       ],
     },
-
-    // {
-    //   label: "",
-    //   key: "management",
-    //   icon: <AppstoreOutlined />,
-    //   children: [
-    //     {
-    //       label: <Link href={`/${role}/department`}>Department</Link>,
-    //       key: `/${role}/department`,
-    //     },
-    //   ],
-    // },
   ];
   const UserSidebare: MenuProps["items"] = [
     {
