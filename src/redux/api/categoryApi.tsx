@@ -15,11 +15,10 @@ export const categoryApi = baseApi.injectEndpoints({
     }),
 
     categorys: build.query({
-      query: (arg: Record<string, any>) => {
+      query: (id) => {
         return {
-          url: CATEGORY_URL,
+          url: `${CATEGORY_URL}/admin/${id}`,
           method: "GET",
-          params: arg,
         };
       },
       transformResponse: (response: IUser[], meta: IMeta) => {
@@ -34,7 +33,7 @@ export const categoryApi = baseApi.injectEndpoints({
     // get single department by id
     category: build.query({
       query: (id) => ({
-        url: `/profile/${id}`,
+        url: `/category/${id}`,
         method: "GET",
       }),
       providesTags: [taqTypes.category],
@@ -43,7 +42,7 @@ export const categoryApi = baseApi.injectEndpoints({
     // update single department by id
     updateCategory: build.mutation({
       query: (data) => ({
-        url: `/profile/${data.id}`,
+        url: `/category/${data.id}`,
         method: "PATCH",
         data: data.body,
       }),
@@ -53,7 +52,7 @@ export const categoryApi = baseApi.injectEndpoints({
     // delete single department by id
     deleteCategory: build.mutation({
       query: (id) => ({
-        url: `/profile/${id}`,
+        url: `/category/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: [taqTypes.category],
