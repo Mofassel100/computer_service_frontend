@@ -6,18 +6,13 @@ import { sidebarItems } from "@/constant/sidebarItmes";
 import { USER_ROLE } from "@/constant/role";
 import { getUserInfo } from "@/service/auth.service";
 
-;
-
-
-
 const { Sider } = Layout;
 
 const SideBar = () => {
   const [collapsed, setCollapsed] = useState(false);
-
   // const role = USER_ROLE.ADMIN;
-  const { role } = getUserInfo() as any;
-  // console.log(role);
+  const { role, email, id } = getUserInfo() as any;
+  const profileData = getUserInfo();
 
   return (
     <Sider
@@ -50,7 +45,7 @@ const SideBar = () => {
         theme="dark"
         defaultSelectedKeys={["1"]}
         mode="inline"
-        items={sidebarItems(role)}
+        items={sidebarItems(role, email, id)}
       />
     </Sider>
   );
