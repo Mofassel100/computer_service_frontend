@@ -28,13 +28,7 @@ const TopBannar = () => {
   console.log(catagorsData);
   return (
     <Carousel autoplay>
-      <div>
-        {catagorsData?.map((category: any) => (
-          <div style={{}} key={category.id}>
-            dfsd
-          </div>
-        ))}
-      </div>
+      <div></div>
     </Carousel>
   );
 };
