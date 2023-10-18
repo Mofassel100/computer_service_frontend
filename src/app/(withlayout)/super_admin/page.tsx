@@ -1,11 +1,5 @@
-import React from 'react';
-
 const SuperAdminPage = () => {
-    return (
-        <div>
-            super admin page
-        </div>
-    );
+  return <div>super admin page</div>;
 };
 
 export default SuperAdminPage;

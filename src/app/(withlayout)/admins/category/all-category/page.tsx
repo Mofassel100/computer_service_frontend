@@ -19,11 +19,10 @@ import ActionBar from "@/components/UI/ActionBar/ActionBar";
 import ITTable from "@/components/UI/ITTable/ITTable";
 import Image from "next/image";
 import {
-  useDeleteUserMutation,
-  useUserQuery,
-  useUsersQuery,
-} from "@/redux/api/userApi";
-import { useCategoryQuery, useCategorysQuery, useDeleteCategoryMutation } from "@/redux/api/categoryApi";
+  useCategoryQuery,
+  useCategorysQuery,
+  useDeleteCategoryMutation,
+} from "@/redux/api/categoryApi";
 import { getUserInfo } from "@/service/auth.service";
 
 const UserPage = () => {
@@ -60,10 +59,9 @@ const UserPage = () => {
 
   if (!!debouncedSearchTerm) {
     query["searchTerm"] = debouncedSearchTerm;
-
   }
-  const {id} = getUserInfo() as any
-  console.log(id)
+  const { id } = getUserInfo() as any;
+  console.log(id);
   const { data, isLoading } = useCategorysQuery(id);
   const [views, setViews] = useState("");
   const category = data?.categorys;
@@ -192,7 +190,9 @@ const UserPage = () => {
             </div>
             <div>
               <h3>Title : {categoryData?.title ? categoryData?.title : ""}</h3>
-              <h3>Service Name : {categoryData?.name ? categoryData?.name : ""}</h3>
+              <h3>
+                Service Name : {categoryData?.name ? categoryData?.name : ""}
+              </h3>
               <h3>
                 Create AT:{" "}
                 {categoryData?.createdAt

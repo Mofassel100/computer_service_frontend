@@ -21,7 +21,7 @@ type IDProps = {
 const EditDepartmentPage = ({ params }: IDProps) => {
   const { id } = params;
 
-  const { data, isLoading } = useAdminQuery(id);
+  const { data } = useAdminQuery(id);
   const [updateAdmin] = useUpdateAdminMutation();
   console.log(data);
 
@@ -109,20 +109,20 @@ const EditDepartmentPage = ({ params }: IDProps) => {
             />
           </Col>
           <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <FormSelectField
-                  size="large"
-                  name="role"
-                  options={RolesOptioneSuperAdmin}
-                  label="Blood group"
-                  placeholder="Select"
-                />
-              </Col>
+            className="gutter-row"
+            span={8}
+            style={{
+              marginBottom: "10px",
+            }}
+          >
+            <FormSelectField
+              size="large"
+              name="role"
+              options={RolesOptioneSuperAdmin}
+              label="Blood group"
+              placeholder="Select"
+            />
+          </Col>
           <div style={{ justifyContent: "center" }}>
             <Col
               span={20}

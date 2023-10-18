@@ -1,19 +1,14 @@
 "use client";
 
 import Form from "@/components/Forms/Form";
-import FormDatePicker from "@/components/Forms/FormDatePicker";
 import FormInput from "@/components/Forms/FormInput";
-import FormTextArea from "@/components/Forms/FormTextAria";
 
 import FormSelectField from "@/components/Forms/FormselectField";
 // @ts-ignore
 import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
-import { RolesOptioneAdmin } from "@/constant/global";
 import { useAddCategoryWithFormDataMutation } from "@/redux/api/categoryApi";
-
-import { useAddUserWithFormDataMutation } from "@/redux/api/userApi";
 import { getUserInfo } from "@/service/auth.service";
-import { Button, Col, Input, Row, message } from "antd";
+import { Button, Col, Row, message } from "antd";
 
 const CrateCategory = () => {
   const [addCategoryWithFormData] = useAddCategoryWithFormDataMutation();

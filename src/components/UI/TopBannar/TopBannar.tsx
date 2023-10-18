@@ -1,16 +1,8 @@
 "use client";
-import {
-  useAllcategorysQuery,
-  useCategorysQuery,
-} from "@/redux/api/categoryApi";
-import { Carousel, Col, Row } from "antd";
-import Image from "next/image";
-import { Avatar, Card } from "antd";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
+import { useAllcategorysQuery } from "@/redux/api/categoryApi";
+import { Carousel } from "antd";
+import { Card } from "antd";
+
 const { Meta } = Card;
 const contentStyle: React.CSSProperties = {
   height: "160px",

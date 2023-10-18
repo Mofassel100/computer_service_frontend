@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Layout, Menu } from "antd";
 import { sidebarItems } from "@/constant/sidebarItmes";
-import { USER_ROLE } from "@/constant/role";
 import { getUserInfo } from "@/service/auth.service";
 
 const { Sider } = Layout;
@@ -39,7 +38,7 @@ const SideBar = () => {
           padding: "10px 0px",
         }}
       >
-       ITS
+        ITS
       </div>
       <Menu
         theme="dark"

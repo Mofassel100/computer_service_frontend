@@ -1,6 +1,5 @@
 "use client";
 import { sidebarItems } from "@/constant/sidebarItmes";
-import { USER_ROLE } from "@/constant/role";
 import { getUserInfo } from "@/service/auth.service";
 import { useState } from "react";
 import { Layout, Menu } from "antd";
@@ -8,7 +7,6 @@ import { Layout, Menu } from "antd";
 const { Sider } = Layout;
 
 const PubliceSidebare = () => {
-  const [collapsed, setCollapsed] = useState(false);
   // const role = USER_ROLE.ADMIN;
   const { role, email, id } = getUserInfo() as any;
   const profileData = getUserInfo();

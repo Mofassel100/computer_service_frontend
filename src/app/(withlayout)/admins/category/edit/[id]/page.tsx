@@ -1,13 +1,12 @@
 "use client";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
-import FormTextArea from "@/components/Forms/FormTextAria";
-import FormSelectField from "@/components/Forms/FormselectField";
 import ActionBar from "@/components/UI/ActionBar/ActionBar";
 import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
-import { RolesOptioneAdmin } from "@/constant/global";
-import { useCategoryQuery, useUpdateCategoryMutation } from "@/redux/api/categoryApi";
-import { useUpdateUserMutation, useUserQuery } from "@/redux/api/userApi";
+import {
+  useCategoryQuery,
+  useUpdateCategoryMutation,
+} from "@/redux/api/categoryApi";
 import { Button, Col, Row, message } from "antd";
 
 type IDProps = {
@@ -17,7 +16,7 @@ type IDProps = {
 const UpdateCategory = ({ params }: IDProps) => {
   const { id } = params;
 
-  const { data, isLoading } = useCategoryQuery(id);
+  const { data } = useCategoryQuery(id);
   const [updateCategory] = useUpdateCategoryMutation();
   console.log(data);
 
@@ -38,8 +37,7 @@ const UpdateCategory = ({ params }: IDProps) => {
     name: data?.name,
     image: data?.image,
     title: data?.title,
-     userId: data?.userId
-   
+    userId: data?.userId,
   };
 
   return (
@@ -81,16 +79,10 @@ const UpdateCategory = ({ params }: IDProps) => {
             span={18}
             style={{
               marginBottom: "10px",
-              display:"grid",
-            
+              display: "grid",
             }}
           >
-            <FormInput
-              type="url"
-              name="image"
-              size="large"
-              label="Image Url"
-            />
+            <FormInput type="url" name="image" size="large" label="Image Url" />
           </Col>
 
           <Col
@@ -107,7 +99,6 @@ const UpdateCategory = ({ params }: IDProps) => {
               label="Service Name"
             />
           </Col>
-        
         </Row>
         <Button type="primary" htmlType="submit">
           Update

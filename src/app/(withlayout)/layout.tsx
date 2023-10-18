@@ -5,7 +5,6 @@ import SideBar from "@/components/ui/Sidebar/Sidebar";
 import Contents from "@/components/ui/content/Content";
 import { isLoggedIn } from "@/service/auth.service";
 import { Layout, Row, Space, Spin } from "antd";
-import { Content } from "next/font/google";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 

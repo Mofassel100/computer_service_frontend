@@ -1,5 +1,3 @@
-import { decodeToken } from "./jwt";
-
 export const setTolocalStrorage = (key: string, token: string) => {
   if (!key || typeof window === "undefined") {
     return "";

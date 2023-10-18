@@ -1,16 +1,14 @@
 "use client";
 
 import Form from "@/components/Forms/Form";
-import FormDatePicker from "@/components/Forms/FormDatePicker";
 import FormInput from "@/components/Forms/FormInput";
 import FormTextArea from "@/components/Forms/FormTextAria";
 import FormSelectField from "@/components/Forms/FormselectField";
 import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
 import { RolesOptioneSuperAdmin } from "@/constant/global";
-import { USER_ROLE } from "@/constant/role";
 import { useAddAdminWithFormDataMutation } from "@/redux/api/adminApi";
-import { adminSchema } from "@/schemas/admin";
-import { Button, Col, Input, Row, message } from "antd";
+
+import { Button, Col, Row, message } from "antd";
 
 const CreateAdminPage = () => {
   const [addAdminWithFormData] = useAddAdminWithFormDataMutation();
@@ -104,7 +102,7 @@ const CreateAdminPage = () => {
                 label="Password"
               />
             </Col>
-            <br/>
+            <br />
             <Col
               className="gutter-row"
               span={15}
@@ -134,32 +132,27 @@ const CreateAdminPage = () => {
               />
             </Col>
             <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <FormSelectField
-                  size="large"
-                  name="role"
-                  options={RolesOptioneSuperAdmin}
-                  label="Blood group"
-                  placeholder="Select"
-                />
-              </Col>
-           
-              <Col
-                span={24}
-                style={{ margin: "10px 0", justifyContent: "center" }}
-              >
-                <FormTextArea
-                  name="address"
-                  label="Permanent address"
-                  rows={4}
-                />
-              </Col>
-       
+              className="gutter-row"
+              span={8}
+              style={{
+                marginBottom: "10px",
+              }}
+            >
+              <FormSelectField
+                size="large"
+                name="role"
+                options={RolesOptioneSuperAdmin}
+                label="Blood group"
+                placeholder="Select"
+              />
+            </Col>
+
+            <Col
+              span={24}
+              style={{ margin: "10px 0", justifyContent: "center" }}
+            >
+              <FormTextArea name="address" label="Permanent address" rows={4} />
+            </Col>
           </Row>
         </div>
         <Button htmlType="submit" type="primary">

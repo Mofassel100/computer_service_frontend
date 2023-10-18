@@ -1,6 +1,6 @@
 "use client";
 import { Avatar, Button, Dropdown, Layout, MenuProps, Row, Space } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 // import { getUserInfo, removeUserInfo } from "@/services/auth.service";
 // import { authKey } from "@/constants/storageKey";
 import { useRouter } from "next/navigation";
@@ -63,6 +63,21 @@ const Header = () => {
             margin: "auto",
           }}
         >
+          <button
+            style={{
+              margin: "0 5px",
+            }}
+          >
+            <ShoppingCartOutlined
+              style={{
+                fontSize: "25px",
+                padding: "2px",
+                marginRight: "3px",
+                background: "none",
+                border: "none",
+              }}
+            />
+          </button>
           {role ? (
             <Button
               style={{
