@@ -1,9 +1,13 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-import PublicePage from './(public)/layout'
+import { redirect } from "next/navigation";
+import PublicePage from "./(public)/layout";
+import Homes from "./(public)/home/page";
 
-export default function Home() {
+const HomePage = () => {
   return (
-   <PublicePage></PublicePage>
-  )
-}
+    <PublicePage>
+      <Homes></Homes>
+    </PublicePage>
+  );
+};
+
+export default HomePage;

@@ -1,7 +1,7 @@
 "use client";
 import { Layout } from "antd";
+// @ts-ignore
 import Header from "../Header/Header";
-
 
 const { Content } = Layout;
 

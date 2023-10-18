@@ -1,21 +1,23 @@
 "use client";
-
+// @ts-ignore
 import SideBar from "@/components/ui/Sidebar/Sidebar";
+// @ts-ignore
 import Contents from "@/components/ui/content/Content";
 import { isLoggedIn } from "@/service/auth.service";
 import { Layout, Row, Space, Spin } from "antd";
 import { Content } from "next/font/google";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const userLoggedIn = isLoggedIn();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
+  const pathName = usePathname();
   useEffect(() => {
     if (!userLoggedIn) {
-      router.push("/login");
+      router.push(pathName);
+      // router.push("/login");
     }
     setIsLoading(true);
   }, [router, isLoading]);

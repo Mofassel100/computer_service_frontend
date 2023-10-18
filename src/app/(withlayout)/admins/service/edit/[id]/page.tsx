@@ -2,15 +2,13 @@
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import FormTextArea from "@/components/Forms/FormTextAria";
-import FormSelectField from "@/components/Forms/FormselectField";
 import ActionBar from "@/components/UI/ActionBar/ActionBar";
 import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
-import { RolesOptioneAdmin } from "@/constant/global";
 import {
   useServiceQuery,
   useUpdateServiceMutation,
 } from "@/redux/api/serviceApi";
-import { useUpdateUserMutation, useUserQuery } from "@/redux/api/userApi";
+
 import { Button, Col, Row, message } from "antd";
 
 type IDProps = {
