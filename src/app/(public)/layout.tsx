@@ -3,10 +3,9 @@ import PubliceSidebare from "@/components/UI/PublicSidebare/PublicSidebare";
 // @ts-ignore
 import Contents from "@/components/ui/content/Content";
 import { isLoggedIn } from "@/service/auth.service";
-import { Layout, Menu, Row, Space, Spin } from "antd";
+import { Layout, Row, Space, Spin } from "antd";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-const { Header, Content, Footer, Sider } = Layout;
 
 const PublicePage = ({ children }: { children: React.ReactNode }) => {
   const userLoggedIn = isLoggedIn();

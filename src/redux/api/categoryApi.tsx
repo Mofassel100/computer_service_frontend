@@ -29,6 +29,22 @@ export const categoryApi = baseApi.injectEndpoints({
       },
       providesTags: [taqTypes.category],
     }),
+    Allcategorys: build.query({
+      query: (arg: Record<string, any>) => {
+        return {
+          url: `${CATEGORY_URL}`,
+          method: "GET",
+          params: arg,
+        };
+      },
+      transformResponse: (response: IUser[], meta: IMeta) => {
+        return {
+          allcategorys: response,
+          meta,
+        };
+      },
+      providesTags: [taqTypes.category],
+    }),
 
     // get single department by id
     category: build.query({
@@ -66,4 +82,5 @@ export const {
   useCategorysQuery,
   useDeleteCategoryMutation,
   useUpdateCategoryMutation,
+  useAllcategorysQuery,
 } = categoryApi;
