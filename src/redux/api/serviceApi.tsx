@@ -1,4 +1,4 @@
-import {  IMeta,IService } from "@/types/common";
+import { IMeta, IService } from "@/types/common";
 import { baseApi } from "./baseApi";
 import { taqTypes } from "../slice/taq-types";
 const Service_URL = "/service";
@@ -35,7 +35,6 @@ export const serviceApi = baseApi.injectEndpoints({
         return {
           url: `${Service_URL}/admin/${id}`,
           method: "GET",
-    
         };
       },
       transformResponse: (response: IService[], meta: IMeta) => {
@@ -78,10 +77,10 @@ export const serviceApi = baseApi.injectEndpoints({
 });
 
 export const {
- 
-useAddServiceWithFormDataMutation,
-useDeleteServiceMutation,
-useServiceQuery,
-useServicesQuery,useUpdateServiceMutation,
-useAdminServicesQuery
+  useAddServiceWithFormDataMutation,
+  useDeleteServiceMutation,
+  useServiceQuery,
+  useServicesQuery,
+  useUpdateServiceMutation,
+  useAdminServicesQuery,
 } = serviceApi;

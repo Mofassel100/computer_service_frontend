@@ -1,4 +1,3 @@
-
 "use client";
 import Form from "@/components/Forms/Form";
 import FormDatePicker from "@/components/Forms/FormDatePicker";
@@ -10,48 +9,49 @@ import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
 import { RolesOptioneAdmin } from "@/constant/global";
 import { useCategorysQuery } from "@/redux/api/categoryApi";
 import { useAddServiceWithFormDataMutation } from "@/redux/api/serviceApi";
-import { useAddUserWithFormDataMutation } from "@/redux/api/userApi"
+import { useAddUserWithFormDataMutation } from "@/redux/api/userApi";
+import { serviceSchema } from "@/schemas/admin";
 import { getUserInfo } from "@/service/auth.service";
-import { Button, Col,  Row, message } from "antd";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Button, Col, Row, message } from "antd";
 
 const CreateServicePage = () => {
   const [addServiceWithFormData] = useAddServiceWithFormDataMutation();
-  const {id}= getUserInfo() as any
+  const { id } = getUserInfo() as any;
   const onSubmit = async (values: any) => {
     const obj = { ...values };
     message.loading("Creating...");
     try {
       const result = await addServiceWithFormData(obj);
-      if(!!result){
+      if (!!result) {
         message.success("User created successfully!");
       }
     } catch (err: any) {
       console.error(err.message);
     }
   };
-  const { data:catagorys, isLoading } = useCategorysQuery(id);
+  const { data: catagorys, isLoading } = useCategorysQuery(id);
   // @ts-ignore
-  const catagoryOptions = catagorys?.categorys?.map((category:any)=>(
-      {
-          label:category?.title,
-          value: category?.id
-        }
-    ))
-  const catagoryOptionsTitl:any = catagorys?.categorys?.map((category:any)=>(
-      {
-          label:category?.title,
-          value: category?.title
-        }
-    ))
-    const CategoryOptionSelect:any = catagoryOptions?.map((catagory)=>(catagory))
-  
+  const catagoryOptions = catagorys?.categorys?.map((category: any) => ({
+    label: category?.title,
+    value: category?.id,
+  }));
+  const catagoryOptionsTitl: any = catagorys?.categorys?.map(
+    (category: any) => ({
+      label: category?.title,
+      value: category?.title,
+    })
+  );
+  const CategoryOptionSelect: any = catagoryOptions?.map(
+    (catagory) => catagory
+  );
 
   const UserOptions = [
     {
-        label:"UserId",
-        value:id
-    }
-  ]
+      label: "UserId",
+      value: id,
+    },
+  ];
   return (
     <div>
       <ITBreadCrump
@@ -66,7 +66,7 @@ const CreateServicePage = () => {
           },
         ]}
       />
-      <h1 style={{textAlign:"center"}}>Create User</h1>
+      <h1 style={{ textAlign: "center" }}>Create User</h1>
 
       <Form submitHandler={onSubmit}>
         <div
@@ -83,24 +83,23 @@ const CreateServicePage = () => {
               marginBottom: "10px",
             }}
           >
-           User Information
+            User Information
           </p>
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-          <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <FormSelectField
-                  size="large"
-                  name="title"
-                  options={catagoryOptionsTitl}
-                  label="Service Title"
-                  placeholder="Select"
-                  
-                />
+            <Col
+              className="gutter-row"
+              span={8}
+              style={{
+                marginBottom: "10px",
+              }}
+            >
+              <FormSelectField
+                size="large"
+                name="title"
+                options={catagoryOptionsTitl}
+                label="Service Title"
+                placeholder="Select"
+              />
             </Col>
             <Col
               className="gutter-row"
@@ -114,23 +113,22 @@ const CreateServicePage = () => {
                 name="name"
                 size="large"
                 label="Service Name"
-                
               />
             </Col>
             <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <FormSelectField
-                  size="large"
-                  name="categoryId"
-                  options={CategoryOptionSelect}
-                  label="Category Id"
-                  placeholder="Select"
-                />
+              className="gutter-row"
+              span={8}
+              style={{
+                marginBottom: "10px",
+              }}
+            >
+              <FormSelectField
+                size="large"
+                name="categoryId"
+                options={CategoryOptionSelect}
+                label="Category Id"
+                placeholder="Select"
+              />
             </Col>
             <Col
               className="gutter-row"
@@ -144,7 +142,6 @@ const CreateServicePage = () => {
                 name="image"
                 size="large"
                 label="Image Url"
-                
               />
             </Col>
             <Col
@@ -155,14 +152,10 @@ const CreateServicePage = () => {
               }}
             >
               <FormInput
-                type="number"
+                type="text"
                 name="price"
                 size="large"
-                required
                 label="Current Price"
-             
-                // @ts-ignore
-                validation={Error.email && Error.email.message } 
               />
             </Col>
             <Col
@@ -173,14 +166,10 @@ const CreateServicePage = () => {
               }}
             >
               <FormInput
-                type="number"
+                type="text"
                 name="oldPrice"
                 size="large"
-                required
                 label="Old Price"
-             
-                // @ts-ignore
-                validation={Error.email && Error.email.message } 
               />
             </Col>
             <Col
@@ -193,12 +182,8 @@ const CreateServicePage = () => {
               <FormInput
                 type="text"
                 name="phoneNumber"
-                required
                 size="large"
                 label="Contact No."
-            
-                // @ts-ignore
-                validation={Error.phoneNumber && Error.phoneNumber .message } 
               />
             </Col>
             <Col
@@ -211,12 +196,8 @@ const CreateServicePage = () => {
               <FormInput
                 type="text"
                 name="location"
-                required
                 size="large"
                 label="Location"
-            
-                // @ts-ignore
-                validation={Error.phoneNumber && Error.phoneNumber .message } 
               />
             </Col>
             <Col
@@ -229,12 +210,8 @@ const CreateServicePage = () => {
               <FormInput
                 type="text"
                 name="review"
-                required
                 size="large"
                 label="Review"
-            
-                // @ts-ignore
-                validation={Error.phoneNumber && Error.phoneNumber .message } 
               />
             </Col>
             <Col
@@ -247,31 +224,26 @@ const CreateServicePage = () => {
               <FormInput
                 type="text"
                 name="rating"
-                required
                 size="large"
                 label="Rating"
-            
-                // @ts-ignore
-                validation={Error.phoneNumber && Error.phoneNumber .message } 
               />
             </Col>
-           
+
             <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <FormSelectField
-                  size="large"
-                  name="userId"
-                  options={UserOptions}
-                  label="User Id"
-                  placeholder="Select"
-                  
-                />
-              </Col>
+              className="gutter-row"
+              span={8}
+              style={{
+                marginBottom: "10px",
+              }}
+            >
+              <FormSelectField
+                size="large"
+                name="userId"
+                options={UserOptions}
+                label="User Id"
+                placeholder="Select"
+              />
+            </Col>
             <div style={{ justifyContent: "center" }}>
               <Col
                 span={20}
@@ -281,7 +253,6 @@ const CreateServicePage = () => {
                   name="description"
                   label="Description Service"
                   rows={4}
-                  
                 />
               </Col>
             </div>
@@ -296,12 +267,6 @@ const CreateServicePage = () => {
 };
 
 export default CreateServicePage;
-
-
-
-
-
-
 
 // "use client";
 
@@ -343,7 +308,7 @@ export default CreateServicePage;
 //       value: id,
 //     },
 //   ];
- 
+
 //   return (
 //     <div>
 //       <ITBreadCrump
@@ -466,5 +431,3 @@ export default CreateServicePage;
 // };
 
 // export default CrateCategory;
-
-

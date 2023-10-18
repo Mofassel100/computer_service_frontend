@@ -55,7 +55,6 @@ const EditDepartmentPage = ({ params }: IDProps) => {
           },
         ]}
       />
-
       <ActionBar title="Update Admin"> </ActionBar>
       <Form submitHandler={onSubmit} defaultValues={defaultValues}>
         <Row gutter={{ xs: 24, xl: 8, lg: 8, md: 24 }}>
