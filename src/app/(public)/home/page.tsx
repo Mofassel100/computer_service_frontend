@@ -1,10 +1,10 @@
 "use client";
-import TopBannar from "@/components/UI/TopBannar/TopBannar";
 import { useAllcategorysQuery } from "@/redux/api/categoryApi";
+import { useDebounced } from "@/redux/hooks";
 import { Button, Carousel, Col, Row } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 const contentStyle: React.CSSProperties = {
   height: "420px",
   color: "#fff",
@@ -14,7 +14,28 @@ const contentStyle: React.CSSProperties = {
 };
 
 const Homes = () => {
-  const { data, isLoading } = useAllcategorysQuery({ limit: 100, page: 1 });
+  const query: Record<string, any> = {};
+
+  const [page, setPage] = useState<number>(1);
+  const [size, setSize] = useState<number>(10);
+  const [sortBy, setSortBy] = useState<string>("");
+  const [sortOrder, setSortOrder] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  query["limit"] = size;
+  query["page"] = page;
+  query["sortBy"] = sortBy;
+  query["sortOrder"] = sortOrder;
+
+  const debouncedSearchTerm = useDebounced({
+    searchQuery: searchTerm,
+    delay: 600,
+  });
+
+  if (!!debouncedSearchTerm) {
+    query["searchTerm"] = debouncedSearchTerm;
+  }
+  const { data, isLoading } = useAllcategorysQuery({ ...query });
   const catagorys = data?.allcategorys;
   // @ts-ignore
   const catagorsData = catagorys?.data;
@@ -184,7 +205,7 @@ const Homes = () => {
                   }}
                 >
                   <div>
-                    <Link href={""}>
+                    <Link href={`/all-service/${category?.id}`}>
                       {" "}
                       {category?.image ? (
                         <Image
@@ -207,15 +228,15 @@ const Homes = () => {
                     }}
                   >
                     <h4>{category?.title}</h4>
-                    <Button>
-                      <Link href={""}></Link>
-                    </Button>
+                    <div style={{alignItems:"center"  , display:"grid",justifyContent:"center"}}><Button style={{alignItems:"center"}}>
+                      <Link href={`/all-service/${category?.id}`} >Service</Link>
+                    </Button></div>
                   </div>
                 </div>
               ))}
             </Row>
           </Row>
-          div
+          
         </div>
       </div>
     </div>

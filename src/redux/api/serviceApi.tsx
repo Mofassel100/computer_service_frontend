@@ -54,7 +54,23 @@ export const serviceApi = baseApi.injectEndpoints({
       }),
       providesTags: [taqTypes.service],
     }),
+    allService: build.query({
+      query: (id) => {
+        return {
+          url: `${Service_URL}/all/${id}`,
+          method: "GET",
+        };
+      },
+      transformResponse: (response: IService[], meta: IMeta) => {
+        return {
+          allservice: response,
+          meta,
+        };
+      },
+      providesTags: [taqTypes.service],
+    }),
 
+   
     // update single department by id
     updateService: build.mutation({
       query: (data) => ({
@@ -83,4 +99,5 @@ export const {
   useServicesQuery,
   useUpdateServiceMutation,
   useAdminServicesQuery,
+  useAllServiceQuery
 } = serviceApi;
