@@ -5,10 +5,8 @@ import FormTextArea from "@/components/Forms/FormTextAria";
 import ActionBar from "@/components/UI/ActionBar/ActionBar";
 import { useAdminQuery, useUpdateAdminMutation } from "@/redux/api/adminApi";
 import { getUserInfo } from "@/service/auth.service";
-import { IAdmin } from "@/types/common";
 import { Button, Col, Modal, Row, message } from "antd";
 import dayjs from "dayjs";
-import { Modak } from "next/font/google";
 import Image from "next/image";
 import { useState } from "react";
 

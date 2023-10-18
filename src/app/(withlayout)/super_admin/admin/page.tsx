@@ -5,12 +5,11 @@ import Link from "next/link";
 import {
   DeleteOutlined,
   EditOutlined,
-  FilterOutlined,
   ReloadOutlined,
   EyeOutlined,
 } from "@ant-design/icons";
-import { message, Popconfirm, Switch } from "antd";
-import { useEffect, useState } from "react";
+import { message } from "antd";
+import { useState } from "react";
 // import { useDebounced } from "@/redux/hooks";
 // import { useAdminsQuery } from "@/redux/api/adminApi";
 // import { IDepartment } from "@/types";
@@ -26,7 +25,6 @@ import {
   useAdminsQuery,
   useDeleteAdminMutation,
 } from "@/redux/api/adminApi";
-import confirm from "antd/es/modal/confirm";
 import Image from "next/image";
 
 const AdminPage = () => {
