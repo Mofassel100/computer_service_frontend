@@ -6,11 +6,10 @@ import { Button, Col, Row, message } from "antd";
 import Image from "next/image";
 
 import Form from "../Forms/Form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../Forms/FormInput";
 import { SubmitHandler } from "react-hook-form";
 import {  useRouter } from "next/navigation";
-import { loginSchema } from "@/lib/schemas/login";
+
 
 
 
@@ -69,7 +68,7 @@ const {role }= getUserInfo()
           Plase login your account
         </h1>
         <div>
-          <Form submitHandler={onSubmit} resolver={yupResolver(loginSchema)}>
+          <Form submitHandler={onSubmit}>
             <div>
               <FormInput
                 name="email"
