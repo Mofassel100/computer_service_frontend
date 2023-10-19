@@ -1,6 +1,5 @@
 "use client";
-import PubliceSidebare from "@/components/UI/PublicSidebare/PublicSidebare";
-// @ts-ignore
+import PubliceSidebare from "@/components/ui/PublicSidebare/PublicSidebare";
 import Contents from "@/components/ui/content/Content";
 import { isLoggedIn } from "@/service/auth.service";
 import { Layout, Row, Space, Spin } from "antd";
@@ -13,7 +12,7 @@ const PublicePage = ({ children }: { children: React.ReactNode }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const pathName = usePathname();
   useEffect(() => {
-    if (!userLoggedIn) {
+    if (userLoggedIn) {
       router.push(pathName);
       // router.push("/login");
     }

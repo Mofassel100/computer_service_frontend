@@ -1,7 +1,7 @@
-import React from "react";
+
 
 const BookingHistory = () => {
-  return <div></div>;
+  return <div>dfd</div>;
 };
 
 export default BookingHistory;

@@ -1,10 +1,10 @@
 "use client";
 import { useAllcategorysQuery } from "@/redux/api/categoryApi";
 import { useDebounced } from "@/redux/hooks";
-import { Button, Carousel, Col, Row } from "antd";
+import { Button, Carousel, Row } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 const contentStyle: React.CSSProperties = {
   height: "420px",
   color: "#fff",
@@ -35,7 +35,7 @@ const Homes = () => {
   if (!!debouncedSearchTerm) {
     query["searchTerm"] = debouncedSearchTerm;
   }
-  const { data, isLoading } = useAllcategorysQuery({ ...query });
+  const { data} = useAllcategorysQuery({ ...query });
   const catagorys = data?.allcategorys;
   // @ts-ignore
   const catagorsData = catagorys?.data;
@@ -245,34 +245,3 @@ const Homes = () => {
 
 export default Homes;
 
-//  <div
-//    style={{
-//      height: "320px",
-//      width: "210px",
-
-//      padding: "6px",
-//      border: "1px solid black",
-//    }}
-//  >
-//    <div>
-//      <Link href={""}>
-//        {" "}
-//        <Image
-//          width={190}
-//          height={200}
-//          style={{ borderRadius: "10px" }}
-//          src={
-//            "https://res.cloudinary.com/db6qhze3s/image/upload/v1697582094/camera-service_xdn1t3.jpg"
-//          }
-//          alt="nent/image"
-//        ></Image>
-//      </Link>
-//    </div>
-//    {/* body */}
-//    <div
-//      style={{
-//        width: "190px",
-//        height: "100px",
-//      }}
-//    ></div>
-//  </div>;

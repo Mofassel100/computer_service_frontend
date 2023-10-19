@@ -3,8 +3,6 @@
 import { useServiceQuery } from "@/redux/api/serviceApi";
 import { Image, Row } from "antd";
 
-import React from "react";
-
 const Allservice = ({ params }: { params: any }) => {
   const { id } = params as any;
   const { data } = useServiceQuery(id);

@@ -10,9 +10,6 @@ import {
 } from "@ant-design/icons";
 import { message } from "antd";
 import { useState } from "react";
-// import { useDebounced } from "@/redux/hooks";
-// import { useAdminsQuery } from "@/redux/api/adminApi";
-// import { IDepartment } from "@/types";
 import dayjs from "dayjs";
 import { useDebounced } from "@/redux/hooks";
 import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";

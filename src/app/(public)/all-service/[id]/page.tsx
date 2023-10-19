@@ -3,7 +3,6 @@
 import { useAllServiceQuery } from "@/redux/api/serviceApi";
 import { Button, Image, Row } from "antd";
 import Link from "next/link";
-import React from "react";
 
 const Allservice = ({ params }: { params: any }) => {
   const { id } = params as any;
@@ -78,4 +77,4 @@ const Allservice = ({ params }: { params: any }) => {
   );
 };
 
-export default Allservice;
+export default Allservice

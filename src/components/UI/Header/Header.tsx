@@ -1,17 +1,13 @@
 "use client";
 import { Avatar, Button, Dropdown, Layout, MenuProps, Row, Space } from "antd";
 import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
-// import { getUserInfo, removeUserInfo } from "@/services/auth.service";
-// import { authKey } from "@/constants/storageKey";
-import { useRouter } from "next/navigation";
-import { USER_ROLE } from "@/constant/role";
+
 import { getUserInfo, removeUserInfo } from "@/service/auth.service";
 import { authKey } from "@/constant/localStorage";
 import Link from "next/link";
 const { Header: AntHeader } = Layout;
 
 const Header = () => {
-  const router = useRouter();
   const { role } = getUserInfo() as any;
   const logOut = () => {
     removeUserInfo(authKey);
