@@ -1,7 +1,6 @@
 "use client";
 import PubliceSidebare from "@/components/UI/PublicSidebare/PublicSidebare";
-// @ts-ignore
-import Contents from "@/components/ui/content/Content";
+import Contents from "@/components/UI/Content";
 import { isLoggedIn } from "@/service/auth.service";
 import { Layout, Row, Space, Spin } from "antd";
 import { usePathname, useRouter } from "next/navigation";

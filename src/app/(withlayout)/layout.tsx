@@ -1,8 +1,6 @@
 "use client";
-// @ts-ignore
-import SideBar from "@/components/ui/Sidebar/Sidebar";
-// @ts-ignore
-import Contents from "@/components/ui/content/Content";
+import SideBar from "@/components/UI/Sidebar";
+import Contents from "@/components/UI/Content";
 import { isLoggedIn } from "@/service/auth.service";
 import { Layout, Row, Space, Spin } from "antd";
 import { usePathname, useRouter } from "next/navigation";

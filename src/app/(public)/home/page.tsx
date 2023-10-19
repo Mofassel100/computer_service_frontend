@@ -12,6 +12,12 @@ const contentStyle: React.CSSProperties = {
   textAlign: "center",
   background: "#364d79",
 };
+const topCategoryContent: React.CSSProperties = {
+  height: "100px",
+
+  lineHeight: "40px",
+  textAlign: "center",
+};
 
 const Homes = () => {
   const query: Record<string, any> = {};
@@ -42,148 +48,126 @@ const Homes = () => {
   return (
     <div>
       <div>
+        {/* category contentd only lg and md */}
         <div>
           <Carousel autoplay>
-            <div
-              style={{
-                alignItems: "center",
-                justifyItems: "center",
-                display: "grid",
-              }}
-            >
-              <div style={contentStyle}>
-                <Link
-                  style={{
-                    display: "grid",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  href={""}
-                >
-                  <Image
-                    style={{
-                      height: "450",
-                      width: "700px",
-                    }}
-                    width={500}
-                    height={700}
-                    src={
-                      "https://res.cloudinary.com/db6qhze3s/image/upload/v1697582094/camera-service_xdn1t3.jpg"
-                    }
-                    alt="nent/image"
-                  ></Image>
-                </Link>
-              </div>
-            </div>
-            <div>
-              <div style={contentStyle}>
-                <Link
-                  style={{
-                    display: "grid",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  href={""}
-                >
-                  <Image
-                    width={500}
-                    height={500}
-                    src={
-                      "https://res.cloudinary.com/db6qhze3s/image/upload/v1697576288/computer-service_w7adsy.avif"
-                    }
-                    alt="nent/image"
-                  ></Image>
-                </Link>
-              </div>
-            </div>
-            <div>
-              <div style={contentStyle}>
-                <Link
-                  style={{
-                    display: "grid",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  href={""}
-                >
-                  <Image
-                    width={500}
-                    height={500}
-                    src={
-                      "https://res.cloudinary.com/db6qhze3s/image/upload/v1697576003/ac-service_giqqgw.png"
-                    }
-                    alt="nent/image"
-                  ></Image>
-                </Link>
-              </div>
-            </div>
-            <div>
-              <div style={contentStyle}>
-                <Link
-                  style={{
-                    display: "grid",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  href={""}
-                >
-                  <Image
-                    width={500}
-                    height={500}
-                    src={
-                      "https://res.cloudinary.com/db6qhze3s/image/upload/v1697575576/printer-service_etikxt.jpg"
-                    }
-                    alt="nent/image"
-                  ></Image>
-                </Link>
-              </div>
-            </div>
-            <div>
-              <div style={contentStyle}>
-                <Link
-                  style={{
-                    display: "grid",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  href={""}
-                >
-                  <Image
-                    width={500}
-                    height={500}
-                    src={
-                      "https://res.cloudinary.com/db6qhze3s/image/upload/v1697574988/laptop-service_uaaeqx.jpg"
-                    }
-                    alt="nent/image"
-                  ></Image>
-                </Link>
-              </div>
-            </div>
-            <div>
-              <div style={contentStyle}>
-                <Link
-                  style={{
-                    display: "grid",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  href={""}
-                >
-                  <Image
-                    width={500}
-                    height={500}
-                    src={
-                      "https://res.cloudinary.com/db6qhze3s/image/upload/v1697575800/mobile-service_xj6xu7.png"
-                    }
-                    alt="nent/image"
-                  ></Image>
-                </Link>
-              </div>
-            </div>
+            <Row>
+              {/* Large (lg) visible content */}
+              <Row gutter={[16, 16]} justify="center" align="middle">
+                {catagorsData?.map((category: any) => (
+                  <Col xs={0} lg={4} key={category?.id}>
+                    <Link
+                      style={{
+                        color: "black",
+                      }}
+                      href={`/all-service/${category?.id}`}
+                    >
+                      <div>
+                        <Image
+                          style={{
+                            borderRadius: "50%",
+                          }}
+                          src={category?.image}
+                          width={65}
+                          height={65}
+                          alt="next/image"
+                        />
+                        <h4>{`${category?.name}`.slice(0, 14)} ..</h4>
+                      </div>
+                    </Link>
+                  </Col>
+                ))}
+              </Row>
+            </Row>
           </Carousel>
-
-          {/* top bannar */}
         </div>
+        <Row>{/* Other content after the Carousel */}</Row>
+        <Row
+          justify={"center"}
+          align={"middle"}
+          gutter={{ xs: 8, sm: 16, md: 24, lg: 24 }}
+        >
+          <Col span={24} lg={8} sm={24}>
+            <div style={{ marginTop: "20px" }}>
+              {/* top banner */}
+              <Carousel autoplay>
+                {catagorsData?.map((category: any) => (
+                  <div key={category?.id} style={contentStyle}>
+                    <Link
+                      style={{
+                        display: "grid",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                      href={""} // Add the URL you want to link to
+                    >
+                      <Image
+                        width={240}
+                        height={240}
+                        src={category?.image}
+                        alt="content/image"
+                      />
+                    </Link>
+                  </div>
+                ))}
+              </Carousel>
+            </div>
+          </Col>
+
+          <Col span={24} lg={8} sm={24}>
+            <div style={{ marginTop: "20px" }}>
+              {/* top banner */}
+              <Carousel autoplay>
+                {catagorsData?.map((category: any) => (
+                  <div key={category?.id} style={contentStyle}>
+                    <Link
+                      style={{
+                        display: "grid",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                      href={""} // Add the URL you want to link to
+                    >
+                      <Image
+                        width={240}
+                        height={240}
+                        src={category?.image}
+                        alt="content/image"
+                      />
+                    </Link>
+                  </div>
+                ))}
+              </Carousel>
+            </div>
+          </Col>
+          <Col lg={8} span={0} xs={0}>
+            <div style={{ marginTop: "20px" }}>
+              {/* top banner */}
+              <Carousel autoplay>
+                {catagorsData?.map((category: any) => (
+                  <div key={category?.id} style={contentStyle}>
+                    <Link
+                      style={{
+                        display: "grid",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                      href={""} // Add the URL you want to link to
+                    >
+                      <Image
+                        width={240}
+                        height={240}
+                        src={category?.image}
+                        alt="content/image"
+                      />
+                    </Link>
+                  </div>
+                ))}
+              </Carousel>
+            </div>
+          </Col>
+        </Row>
+
         <div>
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Row
@@ -228,15 +212,24 @@ const Homes = () => {
                     }}
                   >
                     <h4>{category?.title}</h4>
-                    <div style={{alignItems:"center"  , display:"grid",justifyContent:"center"}}><Button style={{alignItems:"center"}}>
-                      <Link href={`/all-service/${category?.id}`} >Service</Link>
-                    </Button></div>
+                    <div
+                      style={{
+                        alignItems: "center",
+                        display: "grid",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Button style={{ alignItems: "center" }}>
+                        <Link href={`/all-service/${category?.id}`}>
+                          Service
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               ))}
             </Row>
           </Row>
-          
         </div>
       </div>
     </div>

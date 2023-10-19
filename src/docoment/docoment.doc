@@ -1,0 +1,25 @@
+import { Row, Col } from 'antd';
+
+function MyComponent() {
+  return (
+    <div>
+      <Row gutter={[16, 16]}>
+        {/* Large (lg) visible content */}
+        <Col xs={24} lg={14}>
+          <div className="lg-visible-content">
+            {/* Your large content */}
+          </div>
+        </Col>
+        
+        {/* Small (sm) hidden content */}
+        <Col xs={24} lg={10}>
+          <div className="sm-hidden-content">
+            {/* Your small content */}
+          </div>
+        </Col>
+      </Row>
+    </div>
+  );
+}
+
+export default MyComponent;

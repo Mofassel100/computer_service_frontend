@@ -1,9 +1,8 @@
 "use client";
 import { Layout } from "antd";
-// @ts-ignore
-import Header from "../Header/Header";
+import Header from "./Header";
 
-const { Content } = Layout;
+const { Content, Footer } = Layout;
 
 const Contents = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -22,6 +21,9 @@ const Contents = ({ children }: { children: React.ReactNode }) => {
       >
         {children}
       </div>
+      <Footer style={{ textAlign: "center" }}>
+        Mofassel Hosain ©2023 Created by ITS
+      </Footer>
     </Content>
   );
 };
