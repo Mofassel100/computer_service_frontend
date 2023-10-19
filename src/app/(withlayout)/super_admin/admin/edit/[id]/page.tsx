@@ -3,11 +3,11 @@ import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import FormTextArea from "@/components/Forms/FormTextAria";
 import FormSelectField from "@/components/Forms/FormselectField";
-import ActionBar from "@/components/UI/ActionBar/ActionBar";
-import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
+import ActionBar from "@/components/ui/ActionBar";
+import ITBreadCrump from "@/components/ui/ITBreadCrump";
+
 import { RolesOptioneSuperAdmin } from "@/constant/global";
 import { useAdminQuery, useUpdateAdminMutation } from "@/redux/api/adminApi";
-import { IAdmin } from "@/types/common";
 // import {
 //   useDepartmentQuery,
 //   useUpdateDepartmentMutation,

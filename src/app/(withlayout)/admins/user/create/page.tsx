@@ -10,8 +10,7 @@ import FormTextArea from "@/components/Forms/FormTextAria";
 
 
 import FormSelectField from "@/components/Forms/FormselectField";
-// @ts-ignore
-import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
+import ITBreadCrump from "@/components/ui/ITBreadCrump";
 import { RolesOptioneAdmin } from "@/constant/global";
 
 
@@ -81,9 +80,6 @@ const CreateUserPage = () => {
                 name="name"
                 size="large"
                 label="First Name"
-                required
-                // @ts-ignore
-                validation={Error.name && Error.name.message } 
                 
               />
             </Col>
@@ -116,8 +112,7 @@ const CreateUserPage = () => {
                 size="large"
                 required
                 label="Password"
-                // @ts-ignore
-                validation={Error.name && Error.name.message } 
+            
               />
             </Col>
             <Col
@@ -133,9 +128,7 @@ const CreateUserPage = () => {
                 size="large"
                 required
                 label="Email address"
-             
-                // @ts-ignore
-                validation={Error.email && Error.email.message } 
+      
               />
             </Col>
             <Col
@@ -152,8 +145,7 @@ const CreateUserPage = () => {
                 size="large"
                 label="Contact No."
             
-                // @ts-ignore
-                validation={Error.phoneNumber && Error.phoneNumber .message } 
+       
               />
             </Col>
             <Col

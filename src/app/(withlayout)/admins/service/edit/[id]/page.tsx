@@ -2,8 +2,8 @@
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import FormTextArea from "@/components/Forms/FormTextAria";
-import ActionBar from "@/components/UI/ActionBar/ActionBar";
-import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
+import ActionBar from "@/components/ui/ActionBar";
+import ITBreadCrump from "@/components/ui/ITBreadCrump";
 import {
   useServiceQuery,
   useUpdateServiceMutation,
@@ -33,7 +33,6 @@ const EditService = ({ params }: IDProps) => {
     }
   };
 
-  // @ts-ignore
   const defaultValues = {
     name: data?.name,
     image: data?.image,

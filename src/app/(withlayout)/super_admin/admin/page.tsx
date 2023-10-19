@@ -12,17 +12,16 @@ import { message } from "antd";
 import { useState } from "react";
 import dayjs from "dayjs";
 import { useDebounced } from "@/redux/hooks";
-import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
-// @ts-ignore
-import ActionBar from "@/components/UI/ActionBar/ActionBar";
-// @ts-ignore
-import ITTable from "@/components/UI/ITTable/ITTable";
+
 import {
   useAdminQuery,
   useAdminsQuery,
   useDeleteAdminMutation,
 } from "@/redux/api/adminApi";
 import Image from "next/image";
+import ITBreadCrump from "@/components/ui/ITBreadCrump";
+import ITTable from "@/components/ui/ITTable";
+import ActionBar from "@/components/ui/ActionBar";
 
 const AdminPage = () => {
   const [deleteAdmin] = useDeleteAdminMutation();

@@ -7,7 +7,7 @@ const Allservice = ({ params }: { params: any }) => {
   const { id } = params as any;
   const { data } = useServiceQuery(id);
   const ServiceData = data;
-  console.log(ServiceData, "service details");
+
 
   return (
     <div>

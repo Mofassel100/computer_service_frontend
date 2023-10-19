@@ -3,8 +3,8 @@ import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import FormTextArea from "@/components/Forms/FormTextAria";
 import FormSelectField from "@/components/Forms/FormselectField";
-import ActionBar from "@/components/UI/ActionBar/ActionBar";
-import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
+import ActionBar from "@/components/ui/ActionBar";
+import ITBreadCrump from "@/components/ui/ITBreadCrump";
 import { RolesOptioneAdmin } from "@/constant/global";
 import { useUpdateUserMutation, useUserQuery } from "@/redux/api/userApi";
 import { Button, Col, Row, message } from "antd";
@@ -32,7 +32,7 @@ const EditDepartmentPage = ({ params }: IDProps) => {
     }
   };
 
-  // @ts-ignore
+
   const defaultValues = {
     name: data?.name,
     imageURL: data?.imageURL,

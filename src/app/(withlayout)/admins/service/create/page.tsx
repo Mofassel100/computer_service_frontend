@@ -4,8 +4,7 @@ import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import FormTextArea from "@/components/Forms/FormTextAria";
 import FormSelectField from "@/components/Forms/FormselectField";
-// @ts-ignore
-import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
+import ITBreadCrump from "@/components/ui/ITBreadCrump";
 
 import { useCategorysQuery } from "@/redux/api/categoryApi";
 import { useAddServiceWithFormDataMutation } from "@/redux/api/serviceApi";
@@ -29,7 +28,6 @@ const CreateServicePage = () => {
     }
   };
   const { data: catagorys, isLoading } = useCategorysQuery(id);
-  // @ts-ignore
   const catagoryOptions = catagorys?.categorys?.map((category: any) => ({
     label: category?.title,
     value: category?.id,
