@@ -35,7 +35,7 @@ const PublicePage = ({ children }: { children: React.ReactNode }) => {
     );
   }
   return (
-    <Layout>
+    <Layout hasSider>
       <PubliceSidebare />
       <Layout>
         <Contents>{children}</Contents>
