@@ -6,12 +6,11 @@ import { Button, Col, Row, message } from "antd";
 import Image from "next/image";
 
 import Form from "../Forms/Form";
-// @ts-ignore
-import { loginSchema } from "@/schemas/login";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../Forms/FormInput";
 import { SubmitHandler } from "react-hook-form";
 import {  useRouter } from "next/navigation";
+import { loginSchema } from "@/lib/schemas/login";
 
 
 
