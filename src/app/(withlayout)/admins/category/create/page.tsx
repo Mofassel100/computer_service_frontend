@@ -4,8 +4,7 @@ import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 
 import FormSelectField from "@/components/Forms/FormselectField";
-// @ts-ignore
-import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
+import ITBreadCrump from "@/components/UI/ITBreadCrump";
 import { useAddCategoryWithFormDataMutation } from "@/redux/api/categoryApi";
 import { getUserInfo } from "@/service/auth.service";
 import { Button, Col, Row, message } from "antd";

@@ -1,6 +1,9 @@
 "use client";
 import { Button, Input, Modal } from "antd";
 import Link from "next/link";
+// import ITBreadCrump from "@/components/ui/ITBreadCrump";
+// import ActionBar from "@/components/ui/ActionBar";
+// import ITTable from "@/components/ui/ITTable";
 import {
   DeleteOutlined,
   EditOutlined,
@@ -11,19 +14,17 @@ import { message } from "antd";
 import { useState } from "react";
 import dayjs from "dayjs";
 import { useDebounced } from "@/redux/hooks";
-// @ts-ignore
-import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
-// @ts-ignore
-import ActionBar from "@/components/UI/ActionBar/ActionBar";
-// @ts-ignore
-import ITTable from "@/components/UI/ITTable/ITTable";
 import Image from "next/image";
+import { getUserInfo } from "@/service/auth.service";
+
 import {
   useCategoryQuery,
   useCategorysQuery,
   useDeleteCategoryMutation,
 } from "@/redux/api/categoryApi";
-import { getUserInfo } from "@/service/auth.service";
+import ITBreadCrump from "@/components/UI/ITBreadCrump";
+import ActionBar from "@/components/UI/ActionBar";
+import ITTable from "@/components/UI/ITTable";
 
 const UserPage = () => {
   const [deleteCategory] = useDeleteCategoryMutation();

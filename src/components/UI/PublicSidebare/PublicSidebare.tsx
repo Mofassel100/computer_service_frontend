@@ -1,7 +1,6 @@
 "use client";
 import { sidebarItems } from "@/constant/sidebarItmes";
 import { getUserInfo } from "@/service/auth.service";
-import { useState } from "react";
 import { Layout, Menu } from "antd";
 
 const { Sider } = Layout;
@@ -9,7 +8,7 @@ const { Sider } = Layout;
 const PubliceSidebare = () => {
   // const role = USER_ROLE.ADMIN;
   const { role, email, id } = getUserInfo() as any;
-  const profileData = getUserInfo();
+
 
   return (
     <Sider
@@ -18,17 +17,7 @@ const PubliceSidebare = () => {
       onBreakpoint={(broken) => {
         console.log(broken);
       }}
-      // onCollapse={(collapsed, type) => {
-      //   console.log(collapsed, type);
-      // }}
-      // style={{
-      //   overflow: "auto",
-      //   height: "100vh",
-      //   position: "sticky",
-      //   left: 0,
-      //   top: 0,
-      //   bottom: 0,
-      // }}
+   
     >
       <div
         style={{

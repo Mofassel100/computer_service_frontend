@@ -2,7 +2,7 @@
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import FormTextArea from "@/components/Forms/FormTextAria";
-import ActionBar from "@/components/UI/ActionBar/ActionBar";
+import ActionBar from "@/components/UI/ActionBar";
 import { useAdminQuery, useUpdateAdminMutation } from "@/redux/api/adminApi";
 import { getUserInfo } from "@/service/auth.service";
 import { Button, Col, Modal, Row, message } from "antd";

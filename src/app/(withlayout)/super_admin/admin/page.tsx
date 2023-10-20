@@ -10,22 +10,18 @@ import {
 } from "@ant-design/icons";
 import { message } from "antd";
 import { useState } from "react";
-// import { useDebounced } from "@/redux/hooks";
-// import { useAdminsQuery } from "@/redux/api/adminApi";
-// import { IDepartment } from "@/types";
 import dayjs from "dayjs";
 import { useDebounced } from "@/redux/hooks";
-import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
-// @ts-ignore
-import ActionBar from "@/components/UI/ActionBar/ActionBar";
-// @ts-ignore
-import ITTable from "@/components/UI/ITTable/ITTable";
+
 import {
   useAdminQuery,
   useAdminsQuery,
   useDeleteAdminMutation,
 } from "@/redux/api/adminApi";
 import Image from "next/image";
+import ITBreadCrump from "@/components/UI/ITBreadCrump";
+import ITTable from "@/components/UI/ITTable";
+import ActionBar from "@/components/UI/ActionBar";
 
 const AdminPage = () => {
   const [deleteAdmin] = useDeleteAdminMutation();

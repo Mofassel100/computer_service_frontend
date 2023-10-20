@@ -4,7 +4,7 @@ import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import FormTextArea from "@/components/Forms/FormTextAria";
 import FormSelectField from "@/components/Forms/FormselectField";
-import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
+import ITBreadCrump from "@/components/UI/ITBreadCrump";
 import { RolesOptioneSuperAdmin } from "@/constant/global";
 import { useAddAdminWithFormDataMutation } from "@/redux/api/adminApi";
 

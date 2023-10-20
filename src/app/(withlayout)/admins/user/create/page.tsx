@@ -1,23 +1,16 @@
-
-
 "use client";
-
 
 import Form from "@/components/Forms/Form";
 import FormDatePicker from "@/components/Forms/FormDatePicker";
 import FormInput from "@/components/Forms/FormInput";
 import FormTextArea from "@/components/Forms/FormTextAria";
 
-
 import FormSelectField from "@/components/Forms/FormselectField";
-// @ts-ignore
-import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
+import ITBreadCrump from "@/components/UI/ITBreadCrump";
 import { RolesOptioneAdmin } from "@/constant/global";
 
-
-
-import { useAddUserWithFormDataMutation } from "@/redux/api/userApi"
-import { Button, Col,  Row, message } from "antd";
+import { useAddUserWithFormDataMutation } from "@/redux/api/userApi";
+import { Button, Col, Row, message } from "antd";
 
 const CreateUserPage = () => {
   const [addUserWithFormData] = useAddUserWithFormDataMutation();
@@ -27,8 +20,7 @@ const CreateUserPage = () => {
     message.loading("Creating...");
     try {
       const result = await addUserWithFormData(obj);
-      if(!!result){
-
+      if (!!result) {
         message.success("User created successfully!");
       }
     } catch (err: any) {
@@ -49,7 +41,7 @@ const CreateUserPage = () => {
           },
         ]}
       />
-      <h1 style={{textAlign:"center"}}>Create User</h1>
+      <h1 style={{ textAlign: "center" }}>Create User</h1>
 
       <Form submitHandler={onSubmit}>
         <div
@@ -66,7 +58,7 @@ const CreateUserPage = () => {
               marginBottom: "10px",
             }}
           >
-           User Information
+            User Information
           </p>
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col
@@ -81,10 +73,6 @@ const CreateUserPage = () => {
                 name="name"
                 size="large"
                 label="First Name"
-                required
-                // @ts-ignore
-                validation={Error.name && Error.name.message } 
-                
               />
             </Col>
 
@@ -100,7 +88,6 @@ const CreateUserPage = () => {
                 name="imageURL"
                 size="large"
                 label="Image Url"
-                
               />
             </Col>
             <Col
@@ -116,8 +103,6 @@ const CreateUserPage = () => {
                 size="large"
                 required
                 label="Password"
-                // @ts-ignore
-                validation={Error.name && Error.name.message } 
               />
             </Col>
             <Col
@@ -133,9 +118,6 @@ const CreateUserPage = () => {
                 size="large"
                 required
                 label="Email address"
-             
-                // @ts-ignore
-                validation={Error.email && Error.email.message } 
               />
             </Col>
             <Col
@@ -151,43 +133,36 @@ const CreateUserPage = () => {
                 required
                 size="large"
                 label="Contact No."
-            
-                // @ts-ignore
-                validation={Error.phoneNumber && Error.phoneNumber .message } 
               />
             </Col>
             <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <FormDatePicker
-                  name="dateOfBirth"
-                  label="Date of birth"
-                  size="large"
-                  
-                  
-                  
-                />
-              </Col>
+              className="gutter-row"
+              span={8}
+              style={{
+                marginBottom: "10px",
+              }}
+            >
+              <FormDatePicker
+                name="dateOfBirth"
+                label="Date of birth"
+                size="large"
+              />
+            </Col>
             <Col
-                className="gutter-row"
-                span={8}
-                style={{
-                  marginBottom: "10px",
-                }}
-              >
-                <FormSelectField
-                  size="large"
-                  name="role"
-                  options={RolesOptioneAdmin}
-                  label="Role"
-                  placeholder="Select"
-                  
-                />
-              </Col>
+              className="gutter-row"
+              span={8}
+              style={{
+                marginBottom: "10px",
+              }}
+            >
+              <FormSelectField
+                size="large"
+                name="role"
+                options={RolesOptioneAdmin}
+                label="Role"
+                placeholder="Select"
+              />
+            </Col>
             <div style={{ justifyContent: "center" }}>
               <Col
                 span={20}
@@ -197,7 +172,6 @@ const CreateUserPage = () => {
                   name="address"
                   label="Permanent address"
                   rows={4}
-                  
                 />
               </Col>
             </div>
@@ -212,4 +186,3 @@ const CreateUserPage = () => {
 };
 
 export default CreateUserPage;
-

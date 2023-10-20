@@ -10,7 +10,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../Forms/FormInput";
 import { SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { loginSchema } from "@/lib/schemas/login";
 
 type FormValues = {
   email: string;
@@ -63,7 +62,7 @@ function LoginPage() {
           Plase login your account
         </h1>
         <div>
-          <Form submitHandler={onSubmit} resolver={yupResolver(loginSchema)}>
+          <Form submitHandler={onSubmit}>
             <div>
               <FormInput
                 name="email"

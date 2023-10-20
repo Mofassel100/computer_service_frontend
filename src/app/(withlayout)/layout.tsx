@@ -1,6 +1,6 @@
 "use client";
-import SideBar from "@/components/UI/Sidebar";
 import Contents from "@/components/UI/Content";
+import SideBar from "@/components/UI/Sidebar";
 import { isLoggedIn } from "@/service/auth.service";
 import { Layout, Row, Space, Spin } from "antd";
 import { usePathname, useRouter } from "next/navigation";

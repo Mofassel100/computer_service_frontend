@@ -11,12 +11,6 @@ import { message } from "antd";
 import { useState } from "react";
 import dayjs from "dayjs";
 import { useDebounced } from "@/redux/hooks";
-// @ts-ignore
-import ITBreadCrump from "@/components/UI/ITBreadCrump/ITBreadCrump";
-// @ts-ignore
-import ActionBar from "@/components/UI/ActionBar/ActionBar";
-// @ts-ignore
-import ITTable from "@/components/UI/ITTable/ITTable";
 import Image from "next/image";
 import {
   useAdminServicesQuery,
@@ -24,6 +18,9 @@ import {
   useServiceQuery,
 } from "@/redux/api/serviceApi";
 import { getUserInfo } from "@/service/auth.service";
+import ITBreadCrump from "@/components/UI/ITBreadCrump";
+import ActionBar from "@/components/UI/ActionBar";
+import ITTable from "@/components/UI/ITTable";
 
 const UserPage = () => {
   const [deleteService] = useDeleteServiceMutation();
