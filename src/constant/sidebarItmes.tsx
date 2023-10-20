@@ -180,6 +180,21 @@ export const sidebarItems = (role: string, email: string, id: string) => {
   ];
   const UserSidebare: MenuProps["items"] = [
     {
+      label: "Profile",
+      key: "profile",
+      icon: <ProfileOutlined />,
+      children: [
+        {
+          label: <Link href={`/${role}`}>Account Profile</Link>,
+          key: `/${role}/profile`,
+        },
+        {
+          label: <Link href={`/${role}/change-password`}>Change Password</Link>,
+          key: `/${role}/change-password`,
+        },
+      ],
+    },
+    {
       label: "Manage Profile",
       key: "manage-profile",
       icon: <AppstoreOutlined />,

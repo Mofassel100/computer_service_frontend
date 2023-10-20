@@ -34,7 +34,7 @@ const Header = () => {
       key: "0",
       label: (
         <Button type="text" ghost>
-          <Link href={"/register"}>Sign Up</Link>
+          <Link href={"/registration"}>Sign Up</Link>
         </Button>
       ),
     },

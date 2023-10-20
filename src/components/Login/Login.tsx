@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "../Forms/FormInput";
 import { SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type FormValues = {
   email: string;
@@ -89,6 +90,10 @@ function LoginPage() {
               Login
             </Button>
           </Form>
+        </div>
+        <div>
+          {" "}
+          Are New User please <Link href={"/registration"}></Link>
         </div>
       </Col>
     </Row>
