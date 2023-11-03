@@ -1,6 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+
+## My Project Details ,lets Getting Started
+## My project it teach service releted project.
+## super_admin Details
+### email : mofassel6145@gmail.com
+### password : 100558
+## admin Details
+### email : mofassel6147@gmail.com
+### password : 100558
+## Project Live Link
+### https://computer-service-frontend-mofassel100.vercel.app/
+## Project frontend code link 
+### https://github.com/Mofassel100/computer_service_frontend.git
+## Backend Live Link 
+### https://it-backed-prisma-service-mofassel100.vercel.app
+## backend code Link 
+### https://github.com/Mofassel100/painting_service_backend.git 
 
 First, run the development server:
 
