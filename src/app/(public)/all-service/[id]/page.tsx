@@ -1,7 +1,10 @@
 "use client";
 
 import { useAllcategorysQuery } from "@/redux/api/categoryApi";
-import { useAllServiceQuery } from "@/redux/api/serviceApi";
+import {
+  useAllServiceGetDBQuery,
+  useAllServiceQuery,
+} from "@/redux/api/serviceApi";
 import { useDebounced } from "@/redux/hooks";
 import { Button, Carousel, Col, Image, Row } from "antd";
 import Link from "next/link";
@@ -9,13 +12,18 @@ import React, { useState } from "react";
 
 const Allservice = ({ params }: { params: any }) => {
   const query: Record<string, any> = {};
-
+  const { id } = params as any;
   const [page, setPage] = useState<number>(1);
   const [size, setSize] = useState<number>(10);
   const [sortBy, setSortBy] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
-
+  const { data: datas, isError } = useAllServiceGetDBQuery({
+    limit: 30,
+    page: 1,
+  });
+  const allServicesData = datas?.allServiceDB;
+  console.log(allServicesData, "get Data");
   query["limit"] = size;
   query["page"] = page;
   query["sortBy"] = sortBy;
@@ -29,48 +37,60 @@ const Allservice = ({ params }: { params: any }) => {
   if (!!debouncedSearchTerm) {
     query["searchTerm"] = debouncedSearchTerm;
   }
-  const { data: categorys } = useAllcategorysQuery({ ...query });
+  const { data: categorys } = useAllcategorysQuery({ limit: 20, page: 1 });
   const catagorys = categorys?.allcategorys;
   // @ts-ignore
   const catagorsData = catagorys?.data;
-  const { id } = params as any;
+
   const { data, isLoading } = useAllServiceQuery(id);
   const ServiceData = data?.allservice;
-  console.log(ServiceData);
 
   return (
-    <div>
-      <div>
-        <Carousel autoplay>
-          <Row>
-            {/* Large (lg) visible content */}
-            <Row gutter={[16, 16]} justify="center" align="middle">
-              {catagorsData?.map((category: any) => (
-                <Col xs={0} lg={4} key={category?.id}>
-                  <Link
+    <div style={{ maxWidth: "85%", margin: "auto" }}>
+      <div style={{ textAlign: "center", margin: "15px auto" }}>
+        {/* Large (lg) visible content */}
+        <Row
+          gutter={[16, 16]}
+          justify="center"
+          align="middle"
+          style={{
+            maxWidth: "97%",
+            alignItems: "center",
+          }}
+        >
+          {catagorsData?.map((category: any) => (
+            <Col
+              xs={0}
+              lg={4}
+              md={4}
+              sm={4}
+              key={category?.id}
+              className="homeHover"
+            >
+              <Link
+                style={{
+                  color: "black",
+                }}
+                href={`/all-service/${category?.id}`}
+              >
+                <div>
+                  <Image
                     style={{
-                      color: "black",
+                      borderRadius: "50%",
+                      maxWidth: "45px",
+                      maxHeight: "45px",
                     }}
-                    href={`/all-service/${category?.id}`}
-                  >
-                    <div>
-                      <Image
-                        style={{
-                          borderRadius: "50%",
-                        }}
-                        src={category?.image}
-                        width={65}
-                        height={65}
-                        alt="next/image"
-                      />
-                      <h4>{`${category?.name}`.slice(0, 14)} ..</h4>
-                    </div>
-                  </Link>
-                </Col>
-              ))}
-            </Row>
-          </Row>
-        </Carousel>
+                    src={category?.image}
+                    width={35}
+                    height={35}
+                    alt="next/image"
+                  />
+                  <h4>{`${category?.name}`.slice(0, 14)} ..</h4>
+                </div>
+              </Link>
+            </Col>
+          ))}
+        </Row>
       </div>
       <Row
         justify={"center"}

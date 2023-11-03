@@ -30,9 +30,9 @@ function LoginPage() {
       const res = await userLogin({ ...data }).unwrap();
       console.log(res, "accessToken");
       if (res?.accessToken) {
-        if (role === "admin") router.push(`/${role}s`);
-        if (role === "super_admin") router.push(`/${role}`);
-        if (role === "user") router.push(`/${role}s`);
+        if (role === "admin") router.push(`/`);
+        if (role === "super_admin") router.push(`/`);
+        if (role === "user") router.push(`/`);
 
         message.success("User logged in successfully!");
       }

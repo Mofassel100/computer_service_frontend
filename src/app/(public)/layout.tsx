@@ -1,10 +1,11 @@
 "use client";
-import PubliceSidebare from "@/components/UI/PublicSidebare/PublicSidebare";
 import Contents from "@/components/UI/Content";
 import { isLoggedIn } from "@/service/auth.service";
 import { Layout, Row, Space, Spin } from "antd";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+
+const { Footer } = Layout;
 
 const PublicePage = ({ children }: { children: React.ReactNode }) => {
   const userLoggedIn = isLoggedIn();
@@ -36,7 +37,6 @@ const PublicePage = ({ children }: { children: React.ReactNode }) => {
   }
   return (
     <Layout>
-      <PubliceSidebare />
       <Layout>
         <Contents>{children}</Contents>
       </Layout>

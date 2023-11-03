@@ -4,7 +4,9 @@ import Homes from "./(public)/home/page";
 const HomePage = () => {
   return (
     <PublicePage>
-      <Homes></Homes>
+      <div style={{ maxWidth: "85%", margin: "auto" }}>
+        <Homes></Homes>
+      </div>
     </PublicePage>
   );
 };

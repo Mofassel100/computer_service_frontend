@@ -1,26 +1,31 @@
 "use client";
 
 import { useState } from "react";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, theme } from "antd";
 import { sidebarItems } from "@/constant/sidebarItmes";
 import { getUserInfo } from "@/service/auth.service";
 
 const { Sider } = Layout;
 
 const SideBar = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  // const [collapsed, setCollapsed] = useState(false);
+  // const {
+  //   token: { colorBgContainer },
+  // } = theme.useToken();
   // const role = USER_ROLE.ADMIN;
   const { role, email, id } = getUserInfo() as any;
- 
 
   return (
     <Sider
-      collapsible
-      collapsed={collapsed}
-      onCollapse={(value) => setCollapsed(value)}
-      width={280}
+      breakpoint="lg"
+      collapsedWidth="0"
+      onBreakpoint={(broken) => {
+        console.log(broken);
+      }}
+      // onCollapse={(collapsed, type) => {
+      //   console.log(collapsed, type);
+      // }}
       style={{
-        overflow: "auto",
         height: "100vh",
         position: "sticky",
         left: 0,
@@ -28,6 +33,7 @@ const SideBar = () => {
         bottom: 0,
       }}
     >
+      <div></div>
       <div
         style={{
           color: "white",

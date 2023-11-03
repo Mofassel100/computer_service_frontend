@@ -1,0 +1,29 @@
+.categoryItems:hover {
+  border-bottom: 2px solid turquoise;
+  border-radius: 15px;
+}
+.textHover:hover {
+  transform: scale(1.2);
+}
+.seachCardHover:hover {
+  transform: scaleX(1.05);
+}
+.homeHover:hover {
+  transform: scale(1.1);
+}
+.animationTop {
+  max-width: 100px;
+  max-height: 100px;
+  position: relative;
+  animation: myfirst 5s infinite alternate;
+}
+
+@keyframes myfirst {
+  0% {
+    top: 100%;
+  }
+
+  100% {
+    bottom: 100%;
+  }
+}

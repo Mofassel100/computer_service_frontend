@@ -51,7 +51,7 @@ const UpdateCategory = ({ params }: IDProps) => {
           },
           {
             label: "category",
-            link: "/admins/category/all-category",
+            link: "/admin/category/allcategory",
           },
         ]}
       />

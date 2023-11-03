@@ -43,13 +43,11 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <ProfileOutlined />,
       children: [
         {
-          label: <Link href={`/${role}s/profile`}>Account Profile</Link>,
-          key: `/${role}s/profile`,
+          label: <Link href={`/${role}/profile`}>Account Profile</Link>,
+          key: `/${role}/profile`,
         },
         {
-          label: (
-            <Link href={`/${role}s/change-password`}>Change Password</Link>
-          ),
+          label: <Link href={`/${role}/change-password`}>Change Password</Link>,
           key: `/${role}/change-password`,
         },
       ],
@@ -60,16 +58,14 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <ProfileOutlined />,
       children: [
         {
-          label: (
-            <Link href={`/${role}s/category/create`}>Create Category</Link>
-          ),
-          key: `/${role}s/category/create`,
+          label: <Link href={`/${role}/category/create`}>Create Category</Link>,
+          key: `/${role}/category/create`,
         },
         {
           label: (
-            <Link href={`/${role}s/category/all-category`}>All Category</Link>
+            <Link href={`/${role}/category/allcategory`}>All Category</Link>
           ),
-          key: `/${role}/category/all-category`,
+          key: `/${role}/category/allcategory`,
         },
       ],
     },
@@ -80,12 +76,12 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <UsergroupAddOutlined />,
       children: [
         {
-          label: <Link href={`/${role}s/user/create`}>create User</Link>,
-          key: `/${role}s/user/create`,
+          label: <Link href={`/${role}/user/create`}>create User</Link>,
+          key: `/${role}/user/create`,
         },
         {
-          label: <Link href={`/${role}s/user/all-user`}>All User</Link>,
-          key: `/${role}s/user/all-user`,
+          label: <Link href={`/${role}/user/all-user`}>All User</Link>,
+          key: `/${role}/user/all-user`,
         },
       ],
     },
@@ -95,14 +91,12 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <CustomerServiceOutlined />,
       children: [
         {
-          label: <Link href={`/${role}s/service/create`}>Service Create</Link>,
-          key: `/${role}s/service/create`,
+          label: <Link href={`/${role}/service/create`}>Service Create</Link>,
+          key: `/${role}/service/create`,
         },
         {
-          label: (
-            <Link href={`/${role}s/service/all-service`}>All Service</Link>
-          ),
-          key: `/${role}s/service/all-service`,
+          label: <Link href={`/${role}/service/all-service`}>All Service</Link>,
+          key: `/${role}/service/all-service`,
         },
       ],
     },
@@ -112,14 +106,14 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <AppstoreOutlined />,
       children: [
         {
-          label: <Link href={`/${role}s/content/create`}>Content create</Link>,
-          key: `/${role}s/content/create`,
+          label: <Link href={`/${role}/content/create`}>Content create</Link>,
+          key: `/${role}/content/create`,
         },
         {
           label: (
-            <Link href={`/${role}s/content/all-content`}>Contentn All</Link>
+            <Link href={`/${role}/content/all-content`}>Contentn All</Link>
           ),
-          key: `/${role}s/content/all-content`,
+          key: `/${role}/content/all-content`,
         },
       ],
     },
@@ -129,16 +123,14 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <BookOutlined />,
       children: [
         {
-          label: (
-            <Link href={`/${role}s/booking/history`}>Booking History</Link>
-          ),
-          key: `/${role}s/booking/history`,
+          label: <Link href={`/${role}/booking/history`}>Booking History</Link>,
+          key: `/${role}/booking/history`,
         },
         {
           label: (
-            <Link href={`/${role}s/booking/all-booking`}>Booking Status</Link>
+            <Link href={`/${role}/booking/all-booking`}>Booking Status</Link>
           ),
-          key: `/${role}s/booking/all-booking`,
+          key: `/${role}/booking/all-booking`,
         },
       ],
     },
@@ -185,7 +177,7 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <ProfileOutlined />,
       children: [
         {
-          label: <Link href={`/${role}`}>Account Profile</Link>,
+          label: <Link href={`/${role}/profile`}>Account Profile</Link>,
           key: `/${role}/profile`,
         },
         {
@@ -195,8 +187,8 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       ],
     },
     {
-      label: "Manage Profile",
-      key: "manage-profile",
+      label: "Manage Booking",
+      key: "manage-booking",
       icon: <AppstoreOutlined />,
       children: [
         {

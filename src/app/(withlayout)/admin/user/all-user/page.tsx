@@ -97,7 +97,7 @@ const UserPage = () => {
               <EyeOutlined />
             </Button>
 
-            <Link href={`/admins/user/edit/${data}`}>
+            <Link href={`/admin/user/edit/${data}`}>
               <Button
                 style={{
                   margin: "0px 5px",
@@ -142,7 +142,7 @@ const UserPage = () => {
         items={[
           {
             label: "admin",
-            link: "/admins",
+            link: "/admin",
           },
         ]}
       />
@@ -209,7 +209,7 @@ const UserPage = () => {
           </div>
         </Modal>
         <div>
-          <Link href="/admins/user/create">
+          <Link href="/admin/user/create">
             <Button type="primary">Create Admin</Button>
           </Link>
           {(!!sortBy || !!sortOrder || !!searchTerm) && (

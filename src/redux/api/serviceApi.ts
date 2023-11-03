@@ -13,6 +13,22 @@ export const serviceApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [taqTypes.service],
     }),
+    allServiceGetDB: build.query({
+      query: (arg: Record<string, any>) => {
+        return {
+          url: `${Service_URL}`,
+          method: "GET",
+          params: arg,
+        };
+      },
+      transformResponse: (response: IService[], meta: IMeta) => {
+        return {
+          allServiceDB: response,
+          meta,
+        };
+      },
+      providesTags: [taqTypes.service],
+    }),
 
     services: build.query({
       query: (arg: Record<string, any>) => {
@@ -37,7 +53,7 @@ export const serviceApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
-      transformResponse: (response: IService[], meta: IMeta) => {
+      transformResponse: (response: any, meta: IMeta) => {
         return {
           adminServices: response,
           meta,
@@ -70,7 +86,6 @@ export const serviceApi = baseApi.injectEndpoints({
       providesTags: [taqTypes.service],
     }),
 
-   
     // update single department by id
     updateService: build.mutation({
       query: (data) => ({
@@ -99,5 +114,6 @@ export const {
   useServicesQuery,
   useUpdateServiceMutation,
   useAdminServicesQuery,
-  useAllServiceQuery
+  useAllServiceQuery,
+  useAllServiceGetDBQuery,
 } = serviceApi;

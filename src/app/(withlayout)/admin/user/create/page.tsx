@@ -37,7 +37,7 @@ const CreateUserPage = () => {
           },
           {
             label: "user",
-            link: "/admins/user/all-user",
+            link: "/admin/user/all-user",
           },
         ]}
       />

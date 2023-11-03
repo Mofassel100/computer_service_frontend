@@ -9,7 +9,6 @@ const PubliceSidebare = () => {
   // const role = USER_ROLE.ADMIN;
   const { role, email, id } = getUserInfo() as any;
 
-
   return (
     <Sider
       breakpoint="lg"
@@ -17,9 +16,20 @@ const PubliceSidebare = () => {
       onBreakpoint={(broken) => {
         console.log(broken);
       }}
-   
+      defaultCollapsed
+      onCollapse={(collapsed, type) => {
+        console.log(collapsed, type);
+      }}
+      style={{
+        height: "100vh",
+        position: "sticky",
+        left: 0,
+        top: 0,
+        bottom: 0,
+      }}
     >
       <div
+        className="demo-logo-horizontal"
         style={{
           color: "white",
           fontSize: "2rem",
@@ -31,12 +41,15 @@ const PubliceSidebare = () => {
       >
         ITS
       </div>
-      <Menu
-        theme="dark"
-        defaultSelectedKeys={["1"]}
-        mode="inline"
-        items={sidebarItems(role, email, id)}
-      />
+
+      <div className="demo-logo-horizontal">
+        <Menu
+          theme="dark"
+          defaultSelectedKeys={["1"]}
+          mode="inline"
+          items={sidebarItems(role, email, id)}
+        />
+      </div>
     </Sider>
   );
 };

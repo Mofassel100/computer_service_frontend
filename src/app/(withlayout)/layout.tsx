@@ -5,6 +5,7 @@ import { isLoggedIn } from "@/service/auth.service";
 import { Layout, Row, Space, Spin } from "antd";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+const { Footer } = Layout;
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const userLoggedIn = isLoggedIn();
@@ -38,6 +39,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Layout hasSider>
       <SideBar />
+
       <Contents>{children}</Contents>
     </Layout>
   );

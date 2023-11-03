@@ -42,7 +42,7 @@ const CrateCategory = () => {
           },
           {
             label: "user",
-            link: "/admins/category/all-category",
+            link: "/admin/category/all-category",
           },
         ]}
       />
