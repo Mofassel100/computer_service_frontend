@@ -4,9 +4,10 @@ import {
   MenuOutlined,
   UserOutlined,
   ShoppingOutlined,
+  CloseOutlined,
 } from "@ant-design/icons";
 
-import { Button, Col, Row, Drawer, Menu, message } from "antd";
+import { Button, Col, Row, Drawer, Menu, message, Divider } from "antd";
 import { getUserInfo, removeUserInfo } from "@/service/auth.service";
 import { authKey } from "@/constant/localStorage";
 import HeaderItems from "@/constant/HeaderItems";
@@ -16,10 +17,7 @@ import { Input } from "antd";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useDebounced } from "@/redux/hooks";
-import {
-  useAllServiceGetDBQuery,
-  useServicesQuery,
-} from "@/redux/api/serviceApi";
+import { useAllServiceGetDBQuery } from "@/redux/api/serviceApi";
 import SearchProducts from "./SeachTermItems";
 import Image from "next/image";
 import "./../UI/style/style.css";
@@ -105,6 +103,9 @@ const NavBar: React.FC = () => {
   // ------------------------
   const toggleDrawer = () => {
     setDrawerVisible(!drawerVisible);
+  };
+  const closeDrawer = () => {
+    setDrawerVisible(false);
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -490,6 +491,20 @@ const NavBar: React.FC = () => {
         onClose={toggleDrawer}
         visible={drawerVisible}
       >
+        <Divider orientation="right">
+          <Button onClick={closeDrawer}>
+            {" "}
+            <CloseOutlined
+              style={{
+                color: "red",
+                border: "none",
+                fontSize: "30px",
+                position: "sticky",
+                top: "20px",
+              }}
+            />
+          </Button>
+        </Divider>
         <Row>
           <Col style={{ textAlign: "left" }} lg={0} md={0} sm={24} xs={24}>
             <Menu mode="inline" items={HeaderItems()} />
@@ -500,12 +515,13 @@ const NavBar: React.FC = () => {
           style={{
             border: "none",
             color: "red",
-            marginLeft: "15px",
-            fontSize: "20px",
           }}
           onClick={() => logOut()}
         >
           Log Out
+        </Button>
+        <Button style={{ textAlign: "right" }} onClick={closeDrawer}>
+          Cencel
         </Button>
       </Drawer>
     </div>

@@ -39,6 +39,7 @@ const PublicePage = ({ children }: { children: React.ReactNode }) => {
     <Layout>
       <Layout>
         <Contents>{children}</Contents>
+        <Footer></Footer>
       </Layout>
     </Layout>
   );

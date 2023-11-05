@@ -41,6 +41,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       <SideBar />
 
       <Contents>{children}</Contents>
+      <Footer></Footer>
     </Layout>
   );
 };

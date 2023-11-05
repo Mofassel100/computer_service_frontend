@@ -1,7 +1,5 @@
-
-
 const BookingHistory = () => {
-  return <div>dfd</div>;
+  return <div></div>;
 };
 
 export default BookingHistory;

@@ -29,16 +29,6 @@ const Contents = ({ children }: { children: React.ReactNode }) => {
       >
         {children}
       </div>
-      <Footer
-        style={{
-          textAlign: "center",
-          position: "sticky",
-          bottom: "0",
-          padding: "10px",
-        }}
-      >
-        Mofassel Hosain ©2023 Created by ITS
-      </Footer>
     </Content>
   );
 };

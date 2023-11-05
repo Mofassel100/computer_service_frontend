@@ -11,6 +11,10 @@
 .homeHover:hover {
   transform: scale(1.1);
 }
+.safety:hover {
+  border-radius: 50%;
+  border: 1px solid turquoise;
+}
 .animationTop {
   max-width: 100px;
   max-height: 100px;

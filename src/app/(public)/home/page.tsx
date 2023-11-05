@@ -1,12 +1,16 @@
 "use client";
 import { useAllcategorysQuery } from "@/redux/api/categoryApi";
 import { useDebounced } from "@/redux/hooks";
-import { Button, Carousel, Col, Row } from "antd";
+import { Button, Carousel, Col, Divider, Flex, Row } from "antd";
+import { PhoneOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import CareSafety from "@/components/CareSafety/CareSafety";
+import TopBannar from "@/components/UI/TopBannar/TopBannar";
 const contentStyle: React.CSSProperties = {
   height: "400px",
+  width: "full",
   color: "#fff",
 };
 const topCategoryContent: React.CSSProperties = {
@@ -73,8 +77,9 @@ const Homes = () => {
                   <Image
                     style={{
                       borderRadius: "50%",
-                      maxWidth: "45px",
-                      maxHeight: "45px",
+                      maxWidth: "50px",
+
+                      maxHeight: "50px",
                     }}
                     src={category?.image}
                     width={35}
@@ -89,6 +94,7 @@ const Homes = () => {
           ))}
         </Row>
         {/* bannar animition */}
+        <Divider plain />
         <div style={{ textAlign: "center", margin: "20px auto" }}>
           <Row
             justify={"center"}
@@ -96,48 +102,27 @@ const Homes = () => {
             gutter={{ xs: 12, sm: 12, md: 24, lg: 24 }}
             style={{
               textAlign: "center",
-              maxWidth: "92%",
+              maxWidth: "full",
               margin: "auto",
             }}
           >
             <Col
-              style={{ maxHeight: "450px", margin: "auto" }}
+              style={{ maxHeight: "450px", maxWidth: "auto", margin: "auto" }}
               span={24}
-              lg={18}
-              md={14}
+              lg={24}
+              md={24}
               xs={24}
               sm={24}
             >
               <Carousel autoplay>
                 {catagorsData?.map((category: any) => (
                   <div key={category?.id} style={contentStyle}>
-                    <Link
-                      style={{
-                        display: "grid",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderRadius: "10px",
-                      }}
-                      href={`/all-service/${category?.id}`} // Add the URL you want to link to
-                    >
-                      <Image
-                        style={{
-                          maxHeight: "400px",
-                          maxWidth: "700px",
-                          borderRadius: "15px",
-                        }}
-                        layout="responsive"
-                        width={500}
-                        height={400}
-                        src={category?.image}
-                        alt="content/image"
-                      />
-                    </Link>
+                    <TopBannar category={category} />
                   </div>
                 ))}
               </Carousel>
             </Col>
-
+            {/* 
             <Col
               style={{
                 maxHeight: "400px",
@@ -146,13 +131,13 @@ const Homes = () => {
                 borderRadius: "15px",
               }}
               span={24}
-              lg={6}
-              md={10}
+              lg={4}
+              md={3}
               xs={24}
               sm={24}
-            >
-              {/* top banner */}
-              <Carousel autoplay>
+            > */}
+            {/* top banner */}
+            {/* <Carousel autoplay>
                 {catagorsData?.map((category: any) => (
                   <div key={category?.id} style={contentStyle}>
                     <Link
@@ -188,8 +173,8 @@ const Homes = () => {
                     </Link>
                   </div>
                 ))}
-              </Carousel>
-            </Col>
+              </Carousel> */}
+            {/* </Col> */}
           </Row>
         </div>
 
@@ -257,6 +242,15 @@ const Homes = () => {
           </Row>
         </div>
       </div>
+      {/* why choose us */}
+      <Divider plain></Divider>
+      <section
+        style={{
+          margin: "15px 0px",
+        }}
+      >
+        <CareSafety />
+      </section>
     </div>
   );
 };
