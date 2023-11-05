@@ -9,7 +9,7 @@
 ### email : mofassel6147@gmail.com
 ### password : 100558
 ## Project Live Link
-### https://computer-service-frontend-mofassel100.vercel.app/
+### https://computer-service-it-front-mofassel100.vercel.app/
 ## Project frontend code link 
 ### https://github.com/Mofassel100/computer_service_frontend.git
 ## Backend Live Link 
