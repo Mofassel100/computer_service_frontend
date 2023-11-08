@@ -46,7 +46,7 @@ const EditService = ({ params }: IDProps) => {
   };
 
   return (
-    <div>
+    <div style={{ padding: "10px" }}>
       <ITBreadCrump
         items={[
           {
@@ -59,12 +59,16 @@ const EditService = ({ params }: IDProps) => {
           },
         ]}
       />
-      <ActionBar title="Update Admin"> </ActionBar>
+      <ActionBar title="Update Service"> </ActionBar>
       <Form submitHandler={onSubmit} defaultValues={defaultValues}>
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
           <Col
             className="gutter-row"
-            span={8}
+            span={24}
+            lg={8}
+            md={12}
+            sm={24}
+            xs={24}
             style={{
               marginBottom: "10px",
             }}
@@ -79,7 +83,11 @@ const EditService = ({ params }: IDProps) => {
 
           <Col
             className="gutter-row"
-            span={8}
+            span={24}
+            lg={8}
+            md={12}
+            sm={24}
+            xs={24}
             style={{
               marginBottom: "10px",
             }}
@@ -88,7 +96,11 @@ const EditService = ({ params }: IDProps) => {
           </Col>
           <Col
             className="gutter-row"
-            span={8}
+            span={24}
+            lg={8}
+            md={12}
+            sm={24}
+            xs={24}
             style={{
               marginBottom: "10px",
             }}
@@ -102,7 +114,11 @@ const EditService = ({ params }: IDProps) => {
           </Col>
           <Col
             className="gutter-row"
-            span={8}
+            span={24}
+            lg={8}
+            md={12}
+            sm={24}
+            xs={24}
             style={{
               marginBottom: "10px",
             }}
@@ -116,7 +132,11 @@ const EditService = ({ params }: IDProps) => {
           </Col>
           <Col
             className="gutter-row"
-            span={10}
+            span={24}
+            lg={8}
+            md={12}
+            sm={24}
+            xs={24}
             style={{
               marginBottom: "10px",
             }}
@@ -130,7 +150,11 @@ const EditService = ({ params }: IDProps) => {
           </Col>
           <Col
             className="gutter-row"
-            span={10}
+            span={24}
+            lg={8}
+            md={12}
+            sm={24}
+            xs={24}
             style={{
               marginBottom: "10px",
             }}
@@ -144,7 +168,11 @@ const EditService = ({ params }: IDProps) => {
           </Col>
           <Col
             className="gutter-row"
-            span={10}
+            span={24}
+            lg={8}
+            md={12}
+            sm={24}
+            xs={24}
             style={{
               marginBottom: "10px",
             }}
@@ -153,7 +181,11 @@ const EditService = ({ params }: IDProps) => {
           </Col>
           <Col
             className="gutter-row"
-            span={10}
+            span={24}
+            lg={8}
+            md={12}
+            sm={24}
+            xs={24}
             style={{
               marginBottom: "10px",
             }}
@@ -163,7 +195,11 @@ const EditService = ({ params }: IDProps) => {
 
           <div style={{ justifyContent: "center" }}>
             <Col
-              span={20}
+              span={24}
+              lg={24}
+              md={24}
+              sm={24}
+              xs={24}
               style={{ margin: "10px 0", justifyContent: "center" }}
             >
               <FormTextArea
@@ -175,7 +211,7 @@ const EditService = ({ params }: IDProps) => {
           </div>
         </Row>
         <Button type="primary" htmlType="submit">
-          Update
+          Service Update
         </Button>
       </Form>
     </div>

@@ -1,20 +1,12 @@
 "use client";
-
-import { useState } from "react";
-import { Layout, Menu, theme } from "antd";
+import { Layout, Menu } from "antd";
 import { sidebarItems } from "@/constant/sidebarItmes";
 import { getUserInfo } from "@/service/auth.service";
 
 const { Sider } = Layout;
 
 const SideBar = () => {
-  // const [collapsed, setCollapsed] = useState(false);
-  // const {
-  //   token: { colorBgContainer },
-  // } = theme.useToken();
-  // const role = USER_ROLE.ADMIN;
   const { role, email, id } = getUserInfo() as any;
-
   return (
     <Sider
       breakpoint="lg"
@@ -22,32 +14,21 @@ const SideBar = () => {
       onBreakpoint={(broken) => {
         console.log(broken);
       }}
-      // onCollapse={(collapsed, type) => {
-      //   console.log(collapsed, type);
-      // }}
       style={{
-        height: "100vh",
         position: "sticky",
+        height: "100vh",
+        top: 100,
         left: 0,
-        top: 0,
         bottom: 0,
+        color: "white",
+        backgroundColor: "black",
       }}
     >
-      <div></div>
-      <div
-        style={{
-          color: "white",
-          fontSize: "2rem",
-          textAlign: "center",
-          fontWeight: "bold",
-          marginBottom: ".5rem",
-          padding: "10px 0px",
-        }}
-      >
-        ITS
-      </div>
       <Menu
-        theme="dark"
+        style={{
+          color: "turquoise",
+          background: "black",
+        }}
         defaultSelectedKeys={["1"]}
         mode="inline"
         items={sidebarItems(role, email, id)}

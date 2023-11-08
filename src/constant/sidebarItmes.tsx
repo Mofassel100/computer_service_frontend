@@ -218,7 +218,4 @@ export const sidebarItems = (role: string, email: string, id: string) => {
   if (role === USER_ROLE.SUPER_ADMIN) return superAdminSidebarItems;
   else if (role === USER_ROLE.ADMIN) return adminSidebarItems;
   else if (role === USER_ROLE.User) return UserSidebare;
-  else {
-    return defaultSidebarItems;
-  }
 };

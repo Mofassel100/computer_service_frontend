@@ -1,9 +1,6 @@
 "use client";
 import { Button, Input, Modal } from "antd";
 import Link from "next/link";
-// import ITBreadCrump from "@/components/ui/ITBreadCrump";
-// import ActionBar from "@/components/ui/ActionBar";
-// import ITTable from "@/components/ui/ITTable";
 import {
   DeleteOutlined,
   EditOutlined,
@@ -99,23 +96,18 @@ const UserPage = () => {
                 showModal();
                 CategoryData(data);
               }}
-              type="primary"
+              style={{ backgroundColor: "turquoise" }}
             >
               <EyeOutlined />
             </Button>
-
             <Link href={`/admin/category/edit/${data}`}>
               <Button
-                style={{
-                  margin: "0px 5px",
-                }}
                 onClick={() => console.log(data)}
-                type="primary"
+                style={{ backgroundColor: "turquoise", margin: "0px 5px" }}
               >
                 <EditOutlined />
               </Button>
             </Link>
-
             <Button onClick={() => deletedItems(data)} type="primary" danger>
               <DeleteOutlined />
             </Button>
@@ -132,7 +124,6 @@ const UserPage = () => {
 
   const onTableChange = (pagination: any, filter: any, sorter: any) => {
     const { order, field } = sorter;
-    // console.log(order, field);
     setSortBy(field as string);
     setSortOrder(order === "ascend" ? "asc" : "desc");
   };
@@ -143,12 +134,12 @@ const UserPage = () => {
     setSearchTerm("");
   };
   return (
-    <div>
+    <div style={{ padding: "10px" }}>
       <ITBreadCrump
         items={[
           {
             label: "admin",
-            link: "/admins",
+            link: "/admin",
           },
         ]}
       />
@@ -177,13 +168,14 @@ const UserPage = () => {
             >
               {categoryData?.image ? (
                 <Image
+                  className="imageHover"
                   style={{
-                    borderRadius: "20px",
+                    borderRadius: "15px",
                   }}
                   alt="res.cloudinary.com"
                   src={categoryData?.image}
-                  width={150}
-                  height={120}
+                  width={250}
+                  height={250}
                 />
               ) : (
                 "Image not Found"
@@ -211,12 +203,13 @@ const UserPage = () => {
         </Modal>
         <div>
           <Link href="/admin/cagegory/create">
-            <Button type="primary">Create Admin</Button>
+            <Button style={{ backgroundColor: "turquoise" }}>
+              Create Admin
+            </Button>
           </Link>
           {(!!sortBy || !!sortOrder || !!searchTerm) && (
             <Button
-              style={{ margin: "0px 5px" }}
-              type="primary"
+              style={{ backgroundColor: "turquoise", margin: "0px 5px" }}
               onClick={resetFilters}
             >
               <ReloadOutlined />

@@ -14,16 +14,6 @@ const Contents = ({ children }: { children: React.ReactNode }) => {
     >
       <div
         style={{
-          position: "sticky",
-          top: "0",
-          zIndex: "3",
-        }}
-      >
-        <NavBar></NavBar>
-      </div>
-
-      <div
-        style={{
           padding: "10px",
         }}
       >

@@ -6,7 +6,9 @@ import FormInput from "@/components/Forms/FormInput";
 import FormSelectField from "@/components/Forms/FormselectField";
 import ITBreadCrump from "@/components/UI/ITBreadCrump";
 import { useAddCategoryWithFormDataMutation } from "@/redux/api/categoryApi";
+import { categorySchemaCreated } from "@/schemas/categorySchema";
 import { getUserInfo } from "@/service/auth.service";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Row, message } from "antd";
 
 const CrateCategory = () => {
@@ -33,12 +35,12 @@ const CrateCategory = () => {
     },
   ];
   return (
-    <div>
+    <div style={{ padding: "10px" }}>
       <ITBreadCrump
         items={[
           {
             label: "admin",
-            link: "/admins",
+            link: "/admin",
           },
           {
             label: "user",
@@ -46,14 +48,17 @@ const CrateCategory = () => {
           },
         ]}
       />
-      <h1 style={{ textAlign: "center" }}>Create User</h1>
+      <h1 style={{ textAlign: "center" }}>Create Category</h1>
 
-      <Form submitHandler={onSubmit}>
+      <Form
+        submitHandler={onSubmit}
+        resolver={yupResolver(categorySchemaCreated)}
+      >
         <div
           style={{
             border: "1px solid #d9d9d9",
-            borderRadius: "5px",
-            padding: "15px",
+            borderRadius: "15px",
+            padding: "10px",
             marginBottom: "10px",
           }}
         >
@@ -68,7 +73,11 @@ const CrateCategory = () => {
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col
               className="gutter-row"
-              span={19}
+              span={24}
+              lg={8}
+              md={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -85,7 +94,11 @@ const CrateCategory = () => {
             </Col>
             <Col
               className="gutter-row"
-              span={19}
+              span={24}
+              lg={8}
+              md={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -103,7 +116,11 @@ const CrateCategory = () => {
 
             <Col
               className="gutter-row"
-              span={8}
+              span={24}
+              lg={8}
+              md={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -117,7 +134,11 @@ const CrateCategory = () => {
             </Col>
             <Col
               className="gutter-row"
-              span={8}
+              span={24}
+              lg={8}
+              md={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -132,7 +153,12 @@ const CrateCategory = () => {
             </Col>
           </Row>
         </div>
-        <Button htmlType="submit" type="primary">
+        <Button
+          htmlType="submit"
+          style={{
+            backgroundColor: "turquoise",
+          }}
+        >
           Create Category
         </Button>
       </Form>

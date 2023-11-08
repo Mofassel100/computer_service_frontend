@@ -44,6 +44,7 @@ const Allservice = ({ params }: { params: any }) => {
 
   const { data, isLoading } = useAllServiceQuery(id);
   const ServiceData = data?.allservice;
+  console.log("allservice", ServiceData);
 
   return (
     <div style={{ maxWidth: "85%", margin: "auto" }}>

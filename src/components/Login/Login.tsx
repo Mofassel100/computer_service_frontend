@@ -11,6 +11,7 @@ import FormInput from "../Forms/FormInput";
 import { SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { loginSchema } from "@/schemas/login";
 
 type FormValues = {
   email: string;
@@ -28,7 +29,13 @@ function LoginPage() {
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
     try {
       const res = await userLogin({ ...data }).unwrap();
+
       console.log(res, "accessToken");
+
+      router.refresh();
+      if (!res?.accessToken) {
+        return message.error("uer not found");
+      }
       if (res?.accessToken) {
         if (role === "admin") router.push(`/`);
         if (role === "super_admin") router.push(`/`);
@@ -36,6 +43,7 @@ function LoginPage() {
 
         message.success("User logged in successfully!");
       }
+      message.success("User logged in successfully!");
       storeUserInfo({ accessToken: res?.accessToken });
       console.log(res);
     } catch (err: any) {
@@ -63,7 +71,7 @@ function LoginPage() {
           Plase login your account
         </h1>
         <div>
-          <Form submitHandler={onSubmit}>
+          <Form submitHandler={onSubmit} resolver={yupResolver(loginSchema)}>
             <div>
               <FormInput
                 name="email"

@@ -7,6 +7,8 @@ import FormSelectField from "@/components/Forms/FormselectField";
 import ITBreadCrump from "@/components/UI/ITBreadCrump";
 import { RolesOptioneSuperAdmin } from "@/constant/global";
 import { useAddAdminWithFormDataMutation } from "@/redux/api/adminApi";
+import { adminSchema } from "@/schemas/admin";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Button, Col, Row, message } from "antd";
 
@@ -15,11 +17,10 @@ const CreateAdminPage = () => {
 
   const onSubmit = async (values: any) => {
     const obj = { ...values };
-    console.log(obj);
-    message.loading("Creating...");
+    message.loading(" Admin Creating...");
     try {
       const result = await addAdminWithFormData(obj);
-      console.log(result);
+      // console.log(result);
       message.success("Admin created successfully!");
     } catch (err: any) {
       console.error(err.message);
@@ -41,7 +42,7 @@ const CreateAdminPage = () => {
       />
       <h1>Create Admin</h1>
 
-      <Form submitHandler={onSubmit}>
+      <Form submitHandler={onSubmit} resolver={yupResolver(adminSchema)}>
         <div
           style={{
             border: "1px solid #d9d9d9",
@@ -61,7 +62,11 @@ const CreateAdminPage = () => {
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col
               className="gutter-row"
-              span={19}
+              span={24}
+              md={12}
+              lg={8}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -76,7 +81,11 @@ const CreateAdminPage = () => {
 
             <Col
               className="gutter-row"
-              span={15}
+              span={24}
+              md={8}
+              lg={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -89,8 +98,12 @@ const CreateAdminPage = () => {
               />
             </Col>
             <Col
+              span={24}
+              md={8}
+              lg={12}
+              sm={24}
+              xs={24}
               className="gutter-row"
-              span={12}
               style={{
                 marginBottom: "10px",
               }}
@@ -105,7 +118,11 @@ const CreateAdminPage = () => {
             <br />
             <Col
               className="gutter-row"
-              span={15}
+              span={24}
+              md={8}
+              lg={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -119,7 +136,30 @@ const CreateAdminPage = () => {
             </Col>
             <Col
               className="gutter-row"
-              span={10}
+              span={24}
+              md={8}
+              lg={12}
+              sm={24}
+              xs={24}
+              style={{
+                marginBottom: "10px",
+              }}
+            >
+              <FormSelectField
+                size="large"
+                name="role"
+                options={RolesOptioneSuperAdmin}
+                label="Role"
+                placeholder="Select"
+              />
+            </Col>
+            <Col
+              className="gutter-row"
+              span={24}
+              md={8}
+              lg={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -132,23 +172,11 @@ const CreateAdminPage = () => {
               />
             </Col>
             <Col
-              className="gutter-row"
-              span={8}
-              style={{
-                marginBottom: "10px",
-              }}
-            >
-              <FormSelectField
-                size="large"
-                name="role"
-                options={RolesOptioneSuperAdmin}
-                label="Blood group"
-                placeholder="Select"
-              />
-            </Col>
-
-            <Col
               span={24}
+              md={8}
+              lg={12}
+              sm={24}
+              xs={24}
               style={{ margin: "10px 0", justifyContent: "center" }}
             >
               <FormTextArea name="address" label="Permanent address" rows={4} />

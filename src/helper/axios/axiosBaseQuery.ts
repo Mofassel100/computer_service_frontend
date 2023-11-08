@@ -20,6 +20,7 @@ export const axiosBaseQuery =
     unknown
   > =>
   async ({ url, method, data, params, contentType }) => {
+    console.log("datasss", data);
     try {
       const result = await axiosInstant({
         url: baseUrl + url,
@@ -33,6 +34,7 @@ export const axiosBaseQuery =
       return result;
     } catch (axiosError) {
       let err = axiosError as AxiosError;
+      console.log("err", err);
       return {
         error: {
           status: err.response?.status,

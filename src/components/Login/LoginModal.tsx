@@ -9,6 +9,8 @@ import { SubmitHandler } from "react-hook-form";
 import Form from "../Forms/Form";
 import FormInput from "../Forms/FormInput";
 import Link from "next/link";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema } from "@/schemas/login";
 type FormValues = {
   email: string;
   password: string;
@@ -32,20 +34,23 @@ const LoginModal = ({
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
     try {
       const res = await userLogin({ ...data }).unwrap();
-      console.log(res, "0000accessToken");
+
+      if (!res?.accessToken) {
+        return message.error("uer not found");
+      }
 
       if (res?.accessToken) {
         if (role === "admin" || role === "user" || role === "super_admin") {
           router.push("/");
         }
       }
+
       router.refresh();
       handleOk();
       //   if (role === "admin") return router.push(`/${role}s`);
       //   if (role === "super_admin") return router.push(`/${role}/profile`);
       //   if (role === "user") return router.push(`/${role}s/profile`);
       storeUserInfo({ accessToken: res?.accessToken });
-      console.log(res, "res");
       message.success("User logged in successfully!");
     } catch (err: any) {
       console.error(err.message);
@@ -63,7 +68,7 @@ const LoginModal = ({
             Plase login your account
           </h1>
           <div>
-            <Form submitHandler={onSubmit}>
+            <Form submitHandler={onSubmit} resolver={yupResolver(loginSchema)}>
               <div>
                 <FormInput
                   name="email"

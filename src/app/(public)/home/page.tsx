@@ -8,6 +8,9 @@ import Link from "next/link";
 import { useState } from "react";
 import CareSafety from "@/components/CareSafety/CareSafety";
 import TopBannar from "@/components/UI/TopBannar/TopBannar";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "@/redux/slice/cartSlice";
+import { IService } from "@/types/common";
 const contentStyle: React.CSSProperties = {
   height: "400px",
   width: "full",
@@ -18,6 +21,9 @@ const topCategoryContent: React.CSSProperties = {
 };
 
 const Homes = () => {
+  const dispatch = useDispatch();
+  const { serviceData } = useSelector((state: any) => state.services);
+  console.log(...serviceData, "useselector");
   const query: Record<string, any> = {};
 
   const [page, setPage] = useState<number>(1);
@@ -40,8 +46,8 @@ const Homes = () => {
     query["searchTerm"] = debouncedSearchTerm;
   }
   const { data } = useAllcategorysQuery({ ...query });
-  const catagorys = data?.allcategorys;
-  // @ts-ignore
+  const catagorys: any = data?.allcategorys;
+
   const catagorsData = catagorys?.data;
   return (
     <div>
@@ -122,59 +128,6 @@ const Homes = () => {
                 ))}
               </Carousel>
             </Col>
-            {/* 
-            <Col
-              style={{
-                maxHeight: "400px",
-                maxWidth: "210",
-                margin: "auto",
-                borderRadius: "15px",
-              }}
-              span={24}
-              lg={4}
-              md={3}
-              xs={24}
-              sm={24}
-            > */}
-            {/* top banner */}
-            {/* <Carousel autoplay>
-                {catagorsData?.map((category: any) => (
-                  <div key={category?.id} style={contentStyle}>
-                    <Link
-                      style={{
-                        display: "grid",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        borderRadius: "10px",
-                      }}
-                      href={`/all-service/${category?.id}`} // Add the URL you want to link to
-                    >
-                      <Image
-                        style={{
-                          height: "320px",
-                          width: "210px",
-                          borderRadius: "15px",
-                        }}
-                        layout="responsive"
-                        width={320}
-                        height={210}
-                        src={category?.image}
-                        alt="next/image"
-                      />
-                      <div>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Consequuntur totam earum neque expedita non
-                          numquam voluptatem cupiditate. Illum inventore animi
-                          repudiandae voluptates sed minus. Dolor assumenda
-                          ullam est quaerat repellat!
-                        </p>
-                      </div>
-                    </Link>
-                  </div>
-                ))}
-              </Carousel> */}
-            {/* </Col> */}
           </Row>
         </div>
 
@@ -230,7 +183,11 @@ const Homes = () => {
                       }}
                     >
                       <Button style={{ alignItems: "center" }}>
-                        <Link href={`/all-service/${category?.id}`}>
+                        <Link
+                          onClick={() => dispatch(addToCart({ category }))}
+                          // href={`/all-service/${category?.id}`}
+                          href={""}
+                        >
                           Service
                         </Link>
                       </Button>

@@ -94,18 +94,19 @@ const UserPage = () => {
                 showModal();
                 UserData(data);
               }}
-              type="primary"
+              style={{ backgroundColor: "turquoise", color: "black" }}
             >
               <EyeOutlined />
             </Button>
 
             <Link href={`/admin/service/edit/${data}`}>
               <Button
+                onClick={() => console.log(data)}
                 style={{
+                  backgroundColor: "turquoise",
+                  color: "black",
                   margin: "0px 5px",
                 }}
-                onClick={() => console.log(data)}
-                type="primary"
               >
                 <EditOutlined />
               </Button>
@@ -139,7 +140,7 @@ const UserPage = () => {
   };
   console.log(serviceSignleData);
   return (
-    <div>
+    <div style={{ padding: "10px" }}>
       <ITBreadCrump
         items={[
           {
@@ -148,119 +149,128 @@ const UserPage = () => {
           },
         ]}
       />
-      <ActionBar title="Service List">
-        <Input
-          size="large"
-          placeholder="Search"
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{
-            width: "20%",
-          }}
-        />
-
-        <Modal
-          title="Service Detail"
-          open={isModalOpen}
-          onOk={handleOk}
-          onCancel={handleCancel}
-        >
-          <div>
-            <div
-              style={{
-                textAlign: "center",
-                borderRadius: "20px",
-              }}
-            >
-              {serviceSignleData?.image ? (
-                <Image
-                  style={{
-                    borderRadius: "20px",
-                  }}
-                  alt="res.cloudinary.com"
-                  src={serviceSignleData?.image}
-                  width={150}
-                  height={120}
-                />
-              ) : (
-                "Image not Found"
-              )}
-            </div>
-            <div>
-              <h3>
-                Name : {serviceSignleData?.name ? serviceSignleData?.name : ""}
-              </h3>
-              <h3>
-                title :{" "}
-                {serviceSignleData?.title ? serviceSignleData?.title : ""}
-              </h3>
-              <h3>
-                Current Price :{" "}
-                {serviceSignleData?.price ? serviceSignleData?.price : ""}
-              </h3>
-              <h3>
-                Old Price :{" "}
-                {serviceSignleData?.oldPrice ? serviceSignleData?.oldPrice : ""}
-              </h3>
-              <h3>
-                Description :{" "}
-                {serviceSignleData?.description
-                  ? serviceSignleData?.description
-                  : ""}
-              </h3>
-              <h3>
-                Rating :{" "}
-                {serviceSignleData?.rating ? serviceSignleData?.rating : ""}
-              </h3>
-              <h3>
-                Review :{" "}
-                {serviceSignleData?.review ? serviceSignleData?.review : ""}
-              </h3>
-              <h3>
-                Create AT:{" "}
-                {serviceSignleData?.createdAt
-                  ? dayjs(serviceSignleData?.createdAt).format(
-                      "MMM D, YYYY hh:mm A"
-                    )
-                  : ""}
-              </h3>
-              <h3>
-                Updated At:{" "}
-                {serviceSignleData?.updatedAt
-                  ? dayjs(serviceSignleData?.updatedAt).format(
-                      "MMM D, YYYY hh:mm A"
-                    )
-                  : ""}
-              </h3>
-            </div>
-          </div>
-        </Modal>
+      <Modal
+        title="Service Detail"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
         <div>
-          <Link href="/admin/service/create">
-            <Button type="primary">Create Service</Button>
-          </Link>
-          {(!!sortBy || !!sortOrder || !!searchTerm) && (
-            <Button
-              style={{ margin: "0px 5px" }}
-              type="primary"
-              onClick={resetFilters}
-            >
-              <ReloadOutlined />
-            </Button>
-          )}
+          <div
+            style={{
+              textAlign: "center",
+              borderRadius: "20px",
+            }}
+          >
+            {serviceSignleData?.image ? (
+              <Image
+                style={{
+                  borderRadius: "20px",
+                  backgroundSize: "cover",
+                }}
+                alt="res.cloudinary.com"
+                src={serviceSignleData?.image}
+                width={300}
+                height={300}
+              />
+            ) : (
+              "Image not Found"
+            )}
+          </div>
+          <div>
+            <h3>
+              Name : {serviceSignleData?.name ? serviceSignleData?.name : ""}
+            </h3>
+            <h3>
+              title : {serviceSignleData?.title ? serviceSignleData?.title : ""}
+            </h3>
+            <h3>
+              Current Price :{" "}
+              {serviceSignleData?.price ? serviceSignleData?.price : ""}
+            </h3>
+            <h3>
+              Old Price :{" "}
+              {serviceSignleData?.oldPrice ? serviceSignleData?.oldPrice : ""}
+            </h3>
+            <h3>
+              Description :{" "}
+              {serviceSignleData?.description
+                ? serviceSignleData?.description
+                : ""}
+            </h3>
+            <h3>
+              Rating :{" "}
+              {serviceSignleData?.rating ? serviceSignleData?.rating : ""}
+            </h3>
+            <h3>
+              Review :{" "}
+              {serviceSignleData?.review ? serviceSignleData?.review : ""}
+            </h3>
+            <h3>
+              Create AT:{" "}
+              {serviceSignleData?.createdAt
+                ? dayjs(serviceSignleData?.createdAt).format(
+                    "MMM D, YYYY hh:mm A"
+                  )
+                : ""}
+            </h3>
+            <h3>
+              Updated At:{" "}
+              {serviceSignleData?.updatedAt
+                ? dayjs(serviceSignleData?.updatedAt).format(
+                    "MMM D, YYYY hh:mm A"
+                  )
+                : ""}
+            </h3>
+          </div>
         </div>
-      </ActionBar>
+      </Modal>
+      <div style={{ textAlign: "center" }}>
+        <ActionBar title="Service List">
+          <Input
+            size="large"
+            placeholder="Search"
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{
+              width: "20%",
+            }}
+          />
 
-      <ITTable
-        loading={isLoading}
-        columns={columns}
-        dataSource={admins}
-        pageSize={size}
-        totalPages={meta?.total}
-        showSizeChanger={true}
-        onPaginationChange={onPaginationChange}
-        onTableChange={onTableChange}
-        showPagination={true}
-      />
+          <div
+            style={{
+              textAlign: "center",
+            }}
+          >
+            <Link
+              style={{ backgroundColor: "turquoise", color: "none" }}
+              href="/admin/service/create"
+            >
+              <Button style={{ backgroundColor: "turquoise", color: "black" }}>
+                Create Service
+              </Button>
+            </Link>
+            {(!!sortBy || !!sortOrder || !!searchTerm) && (
+              <Button
+                style={{ backgroundColor: "turquoise", color: "black" }}
+                onClick={resetFilters}
+              >
+                <ReloadOutlined />
+              </Button>
+            )}
+          </div>
+        </ActionBar>
+        <ITTable
+          loading={isLoading}
+          columns={columns}
+          dataSource={admins}
+          pageSize={size}
+          totalPages={meta?.total}
+          showSizeChanger={true}
+          onPaginationChange={onPaginationChange}
+          onTableChange={onTableChange}
+          showPagination={true}
+        />
+      </div>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import { authKey } from "@/constant/localStorage";
 import { getFromlocalStrorage } from "@/utilies/local.storage";
 import axios from "axios";
-
 const instant = axios.create();
 instant.defaults.headers.post["Content-Type"] = "application/json";
 instant.defaults.headers["Accept"] = "application/json";
@@ -29,7 +28,7 @@ instant.interceptors.response.use(
   // @ts-ignore
   function (response) {
     //  const responseObject: ResponseSuccess;
-    
+
     const responseObject: any = {
       data: response?.data?.data,
       meta: response?.data?.meta,
@@ -39,11 +38,12 @@ instant.interceptors.response.use(
     return responseObject;
   },
   function (error) {
+    console.log("errorsss", error);
     // const responseObject: IGenericErrorRespons;
     const responseObject: any = {
       statusCode: error?.response?.data.statusCode || 500,
-      message: error?.response?.data?.message || "Somting went wrong",
-      errorMessages: error?.response?.data?.message,
+      message: error?.response?.data?.message || error?.response?.data?.message,
+      errorMessages: error?.response?.message,
     };
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error

@@ -11,9 +11,17 @@
 .homeHover:hover {
   transform: scale(1.1);
 }
+.imageHover:hover {
+  transform: scale(1.05);
+  transition: all 2s;
+}
 .safety:hover {
   border-radius: 50%;
   border: 1px solid turquoise;
+}
+.borderAndRadius:hover {
+  border: 1px solid turquoise;
+  border-radius: 10px;
 }
 .animationTop {
   max-width: 100px;

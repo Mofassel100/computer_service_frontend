@@ -18,12 +18,14 @@ const TopBannar = ({ category }: { category: any }) => {
   const catagorys = data?.allcategorys;
   // @ts-ignore
   const catagorsData = catagorys?.data;
-  console.log(category);
   return (
     <>
       <Row>
         <Col lg={24} md={24} sm={24} xs={24}>
-          <Link style={{ color: "White" }} href={""}>
+          <Link
+            style={{ color: "White" }}
+            href={`/all-service/${category?.id}`}
+          >
             <div
               style={{
                 height: "400px",

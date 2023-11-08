@@ -129,14 +129,25 @@ const NavBar: React.FC = () => {
 
   const { role, email, id, imageURL, name } = getUserInfo() as any;
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: "white",
+        width: "full",
+        position: "sticky",
+        top: 0,
+        left: 0,
+        zIndex: 3,
+      }}
+    >
       <LoginModal
         isModalOpen={isModalOpen}
         handleOk={handleOk}
         handleCancel={handleCancel}
       />
       <nav>
-        <div style={{ background: "white", alignItems: "center" }}>
+        <div
+          style={{ background: "white", alignItems: "center", width: "full" }}
+        >
           {/* large navber */}
           <Row
             justify={"center"}

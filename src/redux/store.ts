@@ -4,9 +4,8 @@ import { baseApi } from "./api/baseApi";
 
 export const store = configureStore({
   reducer,
-  // @ts-ignore
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(baseApi.middleware),
+    getDefaultMiddleware({}).concat(baseApi.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

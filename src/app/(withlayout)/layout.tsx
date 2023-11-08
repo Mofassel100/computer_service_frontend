@@ -1,5 +1,6 @@
 "use client";
 import Contents from "@/components/UI/Content";
+import NavBar from "@/components/UI/Navber";
 import SideBar from "@/components/UI/Sidebar";
 import { isLoggedIn } from "@/service/auth.service";
 import { Layout, Row, Space, Spin } from "antd";
@@ -37,12 +38,20 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <Layout hasSider>
-      <SideBar />
+    <div>
+      <NavBar></NavBar>
 
-      <Contents>{children}</Contents>
-      <Footer></Footer>
-    </Layout>
+      <Layout hasSider>
+        <SideBar />
+        <Layout>
+          <Contents>{children}</Contents>
+
+          <Footer style={{ textAlign: "center" }}>
+            Mofassel Hosain ©2023 Created by ITService
+          </Footer>
+        </Layout>
+      </Layout>
+    </div>
   );
 };
 

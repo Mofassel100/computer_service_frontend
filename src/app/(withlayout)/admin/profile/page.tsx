@@ -14,7 +14,6 @@ const Profiles = () => {
   const { id } = getUserInfo() as any;
   const { data } = useAdminQuery(id);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [views, setViews] = useState("");
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -34,7 +33,6 @@ const Profiles = () => {
       await updateAdmin({ id, body: values });
       message.success("Department updated successfully");
     } catch (err: any) {
-      //   console.error(err.message);
       message.error(err.message);
     }
   };
@@ -61,13 +59,21 @@ const Profiles = () => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <div>
+        <div
+          style={{
+            padding: "10px",
+          }}
+        >
           <ActionBar title="Update Admin"> </ActionBar>
           <Form submitHandler={onSubmit} defaultValues={defaultValues}>
             <Row gutter={{ xs: 24, xl: 8, lg: 8, md: 24 }}>
               <Col
                 className="gutter-row"
-                span={19}
+                span={24}
+                lg={8}
+                md={12}
+                sm={24}
+                xs={24}
                 style={{
                   marginBottom: "10px",
                 }}
@@ -82,7 +88,11 @@ const Profiles = () => {
 
               <Col
                 className="gutter-row"
-                span={8}
+                span={24}
+                lg={8}
+                md={12}
+                sm={24}
+                xs={24}
                 style={{
                   marginBottom: "10px",
                 }}
@@ -96,7 +106,11 @@ const Profiles = () => {
               </Col>
               <Col
                 className="gutter-row"
-                span={8}
+                span={24}
+                lg={8}
+                md={12}
+                sm={24}
+                xs={24}
                 style={{
                   marginBottom: "10px",
                 }}
@@ -111,7 +125,11 @@ const Profiles = () => {
 
               <Col
                 className="gutter-row"
-                span={10}
+                span={24}
+                lg={8}
+                md={12}
+                sm={24}
+                xs={24}
                 style={{
                   marginBottom: "10px",
                 }}
@@ -125,7 +143,11 @@ const Profiles = () => {
               </Col>
               <div style={{ justifyContent: "center" }}>
                 <Col
-                  span={20}
+                  span={24}
+                  lg={24}
+                  md={24}
+                  sm={24}
+                  xs={24}
                   style={{ margin: "10px 0", justifyContent: "center" }}
                 >
                   <FormTextArea
@@ -143,11 +165,11 @@ const Profiles = () => {
         </div>
       </Modal>
       <div
+        className="borderAndRadius"
         style={{
-          borderRadius: "10px",
           width: "max-content",
           height: "max-content",
-          border: "1px solid black",
+
           position: "relative",
           top: "0",
           right: "0",
@@ -155,13 +177,17 @@ const Profiles = () => {
         }}
       >
         <div
+          className="imageHover"
           style={{
             position: "absolute",
-            top: "-4px",
+            top: "-15px",
             right: "0",
           }}
         >
-          <Button onClick={() => showModal()} type="primary">
+          <Button
+            onClick={() => showModal()}
+            style={{ backgroundColor: "turquoise" }}
+          >
             Update
           </Button>
         </div>
@@ -178,13 +204,14 @@ const Profiles = () => {
           >
             {data?.imageURL ? (
               <Image
+                className="imageHover"
                 style={{
                   borderRadius: "20px",
                 }}
                 alt="res.cloudinary.com"
                 src={data?.imageURL}
-                width={150}
-                height={120}
+                width={250}
+                height={250}
               />
             ) : (
               "Image not Found"

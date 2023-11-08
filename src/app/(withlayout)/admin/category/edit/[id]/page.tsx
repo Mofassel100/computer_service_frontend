@@ -19,21 +19,15 @@ const UpdateCategory = ({ params }: IDProps) => {
 
   const { data } = useCategoryQuery(id);
   const [updateCategory] = useUpdateCategoryMutation();
-  console.log(data);
-
   const onSubmit = async (values: any) => {
     message.loading("Updating.....");
     try {
-      console.log(data);
       await updateCategory({ id, body: values });
-      message.success("User updated successfully");
+      message.success("category updated successfully");
     } catch (err: any) {
-      //   console.error(err.message);
       message.error(err.message);
     }
   };
-
-  // @ts-ignore
   const defaultValues = {
     name: data?.name,
     image: data?.image,
@@ -42,7 +36,11 @@ const UpdateCategory = ({ params }: IDProps) => {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        padding: "10px",
+      }}
+    >
       <ITBreadCrump
         items={[
           {
@@ -61,7 +59,11 @@ const UpdateCategory = ({ params }: IDProps) => {
         <Row gutter={{ xs: 24, xl: 8, lg: 8, md: 24 }}>
           <Col
             className="gutter-row"
-            span={19}
+            span={24}
+            lg={8}
+            md={12}
+            sm={24}
+            xs={24}
             style={{
               marginBottom: "10px",
             }}
@@ -77,7 +79,11 @@ const UpdateCategory = ({ params }: IDProps) => {
 
           <Col
             className="gutter-row"
-            span={18}
+            span={24}
+            lg={8}
+            md={12}
+            sm={24}
+            xs={24}
             style={{
               marginBottom: "10px",
               display: "grid",
@@ -88,7 +94,11 @@ const UpdateCategory = ({ params }: IDProps) => {
 
           <Col
             className="gutter-row"
-            span={16}
+            span={24}
+            lg={8}
+            md={12}
+            sm={24}
+            xs={24}
             style={{
               marginBottom: "10px",
             }}
@@ -97,12 +107,12 @@ const UpdateCategory = ({ params }: IDProps) => {
               type="text"
               name="name"
               size="large"
-              label="Service Name"
+              label="Category Name"
             />
           </Col>
         </Row>
-        <Button type="primary" htmlType="submit">
-          Update
+        <Button style={{ backgroundColor: "turquoise" }} htmlType="submit">
+          Update Category
         </Button>
       </Form>
     </div>

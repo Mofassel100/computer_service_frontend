@@ -1,5 +1,7 @@
 "use client";
 import Contents from "@/components/UI/Content";
+import NavBar from "@/components/UI/Navber";
+import SideBar from "@/components/UI/Sidebar";
 import { isLoggedIn } from "@/service/auth.service";
 import { Layout, Row, Space, Spin } from "antd";
 import { usePathname, useRouter } from "next/navigation";
@@ -36,12 +38,19 @@ const PublicePage = ({ children }: { children: React.ReactNode }) => {
     );
   }
   return (
-    <Layout>
-      <Layout>
-        <Contents>{children}</Contents>
-        <Footer></Footer>
+    <div>
+      <NavBar></NavBar>
+
+      <Layout hasSider>
+        <Layout>
+          <Contents>{children}</Contents>
+
+          <Footer style={{ textAlign: "center" }}>
+            Mofassel Hosain ©2023 Created by ITService
+          </Footer>
+        </Layout>
       </Layout>
-    </Layout>
+    </div>
   );
 };
 

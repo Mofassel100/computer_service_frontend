@@ -6,7 +6,10 @@ import { instant as axiosInstance } from "@/helper/axios/axiosInstant";
 
 import { authKey } from "@/constant/localStorage";
 import { decodeToken } from "@/utilies/jwt";
-import { getFromlocalStrorage, setTolocalStrorage } from "@/utilies/local.storage";
+import {
+  getFromlocalStrorage,
+  setTolocalStrorage,
+} from "@/utilies/local.storage";
 import { getBaseUrl } from "@/helper/config/envConfig";
 
 export const storeUserInfo = ({ accessToken }: { accessToken: string }) => {

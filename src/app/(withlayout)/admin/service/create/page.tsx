@@ -1,6 +1,5 @@
 "use client";
 import Form from "@/components/Forms/Form";
-
 import FormInput from "@/components/Forms/FormInput";
 import FormTextArea from "@/components/Forms/FormTextAria";
 import FormSelectField from "@/components/Forms/FormselectField";
@@ -8,9 +7,15 @@ import ITBreadCrump from "@/components/UI/ITBreadCrump";
 
 import { useCategorysQuery } from "@/redux/api/categoryApi";
 import { useAddServiceWithFormDataMutation } from "@/redux/api/serviceApi";
-
+import { serviceSchemaCreated } from "@/schemas/serviceSchema";
 import { getUserInfo } from "@/service/auth.service";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Row, message } from "antd";
+
+// export const metadata: Metadata = {
+//   title: "ITService | Create Service",
+//   description: "created service",
+// };
 
 const CreateServicePage = () => {
   const [addServiceWithFormData] = useAddServiceWithFormDataMutation();
@@ -41,7 +46,6 @@ const CreateServicePage = () => {
   const CategoryOptionSelect: any = catagoryOptions?.map(
     (catagory) => catagory
   );
-
   const UserOptions = [
     {
       label: "UserId",
@@ -64,7 +68,10 @@ const CreateServicePage = () => {
       />
       <h1 style={{ textAlign: "center" }}>Create User</h1>
 
-      <Form submitHandler={onSubmit}>
+      <Form
+        submitHandler={onSubmit}
+        resolver={yupResolver(serviceSchemaCreated)}
+      >
         <div
           style={{
             border: "1px solid #d9d9d9",
@@ -84,7 +91,11 @@ const CreateServicePage = () => {
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col
               className="gutter-row"
-              span={8}
+              span={24}
+              lg={8}
+              md={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -99,7 +110,11 @@ const CreateServicePage = () => {
             </Col>
             <Col
               className="gutter-row"
-              span={8}
+              span={24}
+              lg={8}
+              md={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -113,7 +128,11 @@ const CreateServicePage = () => {
             </Col>
             <Col
               className="gutter-row"
-              span={8}
+              span={24}
+              lg={8}
+              md={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -128,7 +147,11 @@ const CreateServicePage = () => {
             </Col>
             <Col
               className="gutter-row"
-              span={8}
+              span={24}
+              lg={8}
+              md={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -142,7 +165,11 @@ const CreateServicePage = () => {
             </Col>
             <Col
               className="gutter-row"
-              span={8}
+              span={24}
+              lg={8}
+              md={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -156,7 +183,11 @@ const CreateServicePage = () => {
             </Col>
             <Col
               className="gutter-row"
-              span={8}
+              span={24}
+              lg={8}
+              md={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -170,7 +201,11 @@ const CreateServicePage = () => {
             </Col>
             <Col
               className="gutter-row"
-              span={10}
+              span={24}
+              lg={8}
+              md={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -184,7 +219,11 @@ const CreateServicePage = () => {
             </Col>
             <Col
               className="gutter-row"
-              span={10}
+              span={24}
+              lg={8}
+              md={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -198,7 +237,11 @@ const CreateServicePage = () => {
             </Col>
             <Col
               className="gutter-row"
-              span={10}
+              span={24}
+              lg={8}
+              md={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -212,7 +255,11 @@ const CreateServicePage = () => {
             </Col>
             <Col
               className="gutter-row"
-              span={10}
+              span={24}
+              lg={8}
+              md={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -227,7 +274,11 @@ const CreateServicePage = () => {
 
             <Col
               className="gutter-row"
-              span={8}
+              span={24}
+              lg={8}
+              md={12}
+              sm={24}
+              xs={24}
               style={{
                 marginBottom: "10px",
               }}
@@ -242,7 +293,11 @@ const CreateServicePage = () => {
             </Col>
             <div style={{ justifyContent: "center" }}>
               <Col
-                span={20}
+                span={24}
+                lg={24}
+                md={24}
+                sm={24}
+                xs={24}
                 style={{ margin: "10px 0", justifyContent: "center" }}
               >
                 <FormTextArea
