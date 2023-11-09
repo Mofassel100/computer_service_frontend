@@ -17,7 +17,11 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <ProfileOutlined />,
       children: [
         {
-          label: <Link href={`/${role}`}>Account Profile</Link>,
+          label: (
+            <Link style={{ color: "turquoise" }} href={`/${role}`}>
+              Account Profile
+            </Link>
+          ),
           key: `/${role}/profile`,
         },
         {
@@ -43,11 +47,22 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <ProfileOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/profile`}>Account Profile</Link>,
+          label: (
+            <Link style={{ color: "turquoise" }} href={`/${role}/profile`}>
+              Account Profile
+            </Link>
+          ),
           key: `/${role}/profile`,
         },
         {
-          label: <Link href={`/${role}/change-password`}>Change Password</Link>,
+          label: (
+            <Link
+              style={{ color: "turquoise" }}
+              href={`/${role}/change-password`}
+            >
+              Change Password
+            </Link>
+          ),
           key: `/${role}/change-password`,
         },
       ],
@@ -58,12 +73,24 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <ProfileOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/category/create`}>Create Category</Link>,
+          label: (
+            <Link
+              style={{ color: "turquoise" }}
+              href={`/${role}/category/create`}
+            >
+              Create Category
+            </Link>
+          ),
           key: `/${role}/category/create`,
         },
         {
           label: (
-            <Link href={`/${role}/category/allcategory`}>All Category</Link>
+            <Link
+              style={{ color: "turquoise" }}
+              href={`/${role}/category/allcategory`}
+            >
+              All Category
+            </Link>
           ),
           key: `/${role}/category/allcategory`,
         },
@@ -76,11 +103,22 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <UsergroupAddOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/user/create`}>create User</Link>,
+          label: (
+            <Link style={{ color: "turquoise" }} href={`/${role}/user/create`}>
+              create User
+            </Link>
+          ),
           key: `/${role}/user/create`,
         },
         {
-          label: <Link href={`/${role}/user/all-user`}>All User</Link>,
+          label: (
+            <Link
+              style={{ color: "turquoise" }}
+              href={`/${role}/user/all-user`}
+            >
+              All User
+            </Link>
+          ),
           key: `/${role}/user/all-user`,
         },
       ],
@@ -91,11 +129,25 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <CustomerServiceOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/service/create`}>Service Create</Link>,
+          label: (
+            <Link
+              style={{ color: "turquoise" }}
+              href={`/${role}/service/create`}
+            >
+              Service Create
+            </Link>
+          ),
           key: `/${role}/service/create`,
         },
         {
-          label: <Link href={`/${role}/service/all-service`}>All Service</Link>,
+          label: (
+            <Link
+              style={{ color: "turquoise" }}
+              href={`/${role}/service/all-service`}
+            >
+              All Service
+            </Link>
+          ),
           key: `/${role}/service/all-service`,
         },
       ],
@@ -106,12 +158,24 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <AppstoreOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/content/create`}>Content create</Link>,
+          label: (
+            <Link
+              style={{ color: "turquoise" }}
+              href={`/${role}/content/create`}
+            >
+              Content create
+            </Link>
+          ),
           key: `/${role}/content/create`,
         },
         {
           label: (
-            <Link href={`/${role}/content/all-content`}>Contentn All</Link>
+            <Link
+              style={{ color: "turquoise" }}
+              href={`/${role}/content/all-content`}
+            >
+              Contentn All
+            </Link>
           ),
           key: `/${role}/content/all-content`,
         },
@@ -123,12 +187,24 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <BookOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/booking/history`}>Booking History</Link>,
+          label: (
+            <Link
+              style={{ color: "turquoise" }}
+              href={`/${role}/booking/history`}
+            >
+              Booking History
+            </Link>
+          ),
           key: `/${role}/booking/history`,
         },
         {
           label: (
-            <Link href={`/${role}/booking/all-booking`}>Booking Status</Link>
+            <Link
+              style={{ color: "turquoise" }}
+              href={`/${role}/booking/all-booking`}
+            >
+              Booking Status
+            </Link>
           ),
           key: `/${role}/booking/all-booking`,
         },
@@ -177,11 +253,22 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <ProfileOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/profile`}>Account Profile</Link>,
+          label: (
+            <Link style={{ color: "turquoise" }} href={`/${role}/profile`}>
+              Account Profile
+            </Link>
+          ),
           key: `/${role}/profile`,
         },
         {
-          label: <Link href={`/${role}/change-password`}>Change Password</Link>,
+          label: (
+            <Link
+              style={{ color: "turquoise" }}
+              href={`/${role}/change-password`}
+            >
+              Change Password
+            </Link>
+          ),
           key: `/${role}/change-password`,
         },
       ],
@@ -192,11 +279,22 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <AppstoreOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/edite`}>Booking History</Link>,
+          label: (
+            <Link style={{ color: "turquoise" }} href={`/${role}/edite`}>
+              Booking History
+            </Link>
+          ),
           key: `/${role}/booking-history`,
         },
         {
-          label: <Link href={`/${role}/booing-status`}>Booking Status</Link>,
+          label: (
+            <Link
+              style={{ color: "turquoise" }}
+              href={`/${role}/booing-status`}
+            >
+              Booking Status
+            </Link>
+          ),
           key: `/${role}/booking-status`,
         },
       ],
@@ -208,7 +306,11 @@ export const sidebarItems = (role: string, email: string, id: string) => {
       icon: <AppstoreOutlined />,
       children: [
         {
-          label: <Link href={`/${role}/booking`}>Booking</Link>,
+          label: (
+            <Link style={{ color: "turquoise" }} href={`/${role}/booking`}>
+              Booking
+            </Link>
+          ),
           key: `/${role}/booking`,
         },
       ],

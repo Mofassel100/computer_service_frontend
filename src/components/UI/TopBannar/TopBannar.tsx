@@ -34,6 +34,8 @@ const TopBannar = ({ category }: { category: any }) => {
                 justifyItems: "center",
                 alignItems: "center",
                 borderRadius: "15px",
+                backgroundAttachment: "fixed",
+                backgroundPositionY: "cover",
                 backgroundImage: `url('${category?.image}')`,
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",

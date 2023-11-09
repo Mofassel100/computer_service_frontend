@@ -1,7 +1,7 @@
 "use client";
 import { useAllcategorysQuery } from "@/redux/api/categoryApi";
 import { useDebounced } from "@/redux/hooks";
-import { Button, Carousel, Col, Divider, Flex, Row } from "antd";
+import { Button, Carousel, Col, Divider, Flex, Row, Space } from "antd";
 import { PhoneOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,14 +10,12 @@ import CareSafety from "@/components/CareSafety/CareSafety";
 import TopBannar from "@/components/UI/TopBannar/TopBannar";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/redux/slice/cartSlice";
-import { IService } from "@/types/common";
+
+import ITPagination from "@/components/UI/ITPagination";
 const contentStyle: React.CSSProperties = {
   height: "400px",
   width: "full",
   color: "#fff",
-};
-const topCategoryContent: React.CSSProperties = {
-  height: "100px",
 };
 
 const Homes = () => {
@@ -27,7 +25,7 @@ const Homes = () => {
   const query: Record<string, any> = {};
 
   const [page, setPage] = useState<number>(1);
-  const [size, setSize] = useState<number>(10);
+  const [size, setSize] = useState<number>(4);
   const [sortBy, setSortBy] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -37,6 +35,13 @@ const Homes = () => {
   query["sortBy"] = sortBy;
   query["sortOrder"] = sortOrder;
 
+  const onCartChange = (pagination: any, filter: any, sorter: any) => {
+    const { order, field } = sorter;
+    // console.log(order, field);
+    setSortBy(field as string);
+    setSortOrder(order === "ascend" ? "asc" : "desc");
+  };
+
   const debouncedSearchTerm = useDebounced({
     searchQuery: searchTerm,
     delay: 600,
@@ -45,10 +50,17 @@ const Homes = () => {
   if (!!debouncedSearchTerm) {
     query["searchTerm"] = debouncedSearchTerm;
   }
-  const { data } = useAllcategorysQuery({ ...query });
+  const { data, isLoading } = useAllcategorysQuery({ ...query });
+
   const catagorys: any = data?.allcategorys;
 
   const catagorsData = catagorys?.data;
+  const meta = catagorys?.meta;
+  const onPaginationChange = (page: number, pageSize: number) => {
+    setPage(page);
+    setSize(pageSize);
+  };
+
   return (
     <div>
       <div style={{ textAlign: "center" }}>
@@ -99,8 +111,7 @@ const Homes = () => {
             </Col>
           ))}
         </Row>
-        {/* bannar animition */}
-        <Divider plain />
+        {/* Top Banner */}
         <div style={{ textAlign: "center", margin: "20px auto" }}>
           <Row
             justify={"center"}
@@ -132,23 +143,25 @@ const Homes = () => {
         </div>
 
         <div>
+          <Space size={"large"}>
+            <h1 style={{ marginBottom: "13px" }}>Top Service</h1>
+          </Space>
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Row
               align={"middle"}
               justify={"center"}
-              style={{ margin: "6px" }}
+              style={{ margin: "auto", textAlign: "center" }}
               className="gutter-row"
             >
               {catagorsData?.map((category: any) => (
                 <div
+                  className="categoryBorder"
                   key={category?.id}
                   style={{
-                    height: "320px",
+                    height: "290px",
                     width: "210px",
                     margin: "10px",
                     padding: "6px",
-                    border: "1px solid black",
-                    borderRadius: "10px",
                   }}
                 >
                   <div>
@@ -156,6 +169,7 @@ const Homes = () => {
                       {" "}
                       {category?.image ? (
                         <Image
+                          className="categoryImage"
                           width={190}
                           height={200}
                           style={{ borderRadius: "10px" }}
@@ -171,7 +185,10 @@ const Homes = () => {
                   <div
                     style={{
                       width: "190px",
-                      height: "100px",
+                      height: "70px",
+                      display: "grid",
+                      justifyItems: "center",
+                      alignItems: "center",
                     }}
                   >
                     <h4>{category?.title}</h4>
@@ -182,11 +199,10 @@ const Homes = () => {
                         justifyContent: "center",
                       }}
                     >
-                      <Button style={{ alignItems: "center" }}>
+                      <Button style={{ alignItems: "center", bottom: 0 }}>
                         <Link
                           onClick={() => dispatch(addToCart({ category }))}
-                          // href={`/all-service/${category?.id}`}
-                          href={""}
+                          href={`/all-service/${category?.id}`}
                         >
                           Service
                         </Link>
@@ -197,6 +213,12 @@ const Homes = () => {
               ))}
             </Row>
           </Row>
+          <ITPagination
+            pageSize={size}
+            showSizeChanger={true}
+            totalPages={meta?.total}
+            onPaginationChange={onPaginationChange}
+          ></ITPagination>
         </div>
       </div>
       {/* why choose us */}

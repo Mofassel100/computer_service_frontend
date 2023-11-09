@@ -35,7 +35,7 @@ const UserPage = () => {
       ("");
     }
   };
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const query: Record<string, any> = {};
 
   const [page, setPage] = useState<number>(1);
@@ -61,11 +61,13 @@ const UserPage = () => {
   const { data, isLoading } = useAdminServicesQuery(id);
   const [views, setViews] = useState("");
   const admins = data?.adminServices;
-  console.log(admins);
+
   const meta = data?.meta;
   const UserData = async (datas: string) => {
     setViews(datas);
   };
+  // modal view details
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -77,6 +79,7 @@ const UserPage = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+  // -----------------
   const { data: serviceSignleData } = useServiceQuery(views);
   const columns = [
     {
@@ -138,9 +141,9 @@ const UserPage = () => {
     setSortOrder("");
     setSearchTerm("");
   };
-  console.log(serviceSignleData);
+
   return (
-    <div style={{ padding: "10px" }}>
+    <div style={{ padding: "10px", textAlign: "center" }}>
       <ITBreadCrump
         items={[
           {
@@ -225,40 +228,35 @@ const UserPage = () => {
           </div>
         </div>
       </Modal>
-      <div style={{ textAlign: "center" }}>
-        <ActionBar title="Service List">
-          <Input
-            size="large"
-            placeholder="Search"
-            onChange={(e) => setSearchTerm(e.target.value)}
-            style={{
-              width: "20%",
-            }}
-          />
 
-          <div
-            style={{
-              textAlign: "center",
-            }}
+      <ActionBar title="Service List">
+        <Input
+          size="large"
+          placeholder="Search"
+          onChange={(e) => setSearchTerm(e.target.value)}
+          style={{
+            width: "20%",
+          }}
+        />
+
+        <Link
+          style={{ backgroundColor: "turquoise", color: "none" }}
+          href="/admin/service/create"
+        >
+          <Button style={{ backgroundColor: "turquoise", color: "black" }}>
+            Create Service
+          </Button>
+        </Link>
+        {(!!sortBy || !!sortOrder || !!searchTerm) && (
+          <Button
+            style={{ backgroundColor: "turquoise", color: "black" }}
+            onClick={resetFilters}
           >
-            <Link
-              style={{ backgroundColor: "turquoise", color: "none" }}
-              href="/admin/service/create"
-            >
-              <Button style={{ backgroundColor: "turquoise", color: "black" }}>
-                Create Service
-              </Button>
-            </Link>
-            {(!!sortBy || !!sortOrder || !!searchTerm) && (
-              <Button
-                style={{ backgroundColor: "turquoise", color: "black" }}
-                onClick={resetFilters}
-              >
-                <ReloadOutlined />
-              </Button>
-            )}
-          </div>
-        </ActionBar>
+            <ReloadOutlined />
+          </Button>
+        )}
+      </ActionBar>
+      <div style={{}}>
         <ITTable
           loading={isLoading}
           columns={columns}
