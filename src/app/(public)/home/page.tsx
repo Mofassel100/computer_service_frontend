@@ -1,8 +1,7 @@
 "use client";
 import { useAllcategorysQuery } from "@/redux/api/categoryApi";
 import { useDebounced } from "@/redux/hooks";
-import { Button, Carousel, Col, Divider, Flex, Row, Space } from "antd";
-import { PhoneOutlined } from "@ant-design/icons";
+import { Button, Carousel, Col, Row, Space } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -10,8 +9,8 @@ import CareSafety from "@/components/CareSafety/CareSafety";
 import TopBannar from "@/components/UI/TopBannar/TopBannar";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/redux/slice/cartSlice";
-
 import ITPagination from "@/components/UI/ITPagination";
+import AllService from "@/components/UI/AllService/AllService";
 const contentStyle: React.CSSProperties = {
   height: "400px",
   width: "full",
@@ -51,15 +50,16 @@ const Homes = () => {
     query["searchTerm"] = debouncedSearchTerm;
   }
   const { data, isLoading } = useAllcategorysQuery({ ...query });
-
   const catagorys: any = data?.allcategorys;
-
   const catagorsData = catagorys?.data;
   const meta = catagorys?.meta;
   const onPaginationChange = (page: number, pageSize: number) => {
     setPage(page);
     setSize(pageSize);
   };
+  const { data: TopCategorys } = useAllcategorysQuery({ limit: 6, page: 1 });
+  const Topcatagorys: any = TopCategorys?.allcategorys;
+  const TopCatagorsData = Topcatagorys?.data;
 
   return (
     <div>
@@ -76,7 +76,7 @@ const Homes = () => {
             alignItems: "center",
           }}
         >
-          {catagorsData?.map((category: any) => (
+          {TopCatagorsData?.map((category: any) => (
             <Col
               xs={0}
               lg={4}
@@ -144,7 +144,7 @@ const Homes = () => {
 
         <div>
           <Space size={"large"}>
-            <h1 style={{ marginBottom: "13px" }}>Top Service</h1>
+            <h1 style={{ marginBottom: "13px" }}>Top Category</h1>
           </Space>
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Row
@@ -159,7 +159,7 @@ const Homes = () => {
                   key={category?.id}
                   style={{
                     height: "290px",
-                    width: "210px",
+                    width: "240px",
                     margin: "10px",
                     padding: "6px",
                   }}
@@ -170,7 +170,7 @@ const Homes = () => {
                       {category?.image ? (
                         <Image
                           className="categoryImage"
-                          width={190}
+                          width={230}
                           height={200}
                           style={{ borderRadius: "10px" }}
                           src={category?.image}
@@ -221,11 +221,23 @@ const Homes = () => {
           ></ITPagination>
         </div>
       </div>
+
+      {/* all Service  section */}
+      <div
+        style={{
+          margin: "25px auto",
+          display: "grid",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <AllService />
+      </div>
       {/* why choose us */}
-      <Divider plain></Divider>
+
       <section
         style={{
-          margin: "15px 0px",
+          marginTop: "40px",
         }}
       >
         <CareSafety />

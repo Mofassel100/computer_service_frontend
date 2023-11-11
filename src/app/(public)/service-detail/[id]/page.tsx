@@ -3,10 +3,12 @@
 import { useAllcategorysQuery } from "@/redux/api/categoryApi";
 import { useServiceQuery } from "@/redux/api/serviceApi";
 import { useDebounced } from "@/redux/hooks";
+import { useRef, useState, useEffect } from "react";
 import { Col, Image, Row } from "antd";
 import { strict } from "assert";
 import Link from "next/link";
-import { useState } from "react";
+
+import "../../../../components/UI/style/style.css";
 
 const Allservice = ({ params }: { params: any }) => {
   const { id } = params as any;
@@ -37,7 +39,18 @@ const Allservice = ({ params }: { params: any }) => {
   const catagorys = categorysData?.allcategorys;
   // @ts-ignore
   const catagorsData = catagorys?.data;
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
+  const handleMouseMove = (e: any) => {
+    setCursorPosition({ x: e.clientX, y: e.clientY });
+  };
+  let image: any = document.getElementById("images");
+  useEffect(() => {
+    image.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      image.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
   return (
     <div style={{ maxWidth: "85%", margin: "auto" }}>
       <div style={{ textAlign: "center", margin: "15px auto" }}>

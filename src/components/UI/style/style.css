@@ -38,6 +38,80 @@
   transform: scale(1.05);
   transition: transform 2s;
 }
+/* zooming image effects */
+
+.img-zoom-container {
+  position: relative;
+}
+
+.img-zoom-lens {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  /*set the size of the lens:*/
+  width: 40px;
+  height: 40px;
+}
+
+.img-zoom-result {
+  border: 1px solid #d4d4d4;
+  /*set the size of the result div:*/
+  width: 300px;
+  height: 300px;
+}
+.image-container {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 30px;
+  -ms-grid-columns: 480px auto;
+}
+.image-zoom:hover {
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+.image-zoom:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+.image-details {
+  position: relative;
+}
+/* styles/Home.module.css */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.imageContainer {
+  position: relative;
+  overflow: hidden;
+  width: 300px; /* Adjust the width as needed */
+  height: 200px; /* Adjust the height as needed */
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+/* all service section */
+.quick-view {
+  position: absolute;
+  top: 117px;
+  background-color: turquoise;
+  width: 230px;
+  padding: 2px;
+  border-radius: 3px;
+  display: none;
+}
+.service-container:hover .quick-view {
+  display: block;
+}
 .animationTop {
   max-width: 100px;
   max-height: 100px;

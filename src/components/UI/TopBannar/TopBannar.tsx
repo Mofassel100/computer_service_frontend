@@ -14,10 +14,10 @@ const contentStyle: React.CSSProperties = {
 };
 
 const TopBannar = ({ category }: { category: any }) => {
-  const { data, isLoading } = useAllcategorysQuery({ limit: 100, page: 1 });
-  const catagorys = data?.allcategorys;
-  // @ts-ignore
-  const catagorsData = catagorys?.data;
+  // const { data, isLoading } = useAllcategorysQuery({ limit: 100, page: 1 });
+  // const catagorys = data?.allcategorys;
+  // // @ts-ignore
+  // const catagorsData = catagorys?.data;
   return (
     <>
       <Row>

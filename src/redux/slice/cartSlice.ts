@@ -96,4 +96,4 @@ export const {
   removeUser,
   setAllProducts,
 } = cartSliceService.actions;
-export default cartSliceService.reducer;
+export default cartSliceService;
