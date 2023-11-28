@@ -1,16 +1,16 @@
 "use client";
 import { useAllcategorysQuery } from "@/redux/api/categoryApi";
 import { useDebounced } from "@/redux/hooks";
-import { Button, Carousel, Col, Row, Space } from "antd";
-import Image from "next/image";
-import Link from "next/link";
+import { Carousel, Col, Row, Space } from "antd";
 import { useState } from "react";
 import CareSafety from "@/components/CareSafety/CareSafety";
 import TopBannar from "@/components/UI/TopBannar/TopBannar";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "@/redux/slice/cartSlice";
+import { useSelector } from "react-redux";
 import ITPagination from "@/components/UI/ITPagination";
-import AllService from "@/components/UI/AllService/AllService";
+import AllService from "@/components/UI/HomeService/AllService";
+import TopCategory from "@/components/UI/TopCategory/TopCategory";
+import TopCategoryService from "@/components/UI/HomeService/TopCategory";
+
 const contentStyle: React.CSSProperties = {
   height: "400px",
   width: "full",
@@ -18,9 +18,8 @@ const contentStyle: React.CSSProperties = {
 };
 
 const Homes = () => {
-  const dispatch = useDispatch();
-  const { serviceData } = useSelector((state: any) => state.services);
-  console.log(...serviceData, "useselector");
+  const { serviceData } = useSelector((state: any) => state.cart);
+  console.log(serviceData, "useselector");
   const query: Record<string, any> = {};
 
   const [page, setPage] = useState<number>(1);
@@ -64,8 +63,6 @@ const Homes = () => {
   return (
     <div>
       <div style={{ textAlign: "center" }}>
-        {/* category contentd only lg and md */}
-
         {/* Large (lg) visible content */}
         <Row
           gutter={[16, 16]}
@@ -77,38 +74,7 @@ const Homes = () => {
           }}
         >
           {TopCatagorsData?.map((category: any) => (
-            <Col
-              xs={0}
-              lg={4}
-              md={4}
-              sm={4}
-              key={category?.id}
-              className="homeHover"
-            >
-              <Link
-                style={{
-                  color: "black",
-                }}
-                href={`/all-service/${category?.id}`}
-              >
-                <div>
-                  <Image
-                    style={{
-                      borderRadius: "50%",
-                      maxWidth: "50px",
-
-                      maxHeight: "50px",
-                    }}
-                    src={category?.image}
-                    width={35}
-                    height={35}
-                    layout="responsive"
-                    alt="next/image"
-                  />
-                  <h4>{`${category?.name}`.slice(0, 14)} ..</h4>
-                </div>
-              </Link>
-            </Col>
+            <TopCategory key={category?.id} category={category} />
           ))}
         </Row>
         {/* Top Banner */}
@@ -141,12 +107,14 @@ const Homes = () => {
             </Col>
           </Row>
         </div>
-
         <div>
           <Space size={"large"}>
             <h1 style={{ marginBottom: "13px" }}>Top Category</h1>
           </Space>
-          <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+          <Row
+            style={{ marginBottom: "15px" }}
+            gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}
+          >
             <Row
               align={"middle"}
               justify={"center"}
@@ -154,62 +122,7 @@ const Homes = () => {
               className="gutter-row"
             >
               {catagorsData?.map((category: any) => (
-                <div
-                  className="categoryBorder"
-                  key={category?.id}
-                  style={{
-                    height: "290px",
-                    width: "240px",
-                    margin: "10px",
-                    padding: "6px",
-                  }}
-                >
-                  <div>
-                    <Link href={`/all-service/${category?.id}`}>
-                      {" "}
-                      {category?.image ? (
-                        <Image
-                          className="categoryImage"
-                          width={230}
-                          height={200}
-                          style={{ borderRadius: "10px" }}
-                          src={category?.image}
-                          alt="nent/image"
-                        ></Image>
-                      ) : (
-                        ""
-                      )}
-                    </Link>
-                  </div>
-                  {/* body */}
-                  <div
-                    style={{
-                      width: "190px",
-                      height: "70px",
-                      display: "grid",
-                      justifyItems: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <h4>{category?.title}</h4>
-                    <div
-                      style={{
-                        alignItems: "center",
-                        display: "grid",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <Button style={{ alignItems: "center", bottom: 0 }}>
-                        <Link
-                          onClick={() => dispatch(addToCart({ category }))}
-                          href={`/all-service/${category?.id}`}
-                        >
-                          Service
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
+                <TopCategoryService category={category} key={category?.id} />
               ))}
             </Row>
           </Row>
@@ -221,7 +134,6 @@ const Homes = () => {
           ></ITPagination>
         </div>
       </div>
-
       {/* all Service  section */}
       <div
         style={{
@@ -234,7 +146,6 @@ const Homes = () => {
         <AllService />
       </div>
       {/* why choose us */}
-
       <section
         style={{
           marginTop: "40px",

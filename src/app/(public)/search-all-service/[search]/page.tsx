@@ -1,11 +1,12 @@
 "use client";
-
+import ITBreadCrump from "@/components/UI/ITBreadCrump";
+import ITPagination from "@/components/UI/ITPagination";
+import Services from "@/components/UI/Services/Services";
+import TopCategory from "@/components/UI/TopCategory/TopCategory";
 import { useAllcategorysQuery } from "@/redux/api/categoryApi";
-import { useAllServiceGetDBQuery } from "@/redux/api/serviceApi";
+import { useServicesQuery } from "@/redux/api/serviceApi";
 import { useDebounced } from "@/redux/hooks";
-import { IService } from "@/types/common";
-import { Button, Carousel, Col, Image, Row } from "antd";
-import Link from "next/link";
+import { Row } from "antd";
 import React, { useEffect, useState } from "react";
 
 const Allservice = ({ params }: { params: any }) => {
@@ -14,7 +15,7 @@ const Allservice = ({ params }: { params: any }) => {
   const { search } = params as any;
   console.log("allservice", search);
   const [page, setPage] = useState<number>(1);
-  const [size, setSize] = useState<number>(10);
+  const [size, setSize] = useState<number>(4);
   const [sortBy, setSortBy] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -24,7 +25,6 @@ const Allservice = ({ params }: { params: any }) => {
   queryService["sortBy"] = sortBy;
   queryService["sortOrder"] = sortOrder;
   // setSearchTerm(search);
-
   query["limit"] = size;
   query["page"] = page;
   query["sortBy"] = sortBy;
@@ -43,18 +43,19 @@ const Allservice = ({ params }: { params: any }) => {
   if (!!debouncedSearchTerm) {
     query["searchTerm"] = debouncedSearchTerm;
   }
-
   const { data: categorys } = useAllcategorysQuery({ limit: 20, page: 1 });
-  const catagorys = categorys?.allcategorys;
-  // @ts-ignore
-  const catagorsData = catagorys?.data;
-  const { data, isError } = useAllServiceGetDBQuery({
+  const catagorys: any = categorys?.allcategorys;
+  const catagorsData: any = catagorys?.data;
+  const { data, isError } = useServicesQuery({
     ...query,
   });
-  const AllServicesDatass: any = data?.allServiceDB;
-
+  const AllServicesDatass: any = data?.services;
   const searchData = AllServicesDatass?.data as any;
-  console.log(searchData);
+  const meta = AllServicesDatass?.meta;
+  const onPaginationChange = (page: number, pageSize: number) => {
+    setPage(page);
+    setSize(pageSize);
+  };
 
   return (
     <div style={{ maxWidth: "85%", margin: "auto" }}>
@@ -70,39 +71,18 @@ const Allservice = ({ params }: { params: any }) => {
           }}
         >
           {catagorsData?.map((category: any) => (
-            <Col
-              xs={0}
-              lg={4}
-              md={4}
-              sm={4}
-              key={category?.id}
-              className="homeHover"
-            >
-              <Link
-                style={{
-                  color: "black",
-                }}
-                href={`/all-service/${category?.id}`}
-              >
-                <div>
-                  <Image
-                    style={{
-                      borderRadius: "50%",
-                      maxWidth: "45px",
-                      maxHeight: "45px",
-                    }}
-                    src={category?.image}
-                    width={35}
-                    height={35}
-                    alt="next/image"
-                  />
-                  <h4>{`${category?.name}`.slice(0, 14)} ..</h4>
-                </div>
-              </Link>
-            </Col>
+            <TopCategory key={category?.id} category={category} />
           ))}
         </Row>
       </div>
+      <ITBreadCrump
+        items={[
+          {
+            label: "Home",
+            link: "/",
+          },
+        ]}
+      />
       <Row
         justify={"center"}
         align={"middle"}
@@ -118,58 +98,16 @@ const Allservice = ({ params }: { params: any }) => {
               className="gutter-row"
             >
               {searchData?.map((service: any) => (
-                <div
-                  key={service?.id}
-                  style={{
-                    height: "320px",
-                    width: "210px",
-                    margin: "10px",
-                    padding: "6px",
-                    border: "1px solid black",
-                    borderRadius: "10px",
-                  }}
-                >
-                  <div>
-                    <Link href={`/service-detail/${service?.id}`}>
-                      {" "}
-                      {service?.image ? (
-                        <Image
-                          width={190}
-                          height={200}
-                          style={{ borderRadius: "10px" }}
-                          src={service?.image}
-                          alt="nent/image"
-                        ></Image>
-                      ) : (
-                        ""
-                      )}
-                    </Link>
-                  </div>
-
-                  <div
-                    style={{
-                      width: "190px",
-                      height: "100px",
-                    }}
-                  >
-                    <h4>{`${service?.name}`.slice(0, 23)}...</h4>
-                    <div
-                      style={{
-                        alignItems: "center",
-                        display: "grid",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <Button style={{ alignItems: "center" }}>
-                        <Link href={`/service-detail/${service?.id}`}>
-                          Service Details
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
+                <Services key={service?.id} service={service} />
               ))}
             </Row>
+            <br></br>
+            <ITPagination
+              pageSize={size}
+              showSizeChanger={true}
+              totalPages={meta?.total}
+              onPaginationChange={onPaginationChange}
+            ></ITPagination>
           </>
         ) : (
           <>Not foun data</>

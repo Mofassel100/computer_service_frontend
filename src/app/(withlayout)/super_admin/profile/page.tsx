@@ -9,7 +9,6 @@ import { Button, Col, Modal, Row, message } from "antd";
 import dayjs from "dayjs";
 import Image from "next/image";
 import { useState } from "react";
-
 const Profiles = () => {
   const { id } = getUserInfo() as any;
   const { data } = useAdminQuery(id);

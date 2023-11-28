@@ -34,7 +34,10 @@ function LoginPage() {
 
       router.refresh();
       if (!res?.accessToken) {
-        return message.error("uer not found");
+        return message.error(
+          "User not found, Please Regitration and try to login",
+          11
+        );
       }
       if (res?.accessToken) {
         if (role === "admin") router.push(`/`);

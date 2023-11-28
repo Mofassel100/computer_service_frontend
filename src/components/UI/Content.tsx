@@ -1,9 +1,7 @@
 "use client";
-import { Layout, Row } from "antd";
-import NavBar from "./Navber";
+import { Layout } from "antd";
 
-const { Content, Footer } = Layout;
-
+const { Content } = Layout;
 const Contents = ({ children }: { children: React.ReactNode }) => {
   return (
     <Content

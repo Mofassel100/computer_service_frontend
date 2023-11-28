@@ -10,7 +10,7 @@ const Loading = () => {
       }}
     >
       <Space>
-        <h1>Loading......</h1>
+        <h1>Please Wait......</h1>
         <Spin tip="Loading" size="large"></Spin>
       </Space>
     </Row>

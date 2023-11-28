@@ -2,35 +2,28 @@
 import React, { useState } from "react";
 import { Avatar, Button, Dropdown, Layout, Menu, Row, Space } from "antd";
 import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
-
 import { getUserInfo, removeUserInfo } from "@/service/auth.service";
 import { authKey } from "@/constant/localStorage";
 import Link from "next/link";
-import { sidebarItems } from "@/constant/sidebarItmes";
 import HeaderItems from "@/constant/HeaderItems";
 import ShopingModal from "./Modal";
 import { boolean } from "yup";
-
 const { Header: AntHeader } = Layout;
-
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
-
   const handleOk = () => {
     setIsModalOpen(false);
   };
-
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  const { role, email, id } = getUserInfo() as any;
+  const { role, email } = getUserInfo() as any;
   const logOut = () => {
     removeUserInfo(authKey);
   };
-
   return (
     <AntHeader style={{ background: "#fff" }}>
       <ShopingModal

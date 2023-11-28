@@ -8,18 +8,15 @@ import ITBreadCrump from "@/components/UI/ITBreadCrump";
 import { RolesOptioneAdmin } from "@/constant/global";
 import { useUpdateUserMutation, useUserQuery } from "@/redux/api/userApi";
 import { Button, Col, Row, message } from "antd";
-
 type IDProps = {
   params: any;
 };
 
 const EditDepartmentPage = ({ params }: IDProps) => {
   const { id } = params;
-
-  const { data, isLoading } = useUserQuery(id);
+  const { data } = useUserQuery(id);
   const [updateUser] = useUpdateUserMutation();
   console.log(data);
-
   const onSubmit = async (values: any) => {
     message.loading("Updating.....");
     try {

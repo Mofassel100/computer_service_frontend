@@ -3,7 +3,6 @@ import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import ActionBar from "@/components/UI/ActionBar";
 import ITBreadCrump from "@/components/UI/ITBreadCrump";
-
 import {
   useCategoryQuery,
   useUpdateCategoryMutation,
@@ -16,7 +15,6 @@ type IDProps = {
 
 const UpdateCategory = ({ params }: IDProps) => {
   const { id } = params;
-
   const { data } = useCategoryQuery(id);
   const [updateCategory] = useUpdateCategoryMutation();
   const onSubmit = async (values: any) => {
@@ -53,7 +51,6 @@ const UpdateCategory = ({ params }: IDProps) => {
           },
         ]}
       />
-
       <ActionBar title="Update Category"> </ActionBar>
       <Form submitHandler={onSubmit} defaultValues={defaultValues}>
         <Row gutter={{ xs: 24, xl: 8, lg: 8, md: 24 }}>

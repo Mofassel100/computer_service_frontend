@@ -12,7 +12,6 @@ import { message } from "antd";
 import { useState } from "react";
 import dayjs from "dayjs";
 import { useDebounced } from "@/redux/hooks";
-
 import {
   useAdminQuery,
   useAdminsQuery,
@@ -38,18 +37,15 @@ const AdminPage = () => {
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const query: Record<string, any> = {};
-
   const [page, setPage] = useState<number>(1);
   const [size, setSize] = useState<number>(10);
   const [sortBy, setSortBy] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
-
   query["limit"] = size;
   query["page"] = page;
   query["sortBy"] = sortBy;
   query["sortOrder"] = sortOrder;
-
   const debouncedSearchTerm = useDebounced({
     searchQuery: searchTerm,
     delay: 600,
@@ -82,16 +78,6 @@ const AdminPage = () => {
       title: "Email",
       dataIndex: "email",
     },
-
-    // {
-    //   title: "Created at",
-    //   dataIndex: "createdAt",
-    //   render: function (data: any) {
-    //     return data && dayjs(data).format("MMM D, YYYY hh:mm A");
-    //   },
-    //   sorter: true,
-    // },
-
     {
       title: "Action",
       dataIndex: "id",

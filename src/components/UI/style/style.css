@@ -1,7 +1,27 @@
+/* navber */
+.searchBarsm {
+  position: relative;
+  z-index: 30;
+}
+
+.searchBarFaildsm {
+  position: absolute;
+  display: none;
+  z-index: 20;
+  right: 0;
+  bottom: auto;
+
+  margin: auto;
+}
+.searchBarsm:hover .searchBarFaildsm {
+  display: block;
+}
+
 .categoryItems:hover {
   border-bottom: 2px solid turquoise;
   border-radius: 15px;
 }
+
 .textHover:hover {
   transform: scale(1.2);
 }
@@ -37,6 +57,13 @@
   border-radius: 10px;
   transform: scale(1.05);
   transition: transform 2s;
+}
+.cartBorder:hover {
+  border-bottom: 1px solid turquoise;
+  border-radius: 10px;
+  transform: scale(1.03);
+  transition: transform 2s;
+  cursor: pointer;
 }
 /* zooming image effects */
 
@@ -99,18 +126,45 @@
   object-fit: cover;
   transition: transform 0.3s ease-in-out;
 }
+
 /* all service section */
 .quick-view {
   position: absolute;
   top: 117px;
-  background-color: turquoise;
+  background-color: rgba(64, 224, 208, 0.3);
+  display: none;
   width: 230px;
   padding: 2px;
+  cursor: pointer;
   border-radius: 3px;
-  display: none;
 }
 .service-container:hover .quick-view {
   display: block;
+}
+.quick-viewsm {
+  position: absolute;
+  top: 46px;
+  background-color: rgba(64, 224, 208, 0.4);
+  color: white;
+  cursor: pointer;
+  display: none;
+  width: 100px;
+  padding: 2px;
+  border-radius: 3px;
+  margin-left: 2px;
+}
+.service-container:hover .quick-viewsm {
+  display: block;
+}
+
+.link-color {
+  color: black;
+}
+.link-color:hover {
+  color: rgba(64, 224, 208, 0.8);
+}
+.iconHovers:hover .iconHover {
+  color: red;
 }
 .animationTop {
   max-width: 100px;

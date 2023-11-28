@@ -1,6 +1,5 @@
-import PublicePage from "./(public)/layout";
+import PublicePage from "./(public)/service-detail/layout";
 import Homes from "./(public)/home/page";
-import NavBar from "@/components/UI/Navber";
 
 const HomePage = () => {
   return (

@@ -32,9 +32,9 @@ const SearchProducts = ({ service }: { service: any }) => {
         <h3>{`${service?.title}`.slice(0, 15)}..</h3>
         <p>{service.description.substring(0, 25)}..</p>
         <p style={{ display: "flex", textAlign: "start", gap: "1" }}>
-          price:${service?.price}
+          price:${service?.price}.00&#2547;
           <p style={{ textDecoration: "line-through", textIndent: "6px" }}>
-            ${service?.oldPrice}
+            ${service?.oldPrice}.00&#2547;
           </p>
         </p>
       </div>
@@ -56,8 +56,7 @@ const SearchProducts = ({ service }: { service: any }) => {
             animation: " height infinite",
           }}
         >
-          Save <br />${service?.oldPrice - service?.price}
-          {/* Save <FormattedPrice amount={item.oldPrice - item.price} /> */}
+          Save <br />${service?.oldPrice - service?.price}.00&#2547;
         </p>
       </div>
     </div>

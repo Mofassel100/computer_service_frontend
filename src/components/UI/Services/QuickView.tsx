@@ -1,81 +1,27 @@
-"use client";
-import { useAllcategorysQuery } from "@/redux/api/categoryApi";
-import { useServiceQuery } from "@/redux/api/serviceApi";
-import { useDebounced } from "@/redux/hooks";
-import { useState } from "react";
-import { Button, Col, Image, Row, message } from "antd";
-import { StarOutlined } from "@ant-design/icons";
-import "../../../../components/UI/style/style.css";
-import TopCategory from "@/components/UI/TopCategory/TopCategory";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import ITBreadCrump from "../ITBreadCrump";
+import { Button, Col, Row } from "antd";
+import Image from "next/image";
 import { addToCart } from "@/redux/slice/cartSlice";
-import "./service-detail.css";
-import ITBreadCrump from "@/components/UI/ITBreadCrump";
-import { IService } from "@/types/common";
-import { useRouter } from "next/navigation";
+import { StarOutlined } from "@ant-design/icons";
+import { useDispatch } from "react-redux";
 
-const Allservice = ({ params }: { params: any }) => {
-  const router = useRouter();
-  const [revAndDes, setReviAndDescrip] = useState("");
-  const { id } = params as any;
-  const { data } = useServiceQuery(id);
-  const ServiceData: any = data;
-  const query: Record<string, any> = {};
-  const [page, setPage] = useState<number>(1);
-  const [size, setSize] = useState<number>(10);
-  const [sortBy, setSortBy] = useState<string>("");
-  const [sortOrder, setSortOrder] = useState<string>("");
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  query["limit"] = size;
-  query["page"] = page;
-  query["sortBy"] = sortBy;
-  query["sortOrder"] = sortOrder;
-  const debouncedSearchTerm = useDebounced({
-    searchQuery: searchTerm,
-    delay: 600,
-  });
-  if (!!debouncedSearchTerm) {
-    query["searchTerm"] = debouncedSearchTerm;
-  }
-  const { data: categorysData } = useAllcategorysQuery({ ...query });
-  const catagorys: any = categorysData?.allcategorys;
-  const catagorsData = catagorys?.data;
+const QuickView = ({
+  ServiceData,
+  handleOk,
+  addToCartMachTData,
+}: {
+  ServiceData: any;
+  handleOk: any;
+  addToCartMachTData: any;
+}) => {
+  const [revAndDes, setReviAndDescrip] = useState(ServiceData?.review);
+  const dispatch = useDispatch();
   const reviwDescrption = (r: any) => {
     setReviAndDescrip(r);
   };
-  const { serviceData } = useSelector((state: any) => state.cart);
-  const dispatch = useDispatch();
-  const addToCartMachTData = (cartId: string) => {
-    const isItemInCart = serviceData?.some((serviceCart: any) => {
-      return serviceCart?.id === cartId;
-    });
-
-    if (isItemInCart) {
-      return message.warning(
-        "Already added to the cart. Please try another item.",
-        5
-      );
-    } else {
-      router.push("/cart");
-    }
-  };
   return (
     <div style={{ maxWidth: "85%", margin: "auto" }}>
-      <div style={{ textAlign: "center", margin: "5px auto" }}>
-        <Row
-          gutter={[16, 16]}
-          justify="center"
-          align="middle"
-          style={{
-            maxWidth: "85%",
-            alignItems: "center",
-          }}
-        >
-          {catagorsData?.map((category: any) => (
-            <TopCategory key={category?.id} category={category} />
-          ))}
-        </Row>
-      </div>
       <ITBreadCrump
         items={[
           {
@@ -99,8 +45,9 @@ const Allservice = ({ params }: { params: any }) => {
         >
           <div style={{ textAlign: "center" }}>
             <Image
-              style={{ borderRadius: "10px" }}
               className="cart-details"
+              width={160}
+              height={200}
               object-fite={"cover"}
               src={ServiceData?.image}
               alt="next/image"
@@ -125,8 +72,8 @@ const Allservice = ({ params }: { params: any }) => {
               {ServiceData?.title}
             </h1>
             <h3 style={{ padding: "5px 0px" }}>
-              {`${ServiceData?.name}`.slice(0, 70)}
-              {`${ServiceData?.name}`.length > 70 ? "..." : ""}
+              {`${ServiceData?.name}`.slice(0, 60)}
+              {`${ServiceData?.name}`.length > 60 ? "..." : ""}
             </h3>
             <p style={{ fontSize: "18px", paddingTop: "5px" }}>
               <StarOutlined style={{}} />
@@ -138,16 +85,16 @@ const Allservice = ({ params }: { params: any }) => {
             <p style={{ fontSize: "18px", padding: "5px 0px" }}>
               Price :{" "}
               <span style={{ fontWeight: "bold", fontSize: "20px" }}>
-                {ServiceData?.price}&#2547;
+                {ServiceData?.price}.00&#2547;
               </span>
               <del style={{ fontWeight: "bold", paddingLeft: "10px" }}>
-                {ServiceData?.price}&#2547;
+                {ServiceData?.price}.00&#2547;
               </del>
             </p>
             <p style={{ fontSize: "18px", paddingBottom: "5px" }}>
-              Discount :{" "}
+              Discount :
               <span style={{ fontWeight: "bold", fontSize: "20px" }}>
-                {ServiceData?.oldPrice - ServiceData?.price}&#2547;
+                {ServiceData?.oldPrice - ServiceData?.price}.00&#2547;
               </span>
             </p>
 
@@ -159,8 +106,10 @@ const Allservice = ({ params }: { params: any }) => {
             >
               {" "}
               <Button
+                size="large"
                 onClick={() => {
                   addToCartMachTData(ServiceData?.id);
+                  handleOk();
                   dispatch(
                     addToCart({
                       id: ServiceData?.id,
@@ -175,15 +124,12 @@ const Allservice = ({ params }: { params: any }) => {
                   );
                 }}
                 style={{
-                  border: "none",
-                  fontWeight: "bold",
-                  borderRadius: "10px",
                   background: "black",
                   color: "white",
+                  fontWeight: "bold",
                 }}
-                size="large"
               >
-                Add To Card
+                Add To Card &#8594;
               </Button>
             </div>
           </div>
@@ -194,7 +140,10 @@ const Allservice = ({ params }: { params: any }) => {
           style={{ display: "flex", alignItems: "start", padding: "5px 5px" }}
         >
           <p>
-            <Button onClick={() => reviwDescrption(ServiceData?.description)}>
+            <Button
+              defaultValue={ServiceData?.review}
+              onClick={() => reviwDescrption(ServiceData?.description)}
+            >
               Description
             </Button>
           </p>
@@ -223,4 +172,4 @@ const Allservice = ({ params }: { params: any }) => {
   );
 };
 
-export default Allservice;
+export default QuickView;

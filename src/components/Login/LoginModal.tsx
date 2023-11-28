@@ -36,7 +36,10 @@ const LoginModal = ({
       const res = await userLogin({ ...data }).unwrap();
 
       if (!res?.accessToken) {
-        return message.error("uer not found");
+        return message.error(
+          "User not found, Please Regitration and try to login",
+          11
+        );
       }
 
       if (res?.accessToken) {
@@ -47,9 +50,6 @@ const LoginModal = ({
 
       router.refresh();
       handleOk();
-      //   if (role === "admin") return router.push(`/${role}s`);
-      //   if (role === "super_admin") return router.push(`/${role}/profile`);
-      //   if (role === "user") return router.push(`/${role}s/profile`);
       storeUserInfo({ accessToken: res?.accessToken });
       message.success("User logged in successfully!");
     } catch (err: any) {
@@ -98,7 +98,10 @@ const LoginModal = ({
           </div>
           <div>
             {" "}
-            Are New User please <Link href={"/registration"}></Link>
+            Are New User please{" "}
+            <Link href={"/registration"} style={{ color: "turquoise" }}>
+              Registration
+            </Link>
           </div>
         </Col>
       </Row>

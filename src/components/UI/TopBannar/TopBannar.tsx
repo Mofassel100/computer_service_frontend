@@ -1,23 +1,7 @@
 "use client";
-import { useAllcategorysQuery } from "@/redux/api/categoryApi";
-import { Carousel, Col, Row } from "antd";
-import { Card } from "antd";
+import { Col, Row } from "antd";
 import Link from "next/link";
-
-const { Meta } = Card;
-const contentStyle: React.CSSProperties = {
-  height: "160px",
-  color: "#fff",
-  lineHeight: "160px",
-  textAlign: "center",
-  background: "#364d79",
-};
-
 const TopBannar = ({ category }: { category: any }) => {
-  // const { data, isLoading } = useAllcategorysQuery({ limit: 100, page: 1 });
-  // const catagorys = data?.allcategorys;
-  // // @ts-ignore
-  // const catagorsData = catagorys?.data;
   return (
     <>
       <Row>
@@ -27,6 +11,7 @@ const TopBannar = ({ category }: { category: any }) => {
             href={`/all-service/${category?.id}`}
           >
             <div
+              className="imageHover"
               style={{
                 height: "400px",
                 width: "100%",
@@ -34,10 +19,9 @@ const TopBannar = ({ category }: { category: any }) => {
                 justifyItems: "center",
                 alignItems: "center",
                 borderRadius: "15px",
-                backgroundAttachment: "fixed",
-                backgroundPositionY: "cover",
-                backgroundImage: `url('${category?.image}')`,
                 backgroundSize: "cover",
+                backgroundImage: `url('${category?.image}')`,
+                backgroundPosition: "center center",
                 backgroundRepeat: "no-repeat",
               }}
             >

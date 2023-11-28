@@ -9,12 +9,10 @@ import { RolesOptioneSuperAdmin } from "@/constant/global";
 import { useAddAdminWithFormDataMutation } from "@/redux/api/adminApi";
 import { adminSchema } from "@/schemas/admin";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { Button, Col, Row, message } from "antd";
 
 const CreateAdminPage = () => {
   const [addAdminWithFormData] = useAddAdminWithFormDataMutation();
-
   const onSubmit = async (values: any) => {
     const obj = { ...values };
     message.loading(" Admin Creating...");

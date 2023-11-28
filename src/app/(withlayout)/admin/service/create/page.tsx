@@ -4,19 +4,12 @@ import FormInput from "@/components/Forms/FormInput";
 import FormTextArea from "@/components/Forms/FormTextAria";
 import FormSelectField from "@/components/Forms/FormselectField";
 import ITBreadCrump from "@/components/UI/ITBreadCrump";
-
 import { useCategorysQuery } from "@/redux/api/categoryApi";
 import { useAddServiceWithFormDataMutation } from "@/redux/api/serviceApi";
 import { serviceSchemaCreated } from "@/schemas/serviceSchema";
 import { getUserInfo } from "@/service/auth.service";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Row, message } from "antd";
-
-// export const metadata: Metadata = {
-//   title: "ITService | Create Service",
-//   description: "created service",
-// };
-
 const CreateServicePage = () => {
   const [addServiceWithFormData] = useAddServiceWithFormDataMutation();
   const { id } = getUserInfo() as any;

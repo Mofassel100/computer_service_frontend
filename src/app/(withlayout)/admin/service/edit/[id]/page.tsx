@@ -8,19 +8,14 @@ import {
   useServiceQuery,
   useUpdateServiceMutation,
 } from "@/redux/api/serviceApi";
-
 import { Button, Col, Row, message } from "antd";
-
 type IDProps = {
   params: any;
 };
-
 const EditService = ({ params }: IDProps) => {
   const { id } = params;
-
   const { data, isLoading } = useServiceQuery(id);
   const [updateService] = useUpdateServiceMutation();
-
   const onSubmit = async (values: any) => {
     message.loading("Updating.....");
     try {
@@ -32,7 +27,6 @@ const EditService = ({ params }: IDProps) => {
       message.error(err.message);
     }
   };
-
   const defaultValues = {
     name: data?.name,
     image: data?.image,
@@ -44,7 +38,6 @@ const EditService = ({ params }: IDProps) => {
     review: data?.review,
     location: data?.location,
   };
-
   return (
     <div style={{ padding: "10px" }}>
       <ITBreadCrump
@@ -80,7 +73,6 @@ const EditService = ({ params }: IDProps) => {
               label="Service Name"
             />
           </Col>
-
           <Col
             className="gutter-row"
             span={24}

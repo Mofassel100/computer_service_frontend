@@ -1,5 +1,4 @@
 "use client";
-
 import { Table } from "antd";
 
 type ITTableProps = {

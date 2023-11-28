@@ -5,13 +5,8 @@ import FormTextArea from "@/components/Forms/FormTextAria";
 import FormSelectField from "@/components/Forms/FormselectField";
 import ActionBar from "@/components/UI/ActionBar";
 import ITBreadCrump from "@/components/UI/ITBreadCrump";
-
 import { RolesOptioneSuperAdmin } from "@/constant/global";
 import { useAdminQuery, useUpdateAdminMutation } from "@/redux/api/adminApi";
-// import {
-//   useDepartmentQuery,
-//   useUpdateDepartmentMutation,
-// } from "@/redux/api/departmentApi";
 import { Button, Col, Row, message } from "antd";
 
 type IDProps = {

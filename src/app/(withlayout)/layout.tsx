@@ -36,16 +36,13 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       </Row>
     );
   }
-
   return (
     <div>
       <NavBar></NavBar>
-
       <Layout hasSider>
         <SideBar />
         <Layout>
           <Contents>{children}</Contents>
-
           <Footer style={{ textAlign: "center" }}>
             Mofassel Hosain ©2023 Created by ITService
           </Footer>

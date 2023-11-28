@@ -1,8 +1,6 @@
 "use client";
-
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
-
 import FormSelectField from "@/components/Forms/FormselectField";
 import ITBreadCrump from "@/components/UI/ITBreadCrump";
 import { useAddCategoryWithFormDataMutation } from "@/redux/api/categoryApi";
@@ -13,7 +11,6 @@ import { Button, Col, Row, message } from "antd";
 
 const CrateCategory = () => {
   const [addCategoryWithFormData] = useAddCategoryWithFormDataMutation();
-
   const onSubmit = async (values: any) => {
     const obj = { ...values };
     message.loading("Creating...");
@@ -26,7 +23,6 @@ const CrateCategory = () => {
       console.error(err.message);
     }
   };
-
   const { id } = getUserInfo() as any;
   const userIdOptions = [
     {
@@ -49,7 +45,6 @@ const CrateCategory = () => {
         ]}
       />
       <h1 style={{ textAlign: "center" }}>Create Category</h1>
-
       <Form
         submitHandler={onSubmit}
         resolver={yupResolver(categorySchemaCreated)}

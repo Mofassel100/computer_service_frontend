@@ -1,5 +1,3 @@
-
-
 const ChangePassword = () => {
   return <div>PasswordChange</div>;
 };

@@ -66,6 +66,7 @@ export interface IUser {
 export interface IService {
   id: string;
   title: string;
+  name: string;
   description: string;
   userId: string;
   image?: string;

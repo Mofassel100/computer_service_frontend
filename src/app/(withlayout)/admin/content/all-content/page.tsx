@@ -1,11 +1,5 @@
-
-
 const AllContent = () => {
-    return (
-        <div>
-            all content
-        </div>
-    );
+  return <div>all content</div>;
 };
 
 export default AllContent;

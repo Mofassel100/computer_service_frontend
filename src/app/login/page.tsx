@@ -1,7 +1,5 @@
-"use client"
-
+"use client";
 import LoginPage from "@/components/Login/Login";
-
 
 const Login = () => {
   return (

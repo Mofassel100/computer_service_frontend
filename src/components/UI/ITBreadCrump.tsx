@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Breadcrumb } from "antd";
 import Link from "next/link";
 import { HomeOutlined } from "@ant-design/icons";
@@ -14,7 +14,7 @@ const ITBreadCrump = ({
   const breadCrumbItems = [
     {
       title: (
-        <Link href="/">
+        <Link style={{ fontWeight: "17px" }} href="/">
           <HomeOutlined />
         </Link>
       ),
@@ -22,15 +22,24 @@ const ITBreadCrump = ({
     ...items.map((item) => {
       return {
         title: item.link ? (
-          <Link href={item.link}>{item.label}</Link>
+          <Link
+            style={{ fontWeight: "bold", color: "turquoise" }}
+            href={item.link}
+          >
+            {item.label}
+          </Link>
         ) : (
           <span>{item.label}</span>
         ),
       };
     }),
   ];
-
-  return <Breadcrumb items={breadCrumbItems}></Breadcrumb>;
+  return (
+    <Breadcrumb
+      style={{ fontWeight: "17px", padding: "5px 10px", width: "90%" }}
+      items={breadCrumbItems}
+    ></Breadcrumb>
+  );
 };
 
 export default ITBreadCrump;

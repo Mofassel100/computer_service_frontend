@@ -1,22 +1,28 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice, current } from "@reduxjs/toolkit";
 import { IService } from "@/types/common";
-
+import {
+  setToLocalStorageCart,
+  setTolocalStrorage,
+} from "@/utilies/local.storage";
+const MAX_Quantity = 10;
 interface NextState {
   serviceData: IService[];
   favoriteData: IService[];
   allServices: IService[];
   userInfo: null | string;
 }
-
+let getServiceData;
+if (typeof localStorage !== "undefined") {
+  getServiceData = localStorage.getItem("service-cart");
+}
 const initialState: NextState = {
-  serviceData: [],
+  serviceData: getServiceData ? JSON.parse(getServiceData as any) : [],
   favoriteData: [],
   allServices: [],
   userInfo: null,
 };
-
-export const cartSliceService = createSlice({
-  name: "services",
+const cartSlice = createSlice({
+  name: "cart",
   initialState,
   reducers: {
     addToCart: (state, action) => {
@@ -26,39 +32,50 @@ export const cartSliceService = createSlice({
       if (existingProduct) {
         existingProduct.quantity += action.payload.quantity;
       } else {
+        console.log(state.serviceData, "redux localstorage");
         state.serviceData.push(action.payload);
+
+        const servicData = JSON.stringify(current(state.serviceData));
+
+        localStorage.setItem("service-cart", servicData);
       }
     },
-    // addToFavorite: (state, action) => {
-    //   const existingProduct = state.favoriteData.find(
-    //     (item: StoreProduct) => item._id === action.payload._id
-    //   );
-    //   if (existingProduct) {
-    //     existingProduct.quantity += action.payload.quantity;
-    //   } else {
-    //     state.favoriteData.push(action.payload);
-    //   }
-    // },
-    increaseQuantity: (state, action) => {
-      const existingProduct = state.serviceData.find(
-        (item: IService) => item.id === action.payload.id
+    increaseQuantity: (state, action: PayloadAction<{ id: string }>) => {
+      const { id } = action.payload;
+      const updatedServiceData = state.serviceData.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Math.min(item.quantity + 1, MAX_Quantity) }
+          : item
       );
-      existingProduct && existingProduct.quantity++;
+      state.serviceData = updatedServiceData;
+      setTolocalStrorage("service-cart", JSON.stringify(updatedServiceData));
     },
-    decreaseQuantity: (state, action) => {
-      const existingProduct = state.serviceData.find(
-        (item: IService) => item.id === action.payload.id
+    decreaseQuantity: (state, action: PayloadAction<{ id: string }>) => {
+      const { id } = action.payload;
+      const updatedServiceData = state.serviceData.map((item) =>
+        item.id === id && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
       );
-      if (existingProduct?.quantity === 1) {
-        existingProduct.quantity = 1;
-      } else {
-        existingProduct!.quantity--;
-      }
+      state.serviceData = updatedServiceData;
+      setTolocalStrorage("service-cart", JSON.stringify(updatedServiceData));
     },
-    deleteProduct: (state, action) => {
+    deleteService: (state, action) => {
+      // Use filter to create a new array with items not matching the specified id
       state.serviceData = state.serviceData.filter(
         (item) => item.id !== action.payload
       );
+
+      // The above line should be enough to filter out the item, no need for the following code
+
+      // const index = state.serviceData.findIndex((item) => item.id === action.payload);
+      // if (index !== -1) {
+      //   state.serviceData.splice(index, 1);
+      //   setTolocalStrorage("service-cart", JSON.stringify(state.serviceData));
+      // }
+
+      // Instead, you can directly update the local storage here
+      setTolocalStrorage("service-cart", JSON.stringify(state.serviceData));
     },
     // deleteFavorite: (state, action) => {
     //   state.favoriteData = state.favoriteData.filter(
@@ -87,13 +104,11 @@ export const cartSliceService = createSlice({
 
 export const {
   addToCart,
-
   increaseQuantity,
   decreaseQuantity,
-  deleteProduct,
-
+  deleteService,
   addUser,
   removeUser,
   setAllProducts,
-} = cartSliceService.actions;
-export default cartSliceService;
+} = cartSlice.actions;
+export default cartSlice.reducer;

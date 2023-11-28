@@ -1,10 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import {
   MenuOutlined,
   UserOutlined,
   ShoppingOutlined,
   CloseOutlined,
+  AudioOutlined,
+  SearchOutlined,
 } from "@ant-design/icons";
 
 import { Button, Col, Row, Drawer, Menu, message, Divider } from "antd";
@@ -21,6 +23,7 @@ import { useAllServiceGetDBQuery } from "@/redux/api/serviceApi";
 import SearchProducts from "./SeachTermItems";
 import Image from "next/image";
 import "./../UI/style/style.css";
+import { useSelector } from "react-redux";
 
 const { Search } = Input;
 const { Title } = Typography;
@@ -28,9 +31,14 @@ const { Title } = Typography;
 const NavBar: React.FC = () => {
   const router = useRouter();
   const [drawerVisible, setDrawerVisible] = useState(false);
-  const searchHandler = (data: any) => {
-    console.log("navbers", data);
+  const [searchResete, setSearchReset] = useState("");
+
+  const [isSearchVisible, setIsSearchVisible] = useState("none");
+
+  const handleSearchClick = (e: string) => {
+    setIsSearchVisible(e);
   };
+  const searchHandler = (data: any) => {};
 
   // search setup
   const query: Record<string, any> = {};
@@ -54,9 +62,12 @@ const NavBar: React.FC = () => {
     query["searchTerm"] = debouncedSearchTerm;
   }
   const { data } = useAllServiceGetDBQuery({ ...query });
-  const Services = data?.allServiceDB;
-  // @ts-ignore
+  const Services: any = data?.allServiceDB;
+
   const AllServicesData = Services?.data;
+  const handelReset = () => {
+    setSearchTerm("");
+  };
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
@@ -107,7 +118,14 @@ const NavBar: React.FC = () => {
   const closeDrawer = () => {
     setDrawerVisible(false);
   };
-
+  // const { serviceData } = useSelector((state: any) => state.cart);
+  const suffix = isSearchVisible ? (
+    <CloseOutlined onClick={handelReset} />
+  ) : (
+    <SearchOutlined
+    //  onClick={handleSearchClick}
+    />
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -128,6 +146,7 @@ const NavBar: React.FC = () => {
   };
 
   const { role, email, id, imageURL, name } = getUserInfo() as any;
+  const { serviceData } = useSelector((state: any) => state?.cart);
   return (
     <div
       style={{
@@ -151,7 +170,7 @@ const NavBar: React.FC = () => {
           {/* large navber */}
           <Row
             justify={"center"}
-            style={{ padding: "12px 2px" }}
+            style={{ padding: "12px 2px", width: "90%", margin: "auto" }}
             align={"middle"}
           >
             <Col
@@ -216,7 +235,6 @@ const NavBar: React.FC = () => {
                     padding: "15px",
                     borderRadius: "15px",
                   }}
-                  // className="absolute left-0 top-12 w-full mx-auto max-h-96 bg-gray-200 rounded-lg overflow-y-scroll cursor-pointer text-black"
                 >
                   {AllServicesData?.length > 0 ? (
                     <>
@@ -257,14 +275,15 @@ const NavBar: React.FC = () => {
               )}
             </Col>
             <Col
-              style={{ textAlign: "center" }}
+              style={{ textAlign: "center", fontSize: "20px", margin: "auto" }}
               xs={0}
               sm={0}
               md={0}
               lg={5}
               xl={5}
             >
-              othiers
+              <span style={{ color: "turquoise" }}>Conta</span>
+              ct <span style={{ color: "turquoise" }}>H</span>elp 16222
             </Col>
             <Col
               style={{ textAlign: "center" }}
@@ -363,20 +382,46 @@ const NavBar: React.FC = () => {
 
               <Button
                 title="shopping cart"
+                type="link"
+                href="/cart"
                 size="large"
                 style={{
                   border: "none",
-                  padding: "3px 4px",
+                  padding: "3px 0px",
                   marginRight: "5px",
+                  fontSize: "20px",
+                  color: "white",
+                  fontWeight: "bold",
                 }}
                 className="textHover"
                 icon={
                   <ShoppingOutlined
-                    style={{ fontSize: "25px", color: "turquoise" }}
-                  />
+                    style={{ fontSize: "35px", color: "turquoise" }}
+                  ></ShoppingOutlined>
                 }
                 onClick={() => console.log()}
-              />
+              >
+                {" "}
+                {serviceData?.length > 0 ? (
+                  <sup
+                    style={{
+                      backgroundColor: "red",
+                      position: "absolute",
+                      padding: "0px 4px",
+                      borderRadius: "50%",
+                      height: "25px",
+                      width: "25px",
+                      top: "-2px",
+                      textAlign: "center",
+                      right: "0",
+                    }}
+                  >
+                    {serviceData?.length > 0 ? serviceData?.length : ""}
+                  </sup>
+                ) : (
+                  ""
+                )}
+              </Button>
             </Col>
           </Row>
           {/* small navber */}
@@ -394,7 +439,7 @@ const NavBar: React.FC = () => {
                   marginLeft: "5px",
                   padding: "2px 3px",
                 }}
-                icon={<MenuOutlined style={{ fontSize: "25px" }} />}
+                icon={<MenuOutlined style={{ fontSize: "0px 25px" }} />}
                 onClick={toggleDrawer}
               />
               <Title
@@ -411,17 +456,12 @@ const NavBar: React.FC = () => {
                   >
                     IT S
                   </span>
-                  ervice
+                  <span style={{ color: "black", fontWeight: "bold" }}>
+                    ervice
+                  </span>
                 </Link>
               </Title>
             </Col>
-            {/* <Col style={{ textAlign: "center" }} lg={22} md={22} sm={0} xs={0}>
-              <Menu
-                subMenuCloseDelay={2}
-                mode="horizontal"
-                items={HeaderItems()}
-              />
-            </Col> */}
             <Col
               style={{
                 alignItems: "",
@@ -475,22 +515,54 @@ const NavBar: React.FC = () => {
                     paddingRight: "3px",
                   }}
                   className="textHover"
-                  icon={<UserOutlined style={{ fontSize: "25px" }} />}
+                  icon={<UserOutlined style={{ fontSize: "32px " }} />}
                   onClick={() => showModal()}
                 />
               )}
               <Button
                 title="Shopping Now"
                 size="large"
+                type="link"
+                href="/cart"
                 style={{
                   border: "none",
-                  padding: "3px 4px",
+                  padding: "3px 0px",
                   margin: "0px 6px",
+                  fontSize: "18px",
+                  color: "white",
                 }}
                 className="textHover"
-                icon={<ShoppingOutlined style={{ fontSize: "25px" }} />}
-                onClick={() => console.log()}
-              />
+              >
+                <ShoppingOutlined
+                  style={{
+                    fontSize: "32px ",
+                    padding: "",
+                    color: "turquoise",
+                  }}
+                >
+                  {" "}
+                </ShoppingOutlined>
+                {serviceData?.length > 0 ? (
+                  <sup
+                    style={{
+                      backgroundColor: "red",
+                      backgroundPosition: "center center",
+                      position: "absolute",
+                      padding: "0px 4px",
+                      borderRadius: "50%",
+                      minHeight: "25px",
+                      minWidth: "25px",
+                      top: "-7px",
+                      textAlign: "center",
+                      right: "-10px",
+                    }}
+                  >
+                    {serviceData?.length > 0 ? serviceData.length : ""}
+                  </sup>
+                ) : (
+                  ""
+                )}
+              </Button>
             </Col>
           </Row>
         </div>
@@ -535,6 +607,83 @@ const NavBar: React.FC = () => {
           Cencel
         </Button>
       </Drawer>
+      <Col
+        style={{ textAlign: "center", paddingTop: "8px" }}
+        xs={24}
+        span={24}
+        sm={24}
+        md={0}
+        lg={0}
+        xl={0}
+      >
+        <Search
+          style={{
+            maxWidth: "70vw",
+          }}
+          onPressEnter={handelReset}
+          placeholder=" Search any service"
+          loading={false}
+          width={"70vw"}
+          suffix={suffix}
+          enterButton
+          onSearch={handleSeachFeild}
+          onChange={handleSearch}
+          value={searchTerm}
+        />
+        {/* ========== Searchfield ========== */}
+        {searchTerm && (
+          <div
+            style={{
+              position: "absolute",
+              right: "0",
+              top: "42px",
+              width: "full",
+              maxHeight: "300px",
+              overflow: "auto",
+              zIndex: "2",
+              backgroundColor: "white",
+              padding: "15px",
+              borderRadius: "15px",
+            }}
+          >
+            {AllServicesData?.length > 0 ? (
+              <>
+                {searchTerm &&
+                  AllServicesData?.map((service: any) => (
+                    <Link
+                      style={{
+                        maxWidth: "full",
+                        borderRadius: "7px",
+                      }}
+                      key={service?.id}
+                      href={`/service-detail/${service?.id}`}
+                      onClick={() => setSearchTerm("")}
+                    >
+                      <SearchProducts service={service} />
+                      {/* <SearchProducts item={item} /> */}
+                    </Link>
+                  ))}
+              </>
+            ) : (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: "6px",
+                  padding: "10px",
+                  backgroundColor: "white",
+                }}
+              >
+                <p style={{ fontSize: "20px", fontWeight: "bold" }}>
+                  Nothing is matches with your search keywords. Please try
+                  again!
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+      </Col>
     </div>
   );
 };
